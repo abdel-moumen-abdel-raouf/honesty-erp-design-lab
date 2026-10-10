@@ -1,5 +1,33 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Entity Form internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `3a22084eccfd4b36648cfaaf84333aa10f298024` — synchronized `main` after the
+  Forms composition checkpoint.
+
+Bounded scope:
+
+- Expanded the two generated Entity Form Workbenches to cover the complete
+  bounded field matrix, typed projection outlets, four steps, controlled values
+  and observable events.
+- Corrected absent pattern propagation in EntitySchemaFields so browser-native
+  validity and StandardEntityForm submission remain functional.
+- Added focused regression coverage and persisted eight inspected
+  desktop/narrow Light/Dark RTL/LTR scenarios with 48/48 runtime assertions
+  under
+  `docs/review-evidence/erp-entity-form/entity-form-v1-internal-review/`.
+
+Verification before commit:
+
+- Focused tests: 4/4 files, 15/15 tests.
+- Canonical `npm run verify:clean`: 149/149 files, 877/877 tests, both
+  typechecks, all governance/lint, production build, zero warnings.
+- Build: 418.32 kB initial / 92.88 kB estimated transfer.
+
+Visual status remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## Forms composition internal-review candidate — 2026-10-10
 
 Entry checkpoint:

@@ -1,5 +1,17 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — Entity Form complete internally
+
+EntitySchemaFields and StandardEntityForm completed internal browser review.
+The complete bounded field matrix, custom projection outlets, controlled
+four-step composition, values and submit behavior pass 48/48 assertions.
+Absent schema patterns now remain absent instead of creating invalid empty
+native patterns. Canonical verification passes 149/149 files and 877/877 tests
+with a zero-warning 418.32 kB / 92.88 kB build. Product Owner status remains
+pending. Continue Bottom-Up with `ErpPage`, `ErpPageHeader`, and
+`ErpPageShell`; business Feature/Page, CRUD, transport, and permissions work
+remain closed.
+
 ## Current UI continuation — Forms composition complete internally
 
 Form, FormSection, FormActions, ValidationSummary, and Repeater completed

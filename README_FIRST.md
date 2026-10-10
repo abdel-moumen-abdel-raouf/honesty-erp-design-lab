@@ -1,5 +1,20 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — Entity Form owners
+
+EntitySchemaFields and StandardEntityForm completed internal browser review as
+original Honesty ERP candidates under the recorded Phase 6 waiver. Their
+generated one-target Workbenches prove the complete bounded field matrix,
+custom-field/section/review projection, four controlled steps, immutable value
+updates and actual form submission. The review corrected absent schema patterns
+being rendered as native empty patterns, which had made valid values invalid
+and blocked submission. Evidence under
+`docs/review-evidence/erp-entity-form/entity-form-v1-internal-review/` passes
+48/48 assertions. Focused verification passes 4/4 files and 15/15 tests;
+canonical verification passes 149/149 files and 877/877 tests with a
+zero-warning 418.32 kB / 92.88 kB build. Product Owner acceptance is not
+recorded. Next Bottom-Up unit: `ErpPage`, `ErpPageHeader`, and `ErpPageShell`.
+
 ## Latest verified UI unit — Forms composition owners
 
 Form, FormSection, FormActions, ValidationSummary, and Repeater completed

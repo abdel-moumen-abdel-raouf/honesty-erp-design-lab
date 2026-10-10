@@ -378,9 +378,17 @@ function validateRepository() {
           source.includes('removeRepeaterItem(key: string): void') &&
           source.includes("this.recordEvent('removeRequested', key);")
       );
+      const controlledEntityFormOutput =
+        entry.className === 'ErpEntitySchemaFields' && outputName === 'fieldValueChanged' &&
+          html.includes('(fieldValueChanged)="applyEntityFieldChange($event)"') &&
+          source.includes('applyEntityFieldChange(change: {key: string; value: unknown}): void') ||
+        entry.className === 'ErpStandardEntityForm' && outputName === 'valueChanged' &&
+          html.includes('(valueChanged)="applyEntityFormValue($event)"') &&
+          source.includes('applyEntityFormValue(change: {nextValues: unknown}): void');
       if (!rootAppShellOutput && !controlledColumnVisibilityOutput &&
           !controlledPaginationOutput && !controlledSortOutput &&
           !controlledDataCompositionOutput && !controlledFormsOutput &&
+          !controlledEntityFormOutput &&
           !html.includes(`(${outputName})="recordEvent('${outputName}', $event)"`)) {
         errors.push(`${entry.className} live target has no event evidence for ${outputName}`);
       }
@@ -388,8 +396,10 @@ function validateRepository() {
     const projectedChildPattern = new RegExp(
       `<${entry.selector}[\\s\\S]*?>\\s*<erp-`,
     );
-    const templateProjection = entry.className === 'ErpRepeater' &&
-      html.includes('erpRepeaterItem');
+    const templateProjection =
+      entry.className === 'ErpRepeater' && html.includes('erpRepeaterItem') ||
+      entry.className === 'ErpEntitySchemaFields' && html.includes('erpEntityCustomField') ||
+      entry.className === 'ErpStandardEntityForm' && html.includes('erpEntityFormReview');
     if (entry.showcaseCoverage.coveredProjectionSlots.length &&
         entry.className !== 'ErpText' &&
         !templateProjection &&

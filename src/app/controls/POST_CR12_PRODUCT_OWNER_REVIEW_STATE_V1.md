@@ -1,5 +1,19 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — Entity Form
+
+EntitySchemaFields and StandardEntityForm completed internal browser review.
+Complete field routing, typed custom projection, four controlled steps,
+custom-section/review presentation, value synchronization and actual submit
+evidence pass 48/48 runtime assertions with zero clipping, horizontal overflow,
+or browser diagnostics. Review also corrected empty optional pattern
+propagation that blocked valid native submission. Screenshots, measurements,
+authority boundaries and reproduction notes are under
+`docs/review-evidence/erp-entity-form/entity-form-v1-internal-review/`. Status
+is `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: Page, PageHeader,
+and PageShell.
+
 ## Current review execution — 2026-10-10 — Forms composition
 
 Form, FormSection, FormActions, ValidationSummary, and Repeater completed

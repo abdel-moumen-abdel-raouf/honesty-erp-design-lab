@@ -169,10 +169,10 @@ const CVA_FIXTURE_VALUES = new Map([
 
 const PROJECTION_COMPONENTS = new Set([
   'ErpAlert', 'ErpAppShell', 'ErpBulkActionBar', 'ErpContainer', 'ErpFilterBar',
-  'ErpForm', 'ErpFormActions', 'ErpFormSection', 'ErpRepeater',
+  'ErpEntitySchemaFields', 'ErpForm', 'ErpFormActions', 'ErpFormSection', 'ErpRepeater',
   'ErpGrid', 'ErpInline', 'ErpPage', 'ErpPageHeader', 'ErpPageShell',
   'ErpSection', 'ErpSmartTable', 'ErpStack', 'ErpSurface', 'ErpTableToolbar',
-  'ErpText', 'ErpTooltip', 'ErpTopbar',
+  'ErpStandardEntityForm', 'ErpText', 'ErpTooltip', 'ErpTopbar',
 ]);
 
 const EXACT_CORE_SHOWCASE_IDS = new Set([
@@ -473,8 +473,29 @@ const FIXTURE_INPUTS = new Map([
   ['ErpDateRangeBox', {label: 'فترة التقرير', helperText: 'حدّد بداية ونهاية الفترة المالية', min: '2026-01-01', max: '2026-12-31', clearable: true}],
   ['ErpDateTimeBox', {label: 'موعد التسليم', helperText: 'التاريخ والوقت المحليان للتسليم', min: '2026-01-01T00:00', max: '2026-12-31T23:55', clearable: true}],
   ['ErpEntitySchemaFields', {
-    fields: [{key: 'name', kind: 'text', label: 'اسم السجل'}],
-    values: {name: 'حساب المبيعات'},
+    fields: [
+      {key: 'name', kind: 'text', label: 'اسم المورد', description: 'الاسم المسجل في المستندات', required: true},
+      {key: 'notes', kind: 'textarea', label: 'ملاحظات التوريد', rows: 3},
+      {key: 'password', kind: 'password', label: 'رمز بوابة المورد'},
+      {key: 'website', kind: 'url', label: 'الموقع الإلكتروني'},
+      {key: 'phone', kind: 'telephone', label: 'هاتف التواصل'},
+      {key: 'employees', kind: 'number', label: 'عدد الموظفين', min: 1, max: 5000},
+      {key: 'limit', kind: 'money', label: 'الحد الائتماني', currency: 'EGP', min: 0},
+      {key: 'taxable', kind: 'checkbox', label: 'خاضع للضريبة'},
+      {key: 'type', kind: 'radio', label: 'نوع المورد', options: [{value: 'local', label: 'محلي'}, {value: 'international', label: 'دولي'}]},
+      {key: 'branch', kind: 'select', label: 'الفرع المسؤول', options: [{value: 'cairo', label: 'القاهرة'}, {value: 'alex', label: 'الإسكندرية'}]},
+      {key: 'startDate', kind: 'date', label: 'تاريخ بدء التعامل'},
+      {key: 'reviewTime', kind: 'time', label: 'وقت المراجعة', minuteStep: 15},
+      {key: 'updatedAt', kind: 'date-time', label: 'موعد التحديث'},
+      {key: 'classification', kind: 'custom', label: 'تصنيف المورد', outlet: 'classification'},
+    ],
+    values: {
+      name: 'شركة النيل للتوريدات', notes: 'مورد معتمد للأصناف المكتبية', password: 'Secure-2026',
+      website: 'https://honesty.example/suppliers/nile', phone: '+201005550101', employees: 120,
+      limit: 250000, taxable: true, type: 'local', branch: 'cairo', startDate: '2026-01-15',
+      reviewTime: '10:30', updatedAt: '2026-10-10T12:00', classification: 'approved',
+    },
+    issues: [{key: 'supplier-name-review', message: 'راجع الاسم القانوني قبل الحفظ.', targetId: 'name', fieldLabel: 'اسم المورد'}],
   }],
   ['ErpExtendedFab', {label: 'إضافة سجل'}],
   ['ErpFab', {icon: 'add', label: 'إضافة'}],
@@ -717,8 +738,34 @@ const FIXTURE_INPUTS = new Map([
     {value: 'delete', label: 'حذف', icon: 'delete', presentation: 'icon-text', disabled: true},
   ]}],
   ['ErpStandardEntityForm', {
-    schema: {id: 'record', label: 'نموذج سجل', sections: [], actions: {submitLabel: 'حفظ'}},
-    values: {},
+    schema: {
+      id: 'supplier', label: 'بطاقة المورد', description: 'بيانات التسجيل والتعامل المالي للمورد.',
+      sections: [
+        {kind: 'fields', id: 'identity', title: 'البيانات الأساسية', description: 'هوية المورد ووسائل التواصل.', fields: [
+          {key: 'name', kind: 'text', label: 'اسم المورد', required: true},
+          {key: 'phone', kind: 'telephone', label: 'هاتف التواصل'},
+          {key: 'website', kind: 'url', label: 'الموقع الإلكتروني'},
+          {key: 'active', kind: 'checkbox', label: 'مورد نشط'},
+        ]},
+        {kind: 'fields', id: 'commercial', title: 'بيانات التعامل', description: 'التصنيف والحد الائتماني والفرع.', fields: [
+          {key: 'type', kind: 'radio', label: 'نوع المورد', options: [{value: 'local', label: 'محلي'}, {value: 'international', label: 'دولي'}]},
+          {key: 'branch', kind: 'select', label: 'الفرع المسؤول', options: [{value: 'cairo', label: 'القاهرة'}, {value: 'alex', label: 'الإسكندرية'}]},
+          {key: 'limit', kind: 'money', label: 'الحد الائتماني', currency: 'EGP', min: 0},
+          {key: 'classification', kind: 'custom', label: 'التصنيف', outlet: 'classification'},
+        ]},
+        {kind: 'custom', id: 'attachments', title: 'المرفقات', description: 'دليل منفذ القسم المخصص.', outlet: 'attachments'},
+      ],
+      steps: [
+        {id: 'identity-step', label: 'الهوية', description: 'بيانات المورد الأساسية', sectionIds: ['identity']},
+        {id: 'commercial-step', label: 'التعامل', description: 'التصنيف والحدود', sectionIds: ['commercial']},
+        {id: 'attachments-step', label: 'المرفقات', description: 'مستندات المورد', sectionIds: ['attachments'], optional: true},
+        {id: 'review-step', label: 'المراجعة', description: 'مراجعة القيم قبل الحفظ', sectionIds: [], review: true},
+      ],
+      actions: {submitLabel: 'حفظ المورد', resetLabel: 'إعادة الضبط', cancelLabel: 'إلغاء'},
+    },
+    values: {name: 'شركة النيل للتوريدات', phone: '+201005550101', website: 'https://honesty.example', active: true, type: 'local', branch: 'cairo', limit: 250000, classification: 'approved'},
+    issues: [],
+    activeStepId: 'identity-step',
   }],
   ['ErpStatusBadge', {label: 'نشط'}],
   ['ErpStepper', {
@@ -1478,8 +1525,14 @@ function projectionMarkup(entry) {
   if (entry.className === 'ErpFormSection') {
     return '<erp-button erpFormSectionActions label="إضافة تصنيف" variant="outline" (pressed)="recordEvent(\'sectionActionPressed\', true)" /><erp-text-box label="اسم الحساب" /><erp-text-box label="وصف الحساب" />';
   }
+  if (entry.className === 'ErpEntitySchemaFields') {
+    return '<ng-template erpEntityCustomField="classification" let-update="update"><erp-button label="تعيين كمورد استراتيجي" variant="outline" (pressed)="update(\'strategic\')" /></ng-template>';
+  }
   if (entry.className === 'ErpRepeater') {
     return '<ng-template erpRepeaterItem let-item let-index="index"><erp-inline gap="tight" align="center" wrap="wrap"><erp-text type="strong">{{ index + 1 }}. {{ $any(item).name }}</erp-text><erp-text type="caption" tone="secondary">{{ $any(item).role }}</erp-text></erp-inline></ng-template>';
+  }
+  if (entry.className === 'ErpStandardEntityForm') {
+    return '<ng-template erpEntityCustomField="classification" let-update="update"><erp-button label="اعتماد التصنيف الاستراتيجي" variant="outline" (pressed)="update(\'strategic\')" /></ng-template><ng-template erpEntityCustomSection="attachments"><erp-text type="paragraph" tone="secondary">لا توجد مرفقات مطلوبة في هذه المعاينة.</erp-text></ng-template><ng-template erpEntityFormReview let-values><erp-stack gap="tight"><erp-text type="strong">ملخص بطاقة المورد</erp-text><erp-text type="paragraph">الاسم: {{ $any(values).name }}</erp-text><erp-text type="paragraph">الفرع: {{ $any(values).branch }}</erp-text></erp-stack></ng-template>';
   }
   if (entry.className === 'ErpPageHeader') {
     return '<erp-text erpPageHeaderBreadcrumbs type="caption">الرئيسية / الحسابات</erp-text><erp-text erpPageHeaderMeta type="caption">حالة السجل: نشط</erp-text><erp-button erpPageHeaderPrimaryAction label="حفظ" />';
@@ -1722,6 +1775,16 @@ function generatedShowcaseOwner(entry) {
     importLines[2] = `import {ErpRepeater, ErpRepeaterItemTemplate} from '${componentImport}';`;
     imports.add('ErpRepeaterItemTemplate');
   }
+  if (entry.className === 'ErpEntitySchemaFields') {
+    importLines.push(`import {ErpEntityCustomFieldOutlet} from '../../../controls/entity-form/entity-form-outlets';`);
+    imports.add('ErpEntityCustomFieldOutlet');
+  }
+  if (entry.className === 'ErpStandardEntityForm') {
+    importLines.push(`import {ErpEntityCustomFieldOutlet, ErpEntityCustomSectionOutlet, ErpEntityFormReviewTemplate} from '../../../controls/entity-form/entity-form-outlets';`);
+    imports.add('ErpEntityCustomFieldOutlet');
+    imports.add('ErpEntityCustomSectionOutlet');
+    imports.add('ErpEntityFormReviewTemplate');
+  }
   if (['ErpIconButton', 'ErpFab'].includes(entry.className)) {
     importLines.push(`import {ErpTooltip} from '../../../controls/tooltip/tooltip';`);
     imports.add('ErpTooltip');
@@ -1771,8 +1834,12 @@ function generatedShowcaseOwner(entry) {
               ? `(applied)="applyDrawerFilters($event)"`
       : entry.className === 'ErpRepeater' && outputName === 'addRequested'
         ? `(addRequested)="addRepeaterItem()"`
-        : entry.className === 'ErpRepeater' && outputName === 'removeRequested'
+      : entry.className === 'ErpRepeater' && outputName === 'removeRequested'
           ? `(removeRequested)="removeRepeaterItem($event)"`
+      : entry.className === 'ErpEntitySchemaFields' && outputName === 'fieldValueChanged'
+        ? `(fieldValueChanged)="applyEntityFieldChange($event)"`
+        : entry.className === 'ErpStandardEntityForm' && outputName === 'valueChanged'
+          ? `(valueChanged)="applyEntityFormValue($event)"`
       : entry.className === 'ErpPagination' && outputName === 'pageChange'
         ? `(pageChange)="recordPaginationPage($event)"`
         : entry.className === 'ErpPagination' && outputName === 'pageSizeChange'
@@ -1922,6 +1989,18 @@ function generatedShowcaseOwner(entry) {
     generatedSource = generatedSource.replace(
       '\n  recordModel(name: string, value: unknown): void {',
       "\n  addRepeaterItem(): void {\n    const items = this.repeaterItems();\n    const sequence = items.length + 1;\n    const next = [...items, {key: `contact-${sequence}`, value: {name: 'جهة اتصال جديدة', role: 'مستخدم النظام'}}];\n    this.liveValues.update((current) => ({...current, items: next}));\n    this.recordEvent('addRequested', undefined);\n  }\n\n  removeRepeaterItem(key: string): void {\n    const next = this.repeaterItems().filter((item) => item.key !== key);\n    this.liveValues.update((current) => ({...current, items: next}));\n    this.recordEvent('removeRequested', key);\n  }\n\n  private repeaterItems(): {key: string; value: unknown}[] {\n    const items = this.value('items');\n    return Array.isArray(items)\n      ? items.filter((item): item is {key: string; value: unknown} => Boolean(item) && typeof item === 'object' && typeof (item as {key?: unknown}).key === 'string')\n      : [];\n  }\n\n  recordModel(name: string, value: unknown): void {",
+    );
+  }
+  if (entry.className === 'ErpEntitySchemaFields') {
+    generatedSource = generatedSource.replace(
+      '\n  recordModel(name: string, value: unknown): void {',
+      "\n  applyEntityFieldChange(change: {key: string; value: unknown}): void {\n    const current = this.value('values');\n    const values = current && typeof current === 'object' && !Array.isArray(current) ? current as Readonly<Record<string, unknown>> : {};\n    this.liveValues.update((state) => ({...state, values: {...values, [change.key]: change.value}}));\n    this.recordEvent('fieldValueChanged', change);\n  }\n\n  recordModel(name: string, value: unknown): void {",
+    );
+  }
+  if (entry.className === 'ErpStandardEntityForm') {
+    generatedSource = generatedSource.replace(
+      '\n  recordModel(name: string, value: unknown): void {',
+      "\n  applyEntityFormValue(change: {nextValues: unknown}): void {\n    this.liveValues.update((state) => ({...state, values: change.nextValues}));\n    this.recordEvent('valueChanged', change);\n  }\n\n  recordModel(name: string, value: unknown): void {",
     );
   }
   if (entry.className === 'ErpUserMenu') {

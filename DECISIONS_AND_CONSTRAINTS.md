@@ -1,5 +1,21 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Entity Form internal-review decisions — 2026-10-10
+
+- EntitySchemaFields and StandardEntityForm remain original Honesty ERP
+  candidates under the explicit Phase 6 accelerated no-reference waiver in
+  `ENTITY_FORM_ENGINE_V1.md`; no external exact reference is claimed.
+- The schema renderer keeps every built-in field routed through its existing
+  ERP owner and preserves custom fields/sections/review as typed projected
+  outlets. No private input, validation, persistence, or transport engine is
+  introduced.
+- An omitted schema pattern must remain absent. It must not be converted to an
+  empty native pattern, because `pattern=""` invalidates non-empty values and
+  blocks native form submission.
+- StandardEntityForm values remain consumer-controlled immutable snapshots;
+  the Workbench applies emitted values only as review-owned state.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## Forms composition internal-review decisions — 2026-10-10
 
 - The five reviewed Forms composition owners remain original Honesty ERP

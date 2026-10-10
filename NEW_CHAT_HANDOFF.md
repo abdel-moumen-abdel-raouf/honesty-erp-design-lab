@@ -1,5 +1,19 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — Entity Form reviewed internally
+
+Continue from synchronized `main` after the Entity Form checkpoint.
+EntitySchemaFields now demonstrates all 13 built-in field owners and projected
+custom content; StandardEntityForm demonstrates four controlled steps, custom
+section/review projection, controlled values, and submit intent. The browser
+review corrected empty optional pattern propagation that had invalidated
+non-empty inputs and blocked submission. Evidence under
+`docs/review-evidence/erp-entity-form/entity-form-v1-internal-review/` passes
+48/48 assertions. Canonical verification passes 149/149 files and 877/877
+tests with a zero-warning 418.32 kB / 92.88 kB build. Product Owner acceptance
+is not recorded. Continue Bottom-Up with `ErpPage`, `ErpPageHeader`, and
+`ErpPageShell`.
+
 ## Current continuation point — Forms composition reviewed internally
 
 Continue from synchronized `main` after the Forms composition checkpoint.

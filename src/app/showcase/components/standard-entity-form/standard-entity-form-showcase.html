@@ -13,12 +13,12 @@
           [busy]="$any(value('busy'))"
           [activeStepId]="$any(value('activeStepId'))"
           (activeStepIdChange)="recordModel('activeStepId', $event)"
-          (valueChanged)="recordEvent('valueChanged', $event)"
+          (valueChanged)="applyEntityFormValue($event)"
           (submitRequested)="recordEvent('submitRequested', $event)"
           (resetRequested)="recordEvent('resetRequested', $event)"
           (cancelRequested)="recordEvent('cancelRequested', $event)"
           (issueActivated)="recordEvent('issueActivated', $event)"
-        ></erp-standard-entity-form>
+        ><ng-template erpEntityCustomField="classification" let-update="update"><erp-button label="اعتماد التصنيف الاستراتيجي" variant="outline" (pressed)="update('strategic')" /></ng-template><ng-template erpEntityCustomSection="attachments"><erp-text type="paragraph" tone="secondary">لا توجد مرفقات مطلوبة في هذه المعاينة.</erp-text></ng-template><ng-template erpEntityFormReview let-values><erp-stack gap="tight"><erp-text type="strong">ملخص بطاقة المورد</erp-text><erp-text type="paragraph">الاسم: {{ $any(values).name }}</erp-text><erp-text type="paragraph">الفرع: {{ $any(values).branch }}</erp-text></erp-stack></ng-template></erp-standard-entity-form>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

@@ -15525,12 +15525,127 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "key": "name",
               "kind": "text",
-              "label": "اسم السجل"
+              "label": "اسم المورد",
+              "description": "الاسم المسجل في المستندات",
+              "required": true
+            },
+            {
+              "key": "notes",
+              "kind": "textarea",
+              "label": "ملاحظات التوريد",
+              "rows": 3
+            },
+            {
+              "key": "password",
+              "kind": "password",
+              "label": "رمز بوابة المورد"
+            },
+            {
+              "key": "website",
+              "kind": "url",
+              "label": "الموقع الإلكتروني"
+            },
+            {
+              "key": "phone",
+              "kind": "telephone",
+              "label": "هاتف التواصل"
+            },
+            {
+              "key": "employees",
+              "kind": "number",
+              "label": "عدد الموظفين",
+              "min": 1,
+              "max": 5000
+            },
+            {
+              "key": "limit",
+              "kind": "money",
+              "label": "الحد الائتماني",
+              "currency": "EGP",
+              "min": 0
+            },
+            {
+              "key": "taxable",
+              "kind": "checkbox",
+              "label": "خاضع للضريبة"
+            },
+            {
+              "key": "type",
+              "kind": "radio",
+              "label": "نوع المورد",
+              "options": [
+                {
+                  "value": "local",
+                  "label": "محلي"
+                },
+                {
+                  "value": "international",
+                  "label": "دولي"
+                }
+              ]
+            },
+            {
+              "key": "branch",
+              "kind": "select",
+              "label": "الفرع المسؤول",
+              "options": [
+                {
+                  "value": "cairo",
+                  "label": "القاهرة"
+                },
+                {
+                  "value": "alex",
+                  "label": "الإسكندرية"
+                }
+              ]
+            },
+            {
+              "key": "startDate",
+              "kind": "date",
+              "label": "تاريخ بدء التعامل"
+            },
+            {
+              "key": "reviewTime",
+              "kind": "time",
+              "label": "وقت المراجعة",
+              "minuteStep": 15
+            },
+            {
+              "key": "updatedAt",
+              "kind": "date-time",
+              "label": "موعد التحديث"
+            },
+            {
+              "key": "classification",
+              "kind": "custom",
+              "label": "تصنيف المورد",
+              "outlet": "classification"
             }
           ],
           "values": {
-            "name": "حساب المبيعات"
-          }
+            "name": "شركة النيل للتوريدات",
+            "notes": "مورد معتمد للأصناف المكتبية",
+            "password": "Secure-2026",
+            "website": "https://honesty.example/suppliers/nile",
+            "phone": "+201005550101",
+            "employees": 120,
+            "limit": 250000,
+            "taxable": true,
+            "type": "local",
+            "branch": "cairo",
+            "startDate": "2026-01-15",
+            "reviewTime": "10:30",
+            "updatedAt": "2026-10-10T12:00",
+            "classification": "approved"
+          },
+          "issues": [
+            {
+              "key": "supplier-name-review",
+              "message": "راجع الاسم القانوني قبل الحفظ.",
+              "targetId": "name",
+              "fieldLabel": "اسم المورد"
+            }
+          ]
         }
       }
     ],
@@ -15538,17 +15653,131 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "عرض حقول المخطط من خلال مدخلات ERP المعتمدة.",
     "showcaseInitialValues": {
       "section": null,
-      "issues": [],
+      "issues": [
+        {
+          "key": "supplier-name-review",
+          "message": "راجع الاسم القانوني قبل الحفظ.",
+          "targetId": "name",
+          "fieldLabel": "اسم المورد"
+        }
+      ],
       "customFieldOutlets": [],
       "fields": [
         {
           "key": "name",
           "kind": "text",
-          "label": "اسم السجل"
+          "label": "اسم المورد",
+          "description": "الاسم المسجل في المستندات",
+          "required": true
+        },
+        {
+          "key": "notes",
+          "kind": "textarea",
+          "label": "ملاحظات التوريد",
+          "rows": 3
+        },
+        {
+          "key": "password",
+          "kind": "password",
+          "label": "رمز بوابة المورد"
+        },
+        {
+          "key": "website",
+          "kind": "url",
+          "label": "الموقع الإلكتروني"
+        },
+        {
+          "key": "phone",
+          "kind": "telephone",
+          "label": "هاتف التواصل"
+        },
+        {
+          "key": "employees",
+          "kind": "number",
+          "label": "عدد الموظفين",
+          "min": 1,
+          "max": 5000
+        },
+        {
+          "key": "limit",
+          "kind": "money",
+          "label": "الحد الائتماني",
+          "currency": "EGP",
+          "min": 0
+        },
+        {
+          "key": "taxable",
+          "kind": "checkbox",
+          "label": "خاضع للضريبة"
+        },
+        {
+          "key": "type",
+          "kind": "radio",
+          "label": "نوع المورد",
+          "options": [
+            {
+              "value": "local",
+              "label": "محلي"
+            },
+            {
+              "value": "international",
+              "label": "دولي"
+            }
+          ]
+        },
+        {
+          "key": "branch",
+          "kind": "select",
+          "label": "الفرع المسؤول",
+          "options": [
+            {
+              "value": "cairo",
+              "label": "القاهرة"
+            },
+            {
+              "value": "alex",
+              "label": "الإسكندرية"
+            }
+          ]
+        },
+        {
+          "key": "startDate",
+          "kind": "date",
+          "label": "تاريخ بدء التعامل"
+        },
+        {
+          "key": "reviewTime",
+          "kind": "time",
+          "label": "وقت المراجعة",
+          "minuteStep": 15
+        },
+        {
+          "key": "updatedAt",
+          "kind": "date-time",
+          "label": "موعد التحديث"
+        },
+        {
+          "key": "classification",
+          "kind": "custom",
+          "label": "تصنيف المورد",
+          "outlet": "classification"
         }
       ],
       "values": {
-        "name": "حساب المبيعات"
+        "name": "شركة النيل للتوريدات",
+        "notes": "مورد معتمد للأصناف المكتبية",
+        "password": "Secure-2026",
+        "website": "https://honesty.example/suppliers/nile",
+        "phone": "+201005550101",
+        "employees": 120,
+        "limit": 250000,
+        "taxable": true,
+        "type": "local",
+        "branch": "cairo",
+        "startDate": "2026-01-15",
+        "reviewTime": "10:30",
+        "updatedAt": "2026-10-10T12:00",
+        "classification": "approved"
       }
     },
     "showcaseControls": [
@@ -15564,7 +15793,101 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           {
             "key": "name",
             "kind": "text",
-            "label": "اسم السجل"
+            "label": "اسم المورد",
+            "description": "الاسم المسجل في المستندات",
+            "required": true
+          },
+          {
+            "key": "notes",
+            "kind": "textarea",
+            "label": "ملاحظات التوريد",
+            "rows": 3
+          },
+          {
+            "key": "password",
+            "kind": "password",
+            "label": "رمز بوابة المورد"
+          },
+          {
+            "key": "website",
+            "kind": "url",
+            "label": "الموقع الإلكتروني"
+          },
+          {
+            "key": "phone",
+            "kind": "telephone",
+            "label": "هاتف التواصل"
+          },
+          {
+            "key": "employees",
+            "kind": "number",
+            "label": "عدد الموظفين",
+            "min": 1,
+            "max": 5000
+          },
+          {
+            "key": "limit",
+            "kind": "money",
+            "label": "الحد الائتماني",
+            "currency": "EGP",
+            "min": 0
+          },
+          {
+            "key": "taxable",
+            "kind": "checkbox",
+            "label": "خاضع للضريبة"
+          },
+          {
+            "key": "type",
+            "kind": "radio",
+            "label": "نوع المورد",
+            "options": [
+              {
+                "value": "local",
+                "label": "محلي"
+              },
+              {
+                "value": "international",
+                "label": "دولي"
+              }
+            ]
+          },
+          {
+            "key": "branch",
+            "kind": "select",
+            "label": "الفرع المسؤول",
+            "options": [
+              {
+                "value": "cairo",
+                "label": "القاهرة"
+              },
+              {
+                "value": "alex",
+                "label": "الإسكندرية"
+              }
+            ]
+          },
+          {
+            "key": "startDate",
+            "kind": "date",
+            "label": "تاريخ بدء التعامل"
+          },
+          {
+            "key": "reviewTime",
+            "kind": "time",
+            "label": "وقت المراجعة",
+            "minuteStep": 15
+          },
+          {
+            "key": "updatedAt",
+            "kind": "date-time",
+            "label": "موعد التحديث"
+          },
+          {
+            "key": "classification",
+            "kind": "custom",
+            "label": "تصنيف المورد",
+            "outlet": "classification"
           }
         ]
       },
@@ -15577,7 +15900,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "type": "ErpEntityFormValues",
         "options": [],
         "initialValue": {
-          "name": "حساب المبيعات"
+          "name": "شركة النيل للتوريدات",
+          "notes": "مورد معتمد للأصناف المكتبية",
+          "password": "Secure-2026",
+          "website": "https://honesty.example/suppliers/nile",
+          "phone": "+201005550101",
+          "employees": 120,
+          "limit": 250000,
+          "taxable": true,
+          "type": "local",
+          "branch": "cairo",
+          "startDate": "2026-01-15",
+          "reviewTime": "10:30",
+          "updatedAt": "2026-10-10T12:00",
+          "classification": "approved"
         }
       },
       {
@@ -15598,7 +15934,14 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly ErpFormValidationIssue[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          {
+            "key": "supplier-name-review",
+            "message": "راجع الاسم القانوني قبل الحفظ.",
+            "targetId": "name",
+            "fieldLabel": "اسم المورد"
+          }
+        ]
       },
       {
         "name": "customFieldOutlets",
@@ -15625,9 +15968,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredValues": {},
       "coveredStates": [],
-      "coveredProjectionSlots": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
       "coveredReferenceCases": [],
-      "evidenceKind": "INTERACTIVE_OUTPUT"
+      "evidenceKind": "AUTHORED_PROJECTION"
     }
   },
   {
@@ -16520,15 +16865,150 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "الحالة الافتراضية",
         "inputs": {
           "schema": {
-            "id": "record",
-            "label": "نموذج سجل",
-            "sections": [],
+            "id": "supplier",
+            "label": "بطاقة المورد",
+            "description": "بيانات التسجيل والتعامل المالي للمورد.",
+            "sections": [
+              {
+                "kind": "fields",
+                "id": "identity",
+                "title": "البيانات الأساسية",
+                "description": "هوية المورد ووسائل التواصل.",
+                "fields": [
+                  {
+                    "key": "name",
+                    "kind": "text",
+                    "label": "اسم المورد",
+                    "required": true
+                  },
+                  {
+                    "key": "phone",
+                    "kind": "telephone",
+                    "label": "هاتف التواصل"
+                  },
+                  {
+                    "key": "website",
+                    "kind": "url",
+                    "label": "الموقع الإلكتروني"
+                  },
+                  {
+                    "key": "active",
+                    "kind": "checkbox",
+                    "label": "مورد نشط"
+                  }
+                ]
+              },
+              {
+                "kind": "fields",
+                "id": "commercial",
+                "title": "بيانات التعامل",
+                "description": "التصنيف والحد الائتماني والفرع.",
+                "fields": [
+                  {
+                    "key": "type",
+                    "kind": "radio",
+                    "label": "نوع المورد",
+                    "options": [
+                      {
+                        "value": "local",
+                        "label": "محلي"
+                      },
+                      {
+                        "value": "international",
+                        "label": "دولي"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "branch",
+                    "kind": "select",
+                    "label": "الفرع المسؤول",
+                    "options": [
+                      {
+                        "value": "cairo",
+                        "label": "القاهرة"
+                      },
+                      {
+                        "value": "alex",
+                        "label": "الإسكندرية"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "limit",
+                    "kind": "money",
+                    "label": "الحد الائتماني",
+                    "currency": "EGP",
+                    "min": 0
+                  },
+                  {
+                    "key": "classification",
+                    "kind": "custom",
+                    "label": "التصنيف",
+                    "outlet": "classification"
+                  }
+                ]
+              },
+              {
+                "kind": "custom",
+                "id": "attachments",
+                "title": "المرفقات",
+                "description": "دليل منفذ القسم المخصص.",
+                "outlet": "attachments"
+              }
+            ],
+            "steps": [
+              {
+                "id": "identity-step",
+                "label": "الهوية",
+                "description": "بيانات المورد الأساسية",
+                "sectionIds": [
+                  "identity"
+                ]
+              },
+              {
+                "id": "commercial-step",
+                "label": "التعامل",
+                "description": "التصنيف والحدود",
+                "sectionIds": [
+                  "commercial"
+                ]
+              },
+              {
+                "id": "attachments-step",
+                "label": "المرفقات",
+                "description": "مستندات المورد",
+                "sectionIds": [
+                  "attachments"
+                ],
+                "optional": true
+              },
+              {
+                "id": "review-step",
+                "label": "المراجعة",
+                "description": "مراجعة القيم قبل الحفظ",
+                "sectionIds": [],
+                "review": true
+              }
+            ],
             "actions": {
-              "submitLabel": "حفظ"
+              "submitLabel": "حفظ المورد",
+              "resetLabel": "إعادة الضبط",
+              "cancelLabel": "إلغاء"
             }
           },
-          "values": {},
-          "activeStepId": null
+          "values": {
+            "name": "شركة النيل للتوريدات",
+            "phone": "+201005550101",
+            "website": "https://honesty.example",
+            "active": true,
+            "type": "local",
+            "branch": "cairo",
+            "limit": 250000,
+            "classification": "approved"
+          },
+          "issues": [],
+          "activeStepId": "identity-step"
         }
       },
       {
@@ -16536,15 +17016,150 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "disabled: false",
         "inputs": {
           "schema": {
-            "id": "record",
-            "label": "نموذج سجل",
-            "sections": [],
+            "id": "supplier",
+            "label": "بطاقة المورد",
+            "description": "بيانات التسجيل والتعامل المالي للمورد.",
+            "sections": [
+              {
+                "kind": "fields",
+                "id": "identity",
+                "title": "البيانات الأساسية",
+                "description": "هوية المورد ووسائل التواصل.",
+                "fields": [
+                  {
+                    "key": "name",
+                    "kind": "text",
+                    "label": "اسم المورد",
+                    "required": true
+                  },
+                  {
+                    "key": "phone",
+                    "kind": "telephone",
+                    "label": "هاتف التواصل"
+                  },
+                  {
+                    "key": "website",
+                    "kind": "url",
+                    "label": "الموقع الإلكتروني"
+                  },
+                  {
+                    "key": "active",
+                    "kind": "checkbox",
+                    "label": "مورد نشط"
+                  }
+                ]
+              },
+              {
+                "kind": "fields",
+                "id": "commercial",
+                "title": "بيانات التعامل",
+                "description": "التصنيف والحد الائتماني والفرع.",
+                "fields": [
+                  {
+                    "key": "type",
+                    "kind": "radio",
+                    "label": "نوع المورد",
+                    "options": [
+                      {
+                        "value": "local",
+                        "label": "محلي"
+                      },
+                      {
+                        "value": "international",
+                        "label": "دولي"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "branch",
+                    "kind": "select",
+                    "label": "الفرع المسؤول",
+                    "options": [
+                      {
+                        "value": "cairo",
+                        "label": "القاهرة"
+                      },
+                      {
+                        "value": "alex",
+                        "label": "الإسكندرية"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "limit",
+                    "kind": "money",
+                    "label": "الحد الائتماني",
+                    "currency": "EGP",
+                    "min": 0
+                  },
+                  {
+                    "key": "classification",
+                    "kind": "custom",
+                    "label": "التصنيف",
+                    "outlet": "classification"
+                  }
+                ]
+              },
+              {
+                "kind": "custom",
+                "id": "attachments",
+                "title": "المرفقات",
+                "description": "دليل منفذ القسم المخصص.",
+                "outlet": "attachments"
+              }
+            ],
+            "steps": [
+              {
+                "id": "identity-step",
+                "label": "الهوية",
+                "description": "بيانات المورد الأساسية",
+                "sectionIds": [
+                  "identity"
+                ]
+              },
+              {
+                "id": "commercial-step",
+                "label": "التعامل",
+                "description": "التصنيف والحدود",
+                "sectionIds": [
+                  "commercial"
+                ]
+              },
+              {
+                "id": "attachments-step",
+                "label": "المرفقات",
+                "description": "مستندات المورد",
+                "sectionIds": [
+                  "attachments"
+                ],
+                "optional": true
+              },
+              {
+                "id": "review-step",
+                "label": "المراجعة",
+                "description": "مراجعة القيم قبل الحفظ",
+                "sectionIds": [],
+                "review": true
+              }
+            ],
             "actions": {
-              "submitLabel": "حفظ"
+              "submitLabel": "حفظ المورد",
+              "resetLabel": "إعادة الضبط",
+              "cancelLabel": "إلغاء"
             }
           },
-          "values": {},
-          "activeStepId": null,
+          "values": {
+            "name": "شركة النيل للتوريدات",
+            "phone": "+201005550101",
+            "website": "https://honesty.example",
+            "active": true,
+            "type": "local",
+            "branch": "cairo",
+            "limit": 250000,
+            "classification": "approved"
+          },
+          "issues": [],
+          "activeStepId": "identity-step",
           "disabled": false
         }
       },
@@ -16553,15 +17168,150 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "disabled: true",
         "inputs": {
           "schema": {
-            "id": "record",
-            "label": "نموذج سجل",
-            "sections": [],
+            "id": "supplier",
+            "label": "بطاقة المورد",
+            "description": "بيانات التسجيل والتعامل المالي للمورد.",
+            "sections": [
+              {
+                "kind": "fields",
+                "id": "identity",
+                "title": "البيانات الأساسية",
+                "description": "هوية المورد ووسائل التواصل.",
+                "fields": [
+                  {
+                    "key": "name",
+                    "kind": "text",
+                    "label": "اسم المورد",
+                    "required": true
+                  },
+                  {
+                    "key": "phone",
+                    "kind": "telephone",
+                    "label": "هاتف التواصل"
+                  },
+                  {
+                    "key": "website",
+                    "kind": "url",
+                    "label": "الموقع الإلكتروني"
+                  },
+                  {
+                    "key": "active",
+                    "kind": "checkbox",
+                    "label": "مورد نشط"
+                  }
+                ]
+              },
+              {
+                "kind": "fields",
+                "id": "commercial",
+                "title": "بيانات التعامل",
+                "description": "التصنيف والحد الائتماني والفرع.",
+                "fields": [
+                  {
+                    "key": "type",
+                    "kind": "radio",
+                    "label": "نوع المورد",
+                    "options": [
+                      {
+                        "value": "local",
+                        "label": "محلي"
+                      },
+                      {
+                        "value": "international",
+                        "label": "دولي"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "branch",
+                    "kind": "select",
+                    "label": "الفرع المسؤول",
+                    "options": [
+                      {
+                        "value": "cairo",
+                        "label": "القاهرة"
+                      },
+                      {
+                        "value": "alex",
+                        "label": "الإسكندرية"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "limit",
+                    "kind": "money",
+                    "label": "الحد الائتماني",
+                    "currency": "EGP",
+                    "min": 0
+                  },
+                  {
+                    "key": "classification",
+                    "kind": "custom",
+                    "label": "التصنيف",
+                    "outlet": "classification"
+                  }
+                ]
+              },
+              {
+                "kind": "custom",
+                "id": "attachments",
+                "title": "المرفقات",
+                "description": "دليل منفذ القسم المخصص.",
+                "outlet": "attachments"
+              }
+            ],
+            "steps": [
+              {
+                "id": "identity-step",
+                "label": "الهوية",
+                "description": "بيانات المورد الأساسية",
+                "sectionIds": [
+                  "identity"
+                ]
+              },
+              {
+                "id": "commercial-step",
+                "label": "التعامل",
+                "description": "التصنيف والحدود",
+                "sectionIds": [
+                  "commercial"
+                ]
+              },
+              {
+                "id": "attachments-step",
+                "label": "المرفقات",
+                "description": "مستندات المورد",
+                "sectionIds": [
+                  "attachments"
+                ],
+                "optional": true
+              },
+              {
+                "id": "review-step",
+                "label": "المراجعة",
+                "description": "مراجعة القيم قبل الحفظ",
+                "sectionIds": [],
+                "review": true
+              }
+            ],
             "actions": {
-              "submitLabel": "حفظ"
+              "submitLabel": "حفظ المورد",
+              "resetLabel": "إعادة الضبط",
+              "cancelLabel": "إلغاء"
             }
           },
-          "values": {},
-          "activeStepId": null,
+          "values": {
+            "name": "شركة النيل للتوريدات",
+            "phone": "+201005550101",
+            "website": "https://honesty.example",
+            "active": true,
+            "type": "local",
+            "branch": "cairo",
+            "limit": 250000,
+            "classification": "approved"
+          },
+          "issues": [],
+          "activeStepId": "identity-step",
           "disabled": true
         }
       },
@@ -16570,15 +17320,150 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "حالة معطلة",
         "inputs": {
           "schema": {
-            "id": "record",
-            "label": "نموذج سجل",
-            "sections": [],
+            "id": "supplier",
+            "label": "بطاقة المورد",
+            "description": "بيانات التسجيل والتعامل المالي للمورد.",
+            "sections": [
+              {
+                "kind": "fields",
+                "id": "identity",
+                "title": "البيانات الأساسية",
+                "description": "هوية المورد ووسائل التواصل.",
+                "fields": [
+                  {
+                    "key": "name",
+                    "kind": "text",
+                    "label": "اسم المورد",
+                    "required": true
+                  },
+                  {
+                    "key": "phone",
+                    "kind": "telephone",
+                    "label": "هاتف التواصل"
+                  },
+                  {
+                    "key": "website",
+                    "kind": "url",
+                    "label": "الموقع الإلكتروني"
+                  },
+                  {
+                    "key": "active",
+                    "kind": "checkbox",
+                    "label": "مورد نشط"
+                  }
+                ]
+              },
+              {
+                "kind": "fields",
+                "id": "commercial",
+                "title": "بيانات التعامل",
+                "description": "التصنيف والحد الائتماني والفرع.",
+                "fields": [
+                  {
+                    "key": "type",
+                    "kind": "radio",
+                    "label": "نوع المورد",
+                    "options": [
+                      {
+                        "value": "local",
+                        "label": "محلي"
+                      },
+                      {
+                        "value": "international",
+                        "label": "دولي"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "branch",
+                    "kind": "select",
+                    "label": "الفرع المسؤول",
+                    "options": [
+                      {
+                        "value": "cairo",
+                        "label": "القاهرة"
+                      },
+                      {
+                        "value": "alex",
+                        "label": "الإسكندرية"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "limit",
+                    "kind": "money",
+                    "label": "الحد الائتماني",
+                    "currency": "EGP",
+                    "min": 0
+                  },
+                  {
+                    "key": "classification",
+                    "kind": "custom",
+                    "label": "التصنيف",
+                    "outlet": "classification"
+                  }
+                ]
+              },
+              {
+                "kind": "custom",
+                "id": "attachments",
+                "title": "المرفقات",
+                "description": "دليل منفذ القسم المخصص.",
+                "outlet": "attachments"
+              }
+            ],
+            "steps": [
+              {
+                "id": "identity-step",
+                "label": "الهوية",
+                "description": "بيانات المورد الأساسية",
+                "sectionIds": [
+                  "identity"
+                ]
+              },
+              {
+                "id": "commercial-step",
+                "label": "التعامل",
+                "description": "التصنيف والحدود",
+                "sectionIds": [
+                  "commercial"
+                ]
+              },
+              {
+                "id": "attachments-step",
+                "label": "المرفقات",
+                "description": "مستندات المورد",
+                "sectionIds": [
+                  "attachments"
+                ],
+                "optional": true
+              },
+              {
+                "id": "review-step",
+                "label": "المراجعة",
+                "description": "مراجعة القيم قبل الحفظ",
+                "sectionIds": [],
+                "review": true
+              }
+            ],
             "actions": {
-              "submitLabel": "حفظ"
+              "submitLabel": "حفظ المورد",
+              "resetLabel": "إعادة الضبط",
+              "cancelLabel": "إلغاء"
             }
           },
-          "values": {},
-          "activeStepId": null,
+          "values": {
+            "name": "شركة النيل للتوريدات",
+            "phone": "+201005550101",
+            "website": "https://honesty.example",
+            "active": true,
+            "type": "local",
+            "branch": "cairo",
+            "limit": 250000,
+            "classification": "approved"
+          },
+          "issues": [],
+          "activeStepId": "identity-step",
           "disabled": true
         }
       }
@@ -16589,16 +17474,150 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "issues": [],
       "disabled": false,
       "busy": false,
-      "activeStepId": "",
+      "activeStepId": "identity-step",
       "schema": {
-        "id": "record",
-        "label": "نموذج سجل",
-        "sections": [],
+        "id": "supplier",
+        "label": "بطاقة المورد",
+        "description": "بيانات التسجيل والتعامل المالي للمورد.",
+        "sections": [
+          {
+            "kind": "fields",
+            "id": "identity",
+            "title": "البيانات الأساسية",
+            "description": "هوية المورد ووسائل التواصل.",
+            "fields": [
+              {
+                "key": "name",
+                "kind": "text",
+                "label": "اسم المورد",
+                "required": true
+              },
+              {
+                "key": "phone",
+                "kind": "telephone",
+                "label": "هاتف التواصل"
+              },
+              {
+                "key": "website",
+                "kind": "url",
+                "label": "الموقع الإلكتروني"
+              },
+              {
+                "key": "active",
+                "kind": "checkbox",
+                "label": "مورد نشط"
+              }
+            ]
+          },
+          {
+            "kind": "fields",
+            "id": "commercial",
+            "title": "بيانات التعامل",
+            "description": "التصنيف والحد الائتماني والفرع.",
+            "fields": [
+              {
+                "key": "type",
+                "kind": "radio",
+                "label": "نوع المورد",
+                "options": [
+                  {
+                    "value": "local",
+                    "label": "محلي"
+                  },
+                  {
+                    "value": "international",
+                    "label": "دولي"
+                  }
+                ]
+              },
+              {
+                "key": "branch",
+                "kind": "select",
+                "label": "الفرع المسؤول",
+                "options": [
+                  {
+                    "value": "cairo",
+                    "label": "القاهرة"
+                  },
+                  {
+                    "value": "alex",
+                    "label": "الإسكندرية"
+                  }
+                ]
+              },
+              {
+                "key": "limit",
+                "kind": "money",
+                "label": "الحد الائتماني",
+                "currency": "EGP",
+                "min": 0
+              },
+              {
+                "key": "classification",
+                "kind": "custom",
+                "label": "التصنيف",
+                "outlet": "classification"
+              }
+            ]
+          },
+          {
+            "kind": "custom",
+            "id": "attachments",
+            "title": "المرفقات",
+            "description": "دليل منفذ القسم المخصص.",
+            "outlet": "attachments"
+          }
+        ],
+        "steps": [
+          {
+            "id": "identity-step",
+            "label": "الهوية",
+            "description": "بيانات المورد الأساسية",
+            "sectionIds": [
+              "identity"
+            ]
+          },
+          {
+            "id": "commercial-step",
+            "label": "التعامل",
+            "description": "التصنيف والحدود",
+            "sectionIds": [
+              "commercial"
+            ]
+          },
+          {
+            "id": "attachments-step",
+            "label": "المرفقات",
+            "description": "مستندات المورد",
+            "sectionIds": [
+              "attachments"
+            ],
+            "optional": true
+          },
+          {
+            "id": "review-step",
+            "label": "المراجعة",
+            "description": "مراجعة القيم قبل الحفظ",
+            "sectionIds": [],
+            "review": true
+          }
+        ],
         "actions": {
-          "submitLabel": "حفظ"
+          "submitLabel": "حفظ المورد",
+          "resetLabel": "إعادة الضبط",
+          "cancelLabel": "إلغاء"
         }
       },
-      "values": {}
+      "values": {
+        "name": "شركة النيل للتوريدات",
+        "phone": "+201005550101",
+        "website": "https://honesty.example",
+        "active": true,
+        "type": "local",
+        "branch": "cairo",
+        "limit": 250000,
+        "classification": "approved"
+      }
     },
     "showcaseControls": [
       {
@@ -16610,11 +17629,136 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "type": "ErpEntityFormSchema",
         "options": [],
         "initialValue": {
-          "id": "record",
-          "label": "نموذج سجل",
-          "sections": [],
+          "id": "supplier",
+          "label": "بطاقة المورد",
+          "description": "بيانات التسجيل والتعامل المالي للمورد.",
+          "sections": [
+            {
+              "kind": "fields",
+              "id": "identity",
+              "title": "البيانات الأساسية",
+              "description": "هوية المورد ووسائل التواصل.",
+              "fields": [
+                {
+                  "key": "name",
+                  "kind": "text",
+                  "label": "اسم المورد",
+                  "required": true
+                },
+                {
+                  "key": "phone",
+                  "kind": "telephone",
+                  "label": "هاتف التواصل"
+                },
+                {
+                  "key": "website",
+                  "kind": "url",
+                  "label": "الموقع الإلكتروني"
+                },
+                {
+                  "key": "active",
+                  "kind": "checkbox",
+                  "label": "مورد نشط"
+                }
+              ]
+            },
+            {
+              "kind": "fields",
+              "id": "commercial",
+              "title": "بيانات التعامل",
+              "description": "التصنيف والحد الائتماني والفرع.",
+              "fields": [
+                {
+                  "key": "type",
+                  "kind": "radio",
+                  "label": "نوع المورد",
+                  "options": [
+                    {
+                      "value": "local",
+                      "label": "محلي"
+                    },
+                    {
+                      "value": "international",
+                      "label": "دولي"
+                    }
+                  ]
+                },
+                {
+                  "key": "branch",
+                  "kind": "select",
+                  "label": "الفرع المسؤول",
+                  "options": [
+                    {
+                      "value": "cairo",
+                      "label": "القاهرة"
+                    },
+                    {
+                      "value": "alex",
+                      "label": "الإسكندرية"
+                    }
+                  ]
+                },
+                {
+                  "key": "limit",
+                  "kind": "money",
+                  "label": "الحد الائتماني",
+                  "currency": "EGP",
+                  "min": 0
+                },
+                {
+                  "key": "classification",
+                  "kind": "custom",
+                  "label": "التصنيف",
+                  "outlet": "classification"
+                }
+              ]
+            },
+            {
+              "kind": "custom",
+              "id": "attachments",
+              "title": "المرفقات",
+              "description": "دليل منفذ القسم المخصص.",
+              "outlet": "attachments"
+            }
+          ],
+          "steps": [
+            {
+              "id": "identity-step",
+              "label": "الهوية",
+              "description": "بيانات المورد الأساسية",
+              "sectionIds": [
+                "identity"
+              ]
+            },
+            {
+              "id": "commercial-step",
+              "label": "التعامل",
+              "description": "التصنيف والحدود",
+              "sectionIds": [
+                "commercial"
+              ]
+            },
+            {
+              "id": "attachments-step",
+              "label": "المرفقات",
+              "description": "مستندات المورد",
+              "sectionIds": [
+                "attachments"
+              ],
+              "optional": true
+            },
+            {
+              "id": "review-step",
+              "label": "المراجعة",
+              "description": "مراجعة القيم قبل الحفظ",
+              "sectionIds": [],
+              "review": true
+            }
+          ],
           "actions": {
-            "submitLabel": "حفظ"
+            "submitLabel": "حفظ المورد",
+            "resetLabel": "إعادة الضبط",
+            "cancelLabel": "إلغاء"
           }
         }
       },
@@ -16626,7 +17770,16 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "ErpEntityFormValues",
         "options": [],
-        "initialValue": {}
+        "initialValue": {
+          "name": "شركة النيل للتوريدات",
+          "phone": "+201005550101",
+          "website": "https://honesty.example",
+          "active": true,
+          "type": "local",
+          "branch": "cairo",
+          "limit": 250000,
+          "classification": "approved"
+        }
       },
       {
         "name": "issues",
@@ -16672,7 +17825,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string",
         "options": [],
-        "initialValue": ""
+        "initialValue": "identity-step"
       }
     ],
     "showcaseCoverage": {
@@ -16707,9 +17860,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "disabled",
         "busy"
       ],
-      "coveredProjectionSlots": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
       "coveredReferenceCases": [],
-      "evidenceKind": "INTERACTIVE_OUTPUT"
+      "evidenceKind": "AUTHORED_PROJECTION"
     }
   },
   {

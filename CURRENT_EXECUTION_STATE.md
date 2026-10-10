@@ -1,5 +1,21 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — Entity Form internal review
+
+`ErpEntitySchemaFields` and `ErpStandardEntityForm` completed internal browser
+review as original Honesty ERP candidates. The Workbenches cover every bounded
+field kind, working custom projection, four controlled steps, custom section,
+projected review, value synchronization, and native submit intent. Eight
+desktop/narrow Light/Dark RTL/LTR scenarios pass 48/48 assertions with zero
+clipping, horizontal overflow, browser errors, or warnings. Review also fixed
+absent schema patterns becoming `pattern=""`, which had blocked real browser
+submission. Evidence is under
+`docs/review-evidence/erp-entity-form/entity-form-v1-internal-review/`.
+Canonical verification passes 149/149 files and 877/877 tests, both typechecks,
+all governance/lint, and the zero-warning 418.32 kB / 92.88 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: Page, PageHeader, and PageShell.
+
 ## Current checkpoint — Forms composition internal review
 
 `ErpForm`, `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, and

@@ -1,0 +1,1097 @@
+{
+  "generatedAt": "2026-10-10T14:05:20.365Z",
+  "authority": {
+    "classification": "Original Honesty ERP schema-driven Entity Form candidates under the explicit Phase 6 no-reference waiver.",
+    "contract": "src/app/controls/ENTITY_FORM_ENGINE_V1.md",
+    "note": "No external visual reference is claimed."
+  },
+  "scenarios": [
+    {
+      "name": "schema-fields-1440-light-rtl",
+      "component": "entity-schema-fields",
+      "action": "custom-field",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 147,
+        "y": 132.765625,
+        "right": 1097,
+        "bottom": 782.5,
+        "width": 950,
+        "height": 649.734375
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلfieldValueChanged: {\"key\":\"classification\",\"value\":\"strategic\"}",
+      "fieldCount": 14,
+      "fieldKinds": {
+        "erp-text-box": 1,
+        "erp-text-area-box": 1,
+        "erp-password-box": 1,
+        "erp-url-box": 1,
+        "erp-tel-box": 1,
+        "erp-number-box": 1,
+        "erp-money-box": 1,
+        "erp-check-box": 1,
+        "erp-radio-group": 1,
+        "erp-select": 1,
+        "erp-date-box": 1,
+        "erp-time-box": 1,
+        "erp-date-time-box": 1
+      },
+      "steps": 0,
+      "activeStep": null,
+      "customField": false,
+      "customSection": false,
+      "review": false,
+      "clippedText": []
+    },
+    {
+      "name": "schema-fields-390-dark-ltr",
+      "component": "entity-schema-fields",
+      "action": "custom-field",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 852
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 57,
+        "y": -180.046875,
+        "right": 333,
+        "bottom": 1023.5,
+        "width": 276,
+        "height": 1203.546875
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلfieldValueChanged: {\"key\":\"classification\",\"value\":\"strategic\"}",
+      "fieldCount": 14,
+      "fieldKinds": {
+        "erp-text-box": 1,
+        "erp-text-area-box": 1,
+        "erp-password-box": 1,
+        "erp-url-box": 1,
+        "erp-tel-box": 1,
+        "erp-number-box": 1,
+        "erp-money-box": 1,
+        "erp-check-box": 1,
+        "erp-radio-group": 1,
+        "erp-select": 1,
+        "erp-date-box": 1,
+        "erp-time-box": 1,
+        "erp-date-time-box": 1
+      },
+      "steps": 0,
+      "activeStep": null,
+      "customField": false,
+      "customSection": false,
+      "review": false,
+      "clippedText": []
+    },
+    {
+      "name": "standard-identity-1440-light-rtl",
+      "component": "standard-entity-form",
+      "action": "submit",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 147,
+        "y": 185.765625,
+        "right": 1097,
+        "bottom": 730.359375,
+        "width": 950,
+        "height": 544.59375
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلsubmitRequested: {\"schemaId\":\"supplier\",\"values\":{\"name\":\"شركة النيل للتوريدات\",\"phone\":\"+201005550101\",\"website\":\"https://honesty.example\",\"active\":true,\"type\":\"local\",\"branch\":\"cairo\",\"limit\":250000,\"classification\":\"approved\"}}",
+      "fieldCount": 0,
+      "fieldKinds": {
+        "erp-text-box": 1,
+        "erp-text-area-box": 0,
+        "erp-password-box": 0,
+        "erp-url-box": 1,
+        "erp-tel-box": 1,
+        "erp-number-box": 0,
+        "erp-money-box": 0,
+        "erp-check-box": 1,
+        "erp-radio-group": 0,
+        "erp-select": 0,
+        "erp-date-box": 0,
+        "erp-time-box": 0,
+        "erp-date-time-box": 0
+      },
+      "steps": 4,
+      "activeStep": "الهوية",
+      "customField": false,
+      "customSection": false,
+      "review": false,
+      "clippedText": []
+    },
+    {
+      "name": "standard-identity-390-dark-ltr",
+      "component": "standard-entity-form",
+      "action": "identity",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 761
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 57,
+        "y": -140.234375,
+        "right": 333,
+        "bottom": 983.859375,
+        "width": 276,
+        "height": 1124.09375
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+      "fieldCount": 0,
+      "fieldKinds": {
+        "erp-text-box": 1,
+        "erp-text-area-box": 0,
+        "erp-password-box": 0,
+        "erp-url-box": 1,
+        "erp-tel-box": 1,
+        "erp-number-box": 0,
+        "erp-money-box": 0,
+        "erp-check-box": 1,
+        "erp-radio-group": 0,
+        "erp-select": 0,
+        "erp-date-box": 0,
+        "erp-time-box": 0,
+        "erp-date-time-box": 0
+      },
+      "steps": 4,
+      "activeStep": "الهوية",
+      "customField": false,
+      "customSection": false,
+      "review": false,
+      "clippedText": []
+    },
+    {
+      "name": "standard-commercial-1440-light-rtl",
+      "component": "standard-entity-form",
+      "action": "commercial",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 147,
+        "y": 185.765625,
+        "right": 1097,
+        "bottom": 730.359375,
+        "width": 950,
+        "height": 544.59375
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلvalueChanged: {\"key\":\"classification\",\"value\":\"strategic\",\"nextValues\":{\"name\":\"شركة النيل للتوريدات\",\"phone\":\"+201005550101\",\"website\":\"https://honesty.example\",\"active\":true,\"type\":\"local\",\"branch\":\"cairo\",\"limit\":250000,\"classification\":\"strategic\"}}",
+      "fieldCount": 0,
+      "fieldKinds": {
+        "erp-text-box": 0,
+        "erp-text-area-box": 0,
+        "erp-password-box": 0,
+        "erp-url-box": 0,
+        "erp-tel-box": 0,
+        "erp-number-box": 0,
+        "erp-money-box": 1,
+        "erp-check-box": 0,
+        "erp-radio-group": 1,
+        "erp-select": 1,
+        "erp-date-box": 0,
+        "erp-time-box": 0,
+        "erp-date-time-box": 0
+      },
+      "steps": 4,
+      "activeStep": "التعامل",
+      "customField": true,
+      "customSection": false,
+      "review": false,
+      "clippedText": []
+    },
+    {
+      "name": "standard-commercial-390-dark-ltr",
+      "component": "standard-entity-form",
+      "action": "commercial",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 772
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 57,
+        "y": -151.234375,
+        "right": 333,
+        "bottom": 995.484375,
+        "width": 276,
+        "height": 1146.71875
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلvalueChanged: {\"key\":\"classification\",\"value\":\"strategic\",\"nextValues\":{\"name\":\"شركة النيل للتوريدات\",\"phone\":\"+201005550101\",\"website\":\"https://honesty.example\",\"active\":true,\"type\":\"local\",\"branch\":\"cairo\",\"limit\":250000,\"classification\":\"strategic\"}}",
+      "fieldCount": 0,
+      "fieldKinds": {
+        "erp-text-box": 0,
+        "erp-text-area-box": 0,
+        "erp-password-box": 0,
+        "erp-url-box": 0,
+        "erp-tel-box": 0,
+        "erp-number-box": 0,
+        "erp-money-box": 1,
+        "erp-check-box": 0,
+        "erp-radio-group": 1,
+        "erp-select": 1,
+        "erp-date-box": 0,
+        "erp-time-box": 0,
+        "erp-date-time-box": 0
+      },
+      "steps": 4,
+      "activeStep": "التعامل",
+      "customField": true,
+      "customSection": false,
+      "review": false,
+      "clippedText": []
+    },
+    {
+      "name": "standard-attachments-390-light-rtl",
+      "component": "standard-entity-form",
+      "action": "attachments",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 649
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 57,
+        "y": -28.234375,
+        "right": 333,
+        "bottom": 871.828125,
+        "width": 276,
+        "height": 900.0625
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلactiveStepIdChange: attachments-step",
+      "fieldCount": 0,
+      "fieldKinds": {
+        "erp-text-box": 0,
+        "erp-text-area-box": 0,
+        "erp-password-box": 0,
+        "erp-url-box": 0,
+        "erp-tel-box": 0,
+        "erp-number-box": 0,
+        "erp-money-box": 0,
+        "erp-check-box": 0,
+        "erp-radio-group": 0,
+        "erp-select": 0,
+        "erp-date-box": 0,
+        "erp-time-box": 0,
+        "erp-date-time-box": 0
+      },
+      "steps": 4,
+      "activeStep": "المرفقات",
+      "customField": false,
+      "customSection": true,
+      "review": false,
+      "clippedText": []
+    },
+    {
+      "name": "standard-review-1440-dark-ltr",
+      "component": "standard-entity-form",
+      "action": "review",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 343,
+        "y": 185.765625,
+        "right": 1293,
+        "bottom": 730.359375,
+        "width": 950,
+        "height": 544.59375
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلactiveStepIdChange: review-step",
+      "fieldCount": 0,
+      "fieldKinds": {
+        "erp-text-box": 0,
+        "erp-text-area-box": 0,
+        "erp-password-box": 0,
+        "erp-url-box": 0,
+        "erp-tel-box": 0,
+        "erp-number-box": 0,
+        "erp-money-box": 0,
+        "erp-check-box": 0,
+        "erp-radio-group": 0,
+        "erp-select": 0,
+        "erp-date-box": 0,
+        "erp-time-box": 0,
+        "erp-date-time-box": 0
+      },
+      "steps": 4,
+      "activeStep": "المراجعة",
+      "customField": false,
+      "customSection": false,
+      "review": true,
+      "clippedText": []
+    }
+  ],
+  "assertions": [
+    {
+      "name": "schema-fields-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "schema-fields-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "schema-fields-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "schema-fields-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "schema-fields-1440-light-rtl clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "schema-fields-1440-light-rtl complete field matrix",
+      "pass": true,
+      "actual": {
+        "name": "schema-fields-1440-light-rtl",
+        "component": "entity-schema-fields",
+        "action": "custom-field",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "targetBox": {
+          "x": 147,
+          "y": 132.765625,
+          "right": 1097,
+          "bottom": 782.5,
+          "width": 950,
+          "height": 649.734375
+        },
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلfieldValueChanged: {\"key\":\"classification\",\"value\":\"strategic\"}",
+        "fieldCount": 14,
+        "fieldKinds": {
+          "erp-text-box": 1,
+          "erp-text-area-box": 1,
+          "erp-password-box": 1,
+          "erp-url-box": 1,
+          "erp-tel-box": 1,
+          "erp-number-box": 1,
+          "erp-money-box": 1,
+          "erp-check-box": 1,
+          "erp-radio-group": 1,
+          "erp-select": 1,
+          "erp-date-box": 1,
+          "erp-time-box": 1,
+          "erp-date-time-box": 1
+        },
+        "steps": 0,
+        "activeStep": null,
+        "customField": false,
+        "customSection": false,
+        "review": false,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "schema-fields-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "schema-fields-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "schema-fields-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "schema-fields-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "schema-fields-390-dark-ltr clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "schema-fields-390-dark-ltr complete field matrix",
+      "pass": true,
+      "actual": {
+        "name": "schema-fields-390-dark-ltr",
+        "component": "entity-schema-fields",
+        "action": "custom-field",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 852
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "targetBox": {
+          "x": 57,
+          "y": -180.046875,
+          "right": 333,
+          "bottom": 1023.5,
+          "width": 276,
+          "height": 1203.546875
+        },
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلfieldValueChanged: {\"key\":\"classification\",\"value\":\"strategic\"}",
+        "fieldCount": 14,
+        "fieldKinds": {
+          "erp-text-box": 1,
+          "erp-text-area-box": 1,
+          "erp-password-box": 1,
+          "erp-url-box": 1,
+          "erp-tel-box": 1,
+          "erp-number-box": 1,
+          "erp-money-box": 1,
+          "erp-check-box": 1,
+          "erp-radio-group": 1,
+          "erp-select": 1,
+          "erp-date-box": 1,
+          "erp-time-box": 1,
+          "erp-date-time-box": 1
+        },
+        "steps": 0,
+        "activeStep": null,
+        "customField": false,
+        "customSection": false,
+        "review": false,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "standard-identity-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "standard-identity-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "standard-identity-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "standard-identity-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "standard-identity-1440-light-rtl clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "standard-identity-1440-light-rtl stepped composition",
+      "pass": true,
+      "actual": {
+        "name": "standard-identity-1440-light-rtl",
+        "component": "standard-entity-form",
+        "action": "submit",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "targetBox": {
+          "x": 147,
+          "y": 185.765625,
+          "right": 1097,
+          "bottom": 730.359375,
+          "width": 950,
+          "height": 544.59375
+        },
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلsubmitRequested: {\"schemaId\":\"supplier\",\"values\":{\"name\":\"شركة النيل للتوريدات\",\"phone\":\"+201005550101\",\"website\":\"https://honesty.example\",\"active\":true,\"type\":\"local\",\"branch\":\"cairo\",\"limit\":250000,\"classification\":\"approved\"}}",
+        "fieldCount": 0,
+        "fieldKinds": {
+          "erp-text-box": 1,
+          "erp-text-area-box": 0,
+          "erp-password-box": 0,
+          "erp-url-box": 1,
+          "erp-tel-box": 1,
+          "erp-number-box": 0,
+          "erp-money-box": 0,
+          "erp-check-box": 1,
+          "erp-radio-group": 0,
+          "erp-select": 0,
+          "erp-date-box": 0,
+          "erp-time-box": 0,
+          "erp-date-time-box": 0
+        },
+        "steps": 4,
+        "activeStep": "الهوية",
+        "customField": false,
+        "customSection": false,
+        "review": false,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "standard-identity-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "standard-identity-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "standard-identity-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "standard-identity-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "standard-identity-390-dark-ltr clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "standard-identity-390-dark-ltr stepped composition",
+      "pass": true,
+      "actual": {
+        "name": "standard-identity-390-dark-ltr",
+        "component": "standard-entity-form",
+        "action": "identity",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 761
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "targetBox": {
+          "x": 57,
+          "y": -140.234375,
+          "right": 333,
+          "bottom": 983.859375,
+          "width": 276,
+          "height": 1124.09375
+        },
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+        "fieldCount": 0,
+        "fieldKinds": {
+          "erp-text-box": 1,
+          "erp-text-area-box": 0,
+          "erp-password-box": 0,
+          "erp-url-box": 1,
+          "erp-tel-box": 1,
+          "erp-number-box": 0,
+          "erp-money-box": 0,
+          "erp-check-box": 1,
+          "erp-radio-group": 0,
+          "erp-select": 0,
+          "erp-date-box": 0,
+          "erp-time-box": 0,
+          "erp-date-time-box": 0
+        },
+        "steps": 4,
+        "activeStep": "الهوية",
+        "customField": false,
+        "customSection": false,
+        "review": false,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "standard-commercial-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "standard-commercial-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "standard-commercial-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "standard-commercial-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "standard-commercial-1440-light-rtl clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "standard-commercial-1440-light-rtl stepped composition",
+      "pass": true,
+      "actual": {
+        "name": "standard-commercial-1440-light-rtl",
+        "component": "standard-entity-form",
+        "action": "commercial",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "targetBox": {
+          "x": 147,
+          "y": 185.765625,
+          "right": 1097,
+          "bottom": 730.359375,
+          "width": 950,
+          "height": 544.59375
+        },
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلvalueChanged: {\"key\":\"classification\",\"value\":\"strategic\",\"nextValues\":{\"name\":\"شركة النيل للتوريدات\",\"phone\":\"+201005550101\",\"website\":\"https://honesty.example\",\"active\":true,\"type\":\"local\",\"branch\":\"cairo\",\"limit\":250000,\"classification\":\"strategic\"}}",
+        "fieldCount": 0,
+        "fieldKinds": {
+          "erp-text-box": 0,
+          "erp-text-area-box": 0,
+          "erp-password-box": 0,
+          "erp-url-box": 0,
+          "erp-tel-box": 0,
+          "erp-number-box": 0,
+          "erp-money-box": 1,
+          "erp-check-box": 0,
+          "erp-radio-group": 1,
+          "erp-select": 1,
+          "erp-date-box": 0,
+          "erp-time-box": 0,
+          "erp-date-time-box": 0
+        },
+        "steps": 4,
+        "activeStep": "التعامل",
+        "customField": true,
+        "customSection": false,
+        "review": false,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "standard-commercial-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "standard-commercial-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "standard-commercial-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "standard-commercial-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "standard-commercial-390-dark-ltr clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "standard-commercial-390-dark-ltr stepped composition",
+      "pass": true,
+      "actual": {
+        "name": "standard-commercial-390-dark-ltr",
+        "component": "standard-entity-form",
+        "action": "commercial",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 772
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "targetBox": {
+          "x": 57,
+          "y": -151.234375,
+          "right": 333,
+          "bottom": 995.484375,
+          "width": 276,
+          "height": 1146.71875
+        },
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلvalueChanged: {\"key\":\"classification\",\"value\":\"strategic\",\"nextValues\":{\"name\":\"شركة النيل للتوريدات\",\"phone\":\"+201005550101\",\"website\":\"https://honesty.example\",\"active\":true,\"type\":\"local\",\"branch\":\"cairo\",\"limit\":250000,\"classification\":\"strategic\"}}",
+        "fieldCount": 0,
+        "fieldKinds": {
+          "erp-text-box": 0,
+          "erp-text-area-box": 0,
+          "erp-password-box": 0,
+          "erp-url-box": 0,
+          "erp-tel-box": 0,
+          "erp-number-box": 0,
+          "erp-money-box": 1,
+          "erp-check-box": 0,
+          "erp-radio-group": 1,
+          "erp-select": 1,
+          "erp-date-box": 0,
+          "erp-time-box": 0,
+          "erp-date-time-box": 0
+        },
+        "steps": 4,
+        "activeStep": "التعامل",
+        "customField": true,
+        "customSection": false,
+        "review": false,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "standard-attachments-390-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "standard-attachments-390-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "standard-attachments-390-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "standard-attachments-390-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "standard-attachments-390-light-rtl clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "standard-attachments-390-light-rtl stepped composition",
+      "pass": true,
+      "actual": {
+        "name": "standard-attachments-390-light-rtl",
+        "component": "standard-entity-form",
+        "action": "attachments",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 649
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "targetBox": {
+          "x": 57,
+          "y": -28.234375,
+          "right": 333,
+          "bottom": 871.828125,
+          "width": 276,
+          "height": 900.0625
+        },
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلactiveStepIdChange: attachments-step",
+        "fieldCount": 0,
+        "fieldKinds": {
+          "erp-text-box": 0,
+          "erp-text-area-box": 0,
+          "erp-password-box": 0,
+          "erp-url-box": 0,
+          "erp-tel-box": 0,
+          "erp-number-box": 0,
+          "erp-money-box": 0,
+          "erp-check-box": 0,
+          "erp-radio-group": 0,
+          "erp-select": 0,
+          "erp-date-box": 0,
+          "erp-time-box": 0,
+          "erp-date-time-box": 0
+        },
+        "steps": 4,
+        "activeStep": "المرفقات",
+        "customField": false,
+        "customSection": true,
+        "review": false,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "standard-review-1440-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "standard-review-1440-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "standard-review-1440-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "standard-review-1440-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "standard-review-1440-dark-ltr clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "standard-review-1440-dark-ltr stepped composition",
+      "pass": true,
+      "actual": {
+        "name": "standard-review-1440-dark-ltr",
+        "component": "standard-entity-form",
+        "action": "review",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "targetBox": {
+          "x": 343,
+          "y": 185.765625,
+          "right": 1293,
+          "bottom": 730.359375,
+          "width": 950,
+          "height": 544.59375
+        },
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلactiveStepIdChange: review-step",
+        "fieldCount": 0,
+        "fieldKinds": {
+          "erp-text-box": 0,
+          "erp-text-area-box": 0,
+          "erp-password-box": 0,
+          "erp-url-box": 0,
+          "erp-tel-box": 0,
+          "erp-number-box": 0,
+          "erp-money-box": 0,
+          "erp-check-box": 0,
+          "erp-radio-group": 0,
+          "erp-select": 0,
+          "erp-date-box": 0,
+          "erp-time-box": 0,
+          "erp-date-time-box": 0
+        },
+        "steps": 4,
+        "activeStep": "المراجعة",
+        "customField": false,
+        "customSection": false,
+        "review": true,
+        "clippedText": []
+      }
+    }
+  ],
+  "summary": {
+    "total": 48,
+    "passed": 48,
+    "failed": []
+  }
+}

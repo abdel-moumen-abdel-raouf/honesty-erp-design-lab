@@ -130,4 +130,28 @@ describe('ErpEntitySchemaFields', () => {
       expect(root.querySelector(selector), selector).not.toBeNull();
     }
   });
+
+  it('preserves absent pattern contracts instead of publishing an empty native pattern', () => {
+    const fixture = TestBed.createComponent(ErpEntitySchemaFields);
+    fixture.componentRef.setInput('fields', [
+      {kind: 'text', key: 'name', label: 'الاسم'},
+      {kind: 'password', key: 'password', label: 'كلمة المرور'},
+      {kind: 'url', key: 'website', label: 'الموقع'},
+      {kind: 'telephone', key: 'phone', label: 'الهاتف'},
+    ] satisfies readonly ErpEntityFieldDefinition[]);
+    fixture.componentRef.setInput('values', {
+      name: 'شركة النيل',
+      password: 'Secure-2026',
+      website: 'honesty.example',
+      phone: '+201005550101',
+    });
+    fixture.detectChanges();
+
+    const root = fixture.nativeElement as HTMLElement;
+    expect(root.querySelector('erp-text-box input')?.getAttribute('pattern')).toBeNull();
+    expect(root.querySelector('erp-password-box input')?.getAttribute('pattern')).toBeNull();
+    expect(root.querySelector('erp-url-box input')?.getAttribute('pattern')).not.toBe('');
+    expect(root.querySelector('erp-tel-box input')?.getAttribute('pattern')).not.toBe('');
+    expect(root.querySelectorAll('input:invalid')).toHaveLength(0);
+  });
 });

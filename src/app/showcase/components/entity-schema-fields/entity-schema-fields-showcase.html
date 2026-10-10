@@ -11,8 +11,8 @@
           [section]="$any(value('section'))"
           [issues]="$any(value('issues'))"
           [customFieldOutlets]="$any(value('customFieldOutlets'))"
-          (fieldValueChanged)="recordEvent('fieldValueChanged', $event)"
-        ></erp-entity-schema-fields>
+          (fieldValueChanged)="applyEntityFieldChange($event)"
+        ><ng-template erpEntityCustomField="classification" let-update="update"><erp-button label="تعيين كمورد استراتيجي" variant="outline" (pressed)="update('strategic')" /></ng-template></erp-entity-schema-fields>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

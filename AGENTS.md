@@ -1,5 +1,23 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Entity Form Internal Review State
+
+`ErpEntitySchemaFields` and `ErpStandardEntityForm` completed internal browser
+review as original Honesty ERP candidates under the explicit Phase 6 waiver.
+Their one-target Workbenches cover all 13 bounded built-in field owners, a
+projected custom field, four controlled steps, a projected custom section and
+review, controlled values, and submit evidence. Browser review found and fixed
+an empty-pattern propagation defect that invalidated otherwise valid fields and
+blocked native form submission. Evidence under
+`docs/review-evidence/erp-entity-form/entity-form-v1-internal-review/` passes
+48/48 assertions. Focused verification passes 4/4 files and 15/15 tests;
+canonical verification passes 149/149 files and 877/877 tests, both typechecks,
+all governance/lint, and the zero-warning 418.32 kB / 92.88 kB build. Status
+remains `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Continue Bottom-Up with `ErpPage`,
+`ErpPageHeader`, and `ErpPageShell`; business Feature/Page, CRUD, transport,
+and permissions work remain closed.
+
 ## Current Forms Composition Internal Review State
 
 `ErpForm`, `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, and

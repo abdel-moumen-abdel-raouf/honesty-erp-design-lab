@@ -5,13 +5,15 @@ import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpButton} from '../../../controls/button/button';
+import {ErpEntityCustomFieldOutlet} from '../../../controls/entity-form/entity-form-outlets';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'entity-schema-fields')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-entity-schema-fields-showcase',
-  imports: [ErpEntitySchemaFields, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpEntitySchemaFields, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpButton, ErpEntityCustomFieldOutlet],
   templateUrl: './entity-schema-fields-showcase.html',
   styleUrl: './entity-schema-fields-showcase.scss',
 })
@@ -42,6 +44,13 @@ export class ErpEntitySchemaFieldsShowcase {
       ? this.functionPreset(change.control.name, change.value)
       : change.value;
     this.liveValues.update((current) => ({...current, [change.control.name]: value}));
+  }
+
+  applyEntityFieldChange(change: {key: string; value: unknown}): void {
+    const current = this.value('values');
+    const values = current && typeof current === 'object' && !Array.isArray(current) ? current as Readonly<Record<string, unknown>> : {};
+    this.liveValues.update((state) => ({...state, values: {...values, [change.key]: change.value}}));
+    this.recordEvent('fieldValueChanged', change);
   }
 
   recordModel(name: string, value: unknown): void {

@@ -5,13 +5,15 @@ import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpButton} from '../../../controls/button/button';
+import {ErpEntityCustomFieldOutlet, ErpEntityCustomSectionOutlet, ErpEntityFormReviewTemplate} from '../../../controls/entity-form/entity-form-outlets';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'standard-entity-form')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-standard-entity-form-showcase',
-  imports: [ErpStandardEntityForm, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpStandardEntityForm, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpButton, ErpEntityCustomFieldOutlet, ErpEntityCustomSectionOutlet, ErpEntityFormReviewTemplate],
   templateUrl: './standard-entity-form-showcase.html',
   styleUrl: './standard-entity-form-showcase.scss',
 })
@@ -42,6 +44,11 @@ export class ErpStandardEntityFormShowcase {
       ? this.functionPreset(change.control.name, change.value)
       : change.value;
     this.liveValues.update((current) => ({...current, [change.control.name]: value}));
+  }
+
+  applyEntityFormValue(change: {nextValues: unknown}): void {
+    this.liveValues.update((state) => ({...state, values: change.nextValues}));
+    this.recordEvent('valueChanged', change);
   }
 
   recordModel(name: string, value: unknown): void {
