@@ -1,5 +1,20 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — ButtonGroup and SplitButton
+
+ButtonGroup and SplitButton completed internal browser review against the
+accessible Skodash RTL component-buttons fallback. Their hosts now follow the
+owned action content rather than stretching across the review column;
+ButtonGroup has a public accessible group label, and SplitButton exposes one
+menu owner with complete trigger/menuitem semantics. Evidence under
+`docs/review-evidence/erp-grouped-actions/v1-internal-review/` passes 50/50
+assertions across desktop Light/RTL and 390 px Dark/LTR with mixed menu actions,
+keyboard/Escape/focus-return evidence, and no overflow or browser diagnostics.
+Focused verification passes 4/4 files and 56/56 tests; canonical verification
+passes 128/128 files and 845/845 tests with a zero-warning 418.32 kB / 92.92 kB
+build. Product Owner acceptance is not recorded. Next Bottom-Up unit: Fab,
+ExtendedFab, and FabMenu.
+
 ## Latest verified UI unit — Button and IconButton
 
 Button and IconButton completed internal browser review against the accessible

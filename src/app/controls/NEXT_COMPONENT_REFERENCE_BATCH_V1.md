@@ -1,5 +1,15 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — floating action family
+
+The autonomous UI authorization remains active. ButtonGroup and SplitButton
+have completed internal review without Product Owner acceptance. Continue
+Bottom-Up with `ErpFab`, `ErpExtendedFab`, and `ErpFabMenu`. Use the Skodash RTL
+component-buttons page only as fallback presentation evidence and preserve the
+separate public FAB owners, existing Button/Icon/Tooltip/overlay ownership,
+floating-parent positioning, controlled items, and event contracts. Business
+Feature/Page, CRUD, transport, and permissions work remain closed.
+
 ## Authoritative next action — 2026-10-10 — grouped action composites
 
 The autonomous UI authorization remains active. Button and IconButton have

@@ -19,6 +19,7 @@ import {ErpActionMenuItem} from '../composite-contracts';
   styleUrl: './action-menu-content.scss',
 })
 export class ErpActionMenuContent {
+  readonly label = input.required<string>();
   readonly items = input.required<readonly ErpActionMenuItem[]>();
   readonly itemSelected = output<string>();
 

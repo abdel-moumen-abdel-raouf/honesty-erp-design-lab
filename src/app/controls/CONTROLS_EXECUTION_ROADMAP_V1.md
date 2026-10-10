@@ -1,5 +1,17 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — grouped actions complete internally
+
+ButtonGroup and SplitButton completed internal browser review against the
+Skodash RTL component-buttons fallback. Their hosts now follow owned content;
+the native group is named, and SplitButton exposes one menu owner with complete
+trigger/menuitem relationships. The four-scenario gate passes 50/50 assertions
+with mixed actions, keyboard traversal, Escape/focus return, and zero overflow
+or diagnostics. Canonical verification passes 128/128 files and 845/845 tests
+with a zero-warning 418.32 kB / 92.92 kB build. Product Owner status remains
+pending. Continue Bottom-Up with `ErpFab`, `ErpExtendedFab`, and `ErpFabMenu`;
+business Feature/Page, CRUD, transport, and permissions work remain closed.
+
 ## Current UI continuation — Button and IconButton complete internally
 
 Button and IconButton completed internal browser review against the Skodash RTL

@@ -432,7 +432,7 @@ const FIXTURE_INPUTS = new Map([
     {value: 'save', label: 'حفظ', icon: 'save'},
     {value: 'preview', label: 'معاينة', icon: 'eye'},
     {value: 'archive', label: 'أرشفة', icon: 'layers'},
-  ]}],
+  ], ariaLabel: 'إجراءات المستند'}],
   ['ErpBulkActionBar', {selectedCount: 3}],
   ['ErpColumnChooser', {columns: [{key: 'name', label: 'الاسم', hideable: true}]}],
   ['ErpComboBox', {

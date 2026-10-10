@@ -1,5 +1,17 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — grouped actions reviewed internally
+
+Continue from synchronized `main` after the ButtonGroup/SplitButton checkpoint.
+The custom-element hosts are content-sized, ButtonGroup has a public accessible
+group label, and SplitButton exposes one menu owner with synchronized trigger
+state and menuitem semantics. Evidence under
+`docs/review-evidence/erp-grouped-actions/v1-internal-review/` passes 50/50
+browser assertions. Canonical verification passes 128/128 files and 845/845
+tests with a zero-warning 418.32 kB / 92.92 kB build. Product Owner acceptance
+is not recorded. Continue Bottom-Up with `ErpFab`, `ErpExtendedFab`, and
+`ErpFabMenu`.
+
 ## Current continuation point — Button and IconButton reviewed internally
 
 Continue from synchronized `main` after the Button/IconButton checkpoint. The

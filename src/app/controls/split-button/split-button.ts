@@ -20,6 +20,8 @@ import {ErpIconButton} from '../icon-button/icon-button';
 import {ErpActionMenuItem} from '../composite-family/composite-contracts';
 import {ErpActionMenuContent} from '../composite-family/internal/action-menu-content';
 
+let nextSplitButtonId = 0;
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -34,6 +36,7 @@ import {ErpActionMenuContent} from '../composite-family/internal/action-menu-con
   },
 })
 export class ErpSplitButton implements OnDestroy {
+  readonly menuId = `erp-split-button-menu-${++nextSplitButtonId}`;
   readonly label = input.required<string>();
   readonly items = input.required<readonly ErpActionMenuItem[]>();
   readonly disabled = input(false, {transform: booleanAttribute});

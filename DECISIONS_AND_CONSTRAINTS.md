@@ -1,5 +1,20 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Grouped action internal-review decisions — 2026-10-10
+
+- Skodash RTL `component-buttons.html` is fallback presentation evidence for
+  ButtonGroup and SplitButton, not a component-specific exact visual contract.
+- Grouped-action custom-element hosts use content-sized occupancy; they do not
+  stretch independently of their owned Button-family surfaces.
+- `ErpButtonGroup.ariaLabel` provides the native group's accessible name without
+  changing item data or action ownership.
+- SplitButton has exactly one menu semantic owner. Its trigger exposes popup,
+  expanded-state, and controlled-surface relationships; menu actions expose
+  menuitem semantics through existing Button/IconButton owners.
+- Existing controlled items, primary/item outputs, anchored overlay, Tooltip,
+  focus, and Button-family ownership remain unchanged. Internal review
+  completion does not imply Product Owner acceptance.
+
 ## Button family internal-review decisions — 2026-10-10
 
 - Skodash RTL `component-buttons.html` is fallback presentation evidence for

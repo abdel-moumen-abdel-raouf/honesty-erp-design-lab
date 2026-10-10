@@ -25,6 +25,7 @@ import {
 })
 export class ErpButtonGroup {
   readonly items = input.required<readonly ErpButtonGroupItem[]>();
+  readonly ariaLabel = input<string | null>(null);
   readonly orientation = input<ErpButtonGroupOrientation>('horizontal');
   readonly attached = input(true, {transform: booleanAttribute});
   readonly itemPressed = output<string>();

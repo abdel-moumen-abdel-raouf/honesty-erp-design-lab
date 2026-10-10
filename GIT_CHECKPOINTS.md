@@ -1,5 +1,28 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## ButtonGroup and SplitButton internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `e00bd62976cea4de4e2fc499aa17dcf0855204a7` — synchronized `main` after the
+  Button/IconButton checkpoint.
+
+Bounded scope:
+
+- Corrected grouped-action host occupancy and added a compatible ButtonGroup
+  accessible-label input.
+- Removed SplitButton's nested menu role and synchronized trigger popup,
+  expanded, controlled-surface, and action menuitem semantics.
+- Persisted the inspected Skodash fallback plus 50/50 runtime assertions and
+  implementation screenshots under
+  `docs/review-evidence/erp-grouped-actions/v1-internal-review/`.
+- Focused gate: 4/4 files and 56/56 tests. Canonical gate: 128/128 files,
+  845/845 tests, both typechecks, all governance/lint, and zero-warning
+  418.32 kB / 92.92 kB build.
+
+Product Owner visual status remains pending. The actual commit SHA is recorded
+by Git after this document snapshot; do not infer acceptance from the commit.
+
 ## Button and IconButton internal-review candidate — 2026-10-10
 
 Entry checkpoint:

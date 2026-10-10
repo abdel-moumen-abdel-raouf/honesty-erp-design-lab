@@ -1,5 +1,24 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Grouped Actions Internal Review State
+
+`ErpButtonGroup` and `ErpSplitButton` completed internal browser review against
+the Skodash RTL component-buttons fallback; no component-specific exact contract
+is claimed. Their custom-element hosts now size to their owned action surfaces
+instead of stretching to the review column. ButtonGroup adds a compatible
+`ariaLabel` input for the native group name. SplitButton now exposes one owned
+menu role, menuitem semantics, and synchronized `aria-haspopup`,
+`aria-controls`, and `aria-expanded` trigger state. Evidence under
+`docs/review-evidence/erp-grouped-actions/v1-internal-review/` passes 50/50
+assertions across desktop Light/RTL and 390 px Dark/LTR, including five mixed
+menu presentations, keyboard focus, Escape/focus return, event evidence, and
+zero overflow, errors, or warnings. Focused verification passes 4/4 files and
+56/56 tests; canonical verification passes 128/128 files and 845/845 tests,
+both typechecks, all governance/lint, and the zero-warning 418.32 kB / 92.92 kB
+build. Status remains `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Next Bottom-Up unit: `ErpFab`, `ErpExtendedFab`, and `ErpFabMenu`.
+
 ## Current Button and IconButton Internal Review State
 
 `ErpButton` and `ErpIconButton` completed internal browser review against the

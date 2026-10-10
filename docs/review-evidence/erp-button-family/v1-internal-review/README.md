@@ -63,4 +63,3 @@ node tools/review/capture-button-family-evidence.mjs
 The script loads the live external reference, applies values through the
 actual workbench controls, activates and focuses each target, captures the
 screenshots, and rewrites `runtime-measurements.json`.
-

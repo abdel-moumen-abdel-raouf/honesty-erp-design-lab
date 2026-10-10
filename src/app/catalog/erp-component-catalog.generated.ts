@@ -1126,6 +1126,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "defaultExpression": null
         },
         {
+          "name": "ariaLabel",
+          "required": false,
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
           "name": "orientation",
           "required": false,
           "values": [
@@ -1195,7 +1204,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "label": "أرشفة",
               "icon": "layers"
             }
-          ]
+          ],
+          "ariaLabel": "إجراءات المستند"
         }
       },
       {
@@ -1219,6 +1229,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "icon": "layers"
             }
           ],
+          "ariaLabel": "إجراءات المستند",
           "orientation": "horizontal"
         }
       },
@@ -1243,6 +1254,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "icon": "layers"
             }
           ],
+          "ariaLabel": "إجراءات المستند",
           "orientation": "vertical"
         }
       }
@@ -1250,6 +1262,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "displayNameAr": "مجموعة أزرار",
     "descriptionAr": "اختيار إجراء واحد من مجموعة مترابطة.",
     "showcaseInitialValues": {
+      "ariaLabel": "إجراءات المستند",
       "orientation": "horizontal",
       "attached": true,
       "items": [
@@ -1298,6 +1311,16 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         ]
       },
       {
+        "name": "ariaLabel",
+        "label": "ariaLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": "إجراءات المستند"
+      },
+      {
         "name": "orientation",
         "label": "orientation",
         "source": "input",
@@ -1327,6 +1350,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": {
       "coveredInputs": [
         "items",
+        "ariaLabel",
         "orientation",
         "attached"
       ],
@@ -3007,6 +3031,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "defaultExpression": "null"
         },
         {
+          "name": "role",
+          "required": false,
+          "values": [
+            "menuitem"
+          ],
+          "type": "'menuitem' | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
           "name": "disabled",
           "required": false,
           "values": [
@@ -3370,6 +3405,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "ariaHasPopup": null,
       "ariaControls": null,
       "ariaExpanded": null,
+      "role": null,
       "disabled": false,
       "loading": false,
       "cursor": "pointer",
@@ -3553,6 +3589,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "initialValue": null
       },
       {
+        "name": "role",
+        "label": "role",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "'menuitem' | null",
+        "options": [
+          "menuitem"
+        ],
+        "initialValue": null
+      },
+      {
         "name": "disabled",
         "label": "disabled",
         "source": "input",
@@ -3636,6 +3684,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "ariaHasPopup",
         "ariaControls",
         "ariaExpanded",
+        "role",
         "disabled",
         "loading",
         "cursor",
@@ -3686,6 +3735,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "menu",
           "dialog",
           "listbox"
+        ],
+        "role": [
+          "menuitem"
         ],
         "disabled": [
           "false",
@@ -35541,6 +35593,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns bounded internal action menu content semantics for its parent ERP component.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
+        },
         {
           "name": "items",
           "required": true,

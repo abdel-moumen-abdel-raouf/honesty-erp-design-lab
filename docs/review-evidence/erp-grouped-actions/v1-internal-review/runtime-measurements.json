@@ -1,0 +1,752 @@
+{
+  "generatedAt": "2026-10-10T10:18:34.890Z",
+  "authority": {
+    "reference": {
+      "url": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "direction": "rtl",
+      "styles": [
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/plugins/simplebar/css/simplebar.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/bootstrap.min.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/bootstrap-extended.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/style.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/icons.css",
+        "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap",
+        "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/pace.min.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/dark-theme.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/light-theme.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/semi-dark.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/header-colors.css"
+      ],
+      "scripts": [
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/js/bootstrap.bundle.min.js"
+      ],
+      "groupBox": {
+        "x": 771.953125,
+        "y": 2149.75,
+        "width": 214.796875,
+        "height": 38
+      },
+      "dropdownBox": {
+        "x": 878.640625,
+        "y": 2884.125,
+        "width": 108.109375,
+        "height": 38
+      },
+      "buttons": [
+        {
+          "box": {
+            "x": 914.484375,
+            "y": 2149.75,
+            "width": 72.265625,
+            "height": 38
+          },
+          "padding": "6px 12px",
+          "borderRadius": "0px 6px 6px 0px",
+          "borderWidth": "1px",
+          "fontSize": "16px",
+          "lineHeight": "24px"
+        },
+        {
+          "box": {
+            "x": 843.21875,
+            "y": 2149.75,
+            "width": 72.265625,
+            "height": 38
+          },
+          "padding": "6px 12px",
+          "borderRadius": "0px",
+          "borderWidth": "1px",
+          "fontSize": "16px",
+          "lineHeight": "24px"
+        },
+        {
+          "box": {
+            "x": 771.953125,
+            "y": 2149.75,
+            "width": 72.265625,
+            "height": 38
+          },
+          "padding": "6px 12px",
+          "borderRadius": "6px 0px 0px 6px",
+          "borderWidth": "1px",
+          "fontSize": "16px",
+          "lineHeight": "24px"
+        }
+      ]
+    },
+    "referenceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+    "systemSubstitutions": [
+      "Honesty ERP colors",
+      "Honesty ERP typography"
+    ]
+  },
+  "scenarios": [
+    {
+      "name": "button-group-1440-light-rtl",
+      "component": "button-group",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 4,
+      "hostBox": {
+        "x": 811.84375,
+        "y": 452.765625,
+        "width": 285.15625,
+        "height": 40
+      },
+      "buttonBoxes": [
+        {
+          "x": 1008.046875,
+          "y": 452.765625,
+          "width": 88.953125,
+          "height": 40,
+          "right": 1097,
+          "bottom": 492.765625
+        },
+        {
+          "x": 909.265625,
+          "y": 452.765625,
+          "width": 98.78125,
+          "height": 40,
+          "right": 1008.046875,
+          "bottom": 492.765625
+        },
+        {
+          "x": 811.84375,
+          "y": 452.765625,
+          "width": 97.421875,
+          "height": 40,
+          "right": 909.265625,
+          "bottom": 492.765625
+        }
+      ],
+      "buttonCount": 3,
+      "groupLabel": "إجراءات المستند",
+      "orientation": "horizontal",
+      "attached": "true",
+      "contentBox": {
+        "width": 285.15625,
+        "height": 40
+      },
+      "eventEvidence": "آخر تفاعلitemPressed: preview",
+      "horizontalOverflow": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "button-group-390-dark-ltr",
+      "component": "button-group",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 4,
+      "hostBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 98.78125,
+        "height": 128
+      },
+      "buttonBoxes": [
+        {
+          "x": 57,
+          "y": 602.765625,
+          "width": 88.953125,
+          "height": 40,
+          "right": 145.953125,
+          "bottom": 642.765625
+        },
+        {
+          "x": 57,
+          "y": 646.765625,
+          "width": 98.78125,
+          "height": 40,
+          "right": 155.78125,
+          "bottom": 686.765625
+        },
+        {
+          "x": 57,
+          "y": 690.765625,
+          "width": 97.421875,
+          "height": 40,
+          "right": 154.421875,
+          "bottom": 730.765625
+        }
+      ],
+      "buttonCount": 3,
+      "groupLabel": "إجراءات المستند",
+      "orientation": "vertical",
+      "attached": "false",
+      "contentBox": {
+        "width": 98.78125,
+        "height": 128
+      },
+      "eventEvidence": "آخر تفاعلitemPressed: preview",
+      "horizontalOverflow": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "split-button-1440-light-rtl",
+      "component": "split-button",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 3,
+      "hostBox": {
+        "x": 996.046875,
+        "y": 452.765625,
+        "width": 100.953125,
+        "height": 40
+      },
+      "open": "true",
+      "placement": "bottom",
+      "trigger": {
+        "expanded": "true",
+        "hasPopup": "menu",
+        "controls": "erp-split-button-menu-1"
+      },
+      "surface": {
+        "id": "erp-split-button-menu-1",
+        "x": 895.046875,
+        "y": 496.765625,
+        "right": 1137.046875,
+        "bottom": 746.765625,
+        "width": 242,
+        "height": 250,
+        "overflowY": "auto"
+      },
+      "menuRoleCount": 1,
+      "menuLabel": "حفظ - القائمة",
+      "items": [
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": true
+        },
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": false
+        },
+        {
+          "tag": "ERP-ICON-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": true
+        },
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": true
+        },
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": true,
+          "icon": true
+        }
+      ],
+      "eventEvidence": "آخر تفاعلprimaryPressed: undefined",
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "interaction": {
+        "selectionEvent": "آخر تفاعلitemSelected: save-close",
+        "keyboardValue": "save-copy",
+        "closed": "false",
+        "expanded": "false",
+        "focusReturned": true
+      }
+    },
+    {
+      "name": "split-button-390-dark-ltr",
+      "component": "split-button",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 3,
+      "hostBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 100.953125,
+        "height": 40
+      },
+      "open": "true",
+      "placement": "top",
+      "trigger": {
+        "expanded": "true",
+        "hasPopup": "menu",
+        "controls": "erp-split-button-menu-1"
+      },
+      "surface": {
+        "id": "erp-split-button-menu-1",
+        "x": 16.953125,
+        "y": 348.765625,
+        "right": 258.953125,
+        "bottom": 598.765625,
+        "width": 242,
+        "height": 250,
+        "overflowY": "auto"
+      },
+      "menuRoleCount": 1,
+      "menuLabel": "حفظ - القائمة",
+      "items": [
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": true
+        },
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": false
+        },
+        {
+          "tag": "ERP-ICON-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": true
+        },
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": true
+        },
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": true,
+          "icon": true
+        }
+      ],
+      "eventEvidence": "آخر تفاعلprimaryPressed: undefined",
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "interaction": {
+        "selectionEvent": "آخر تفاعلitemSelected: save-close",
+        "keyboardValue": "save-copy",
+        "closed": "false",
+        "expanded": "false",
+        "focusReturned": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "name": "button-group-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "button-group-1440-light-rtl controls",
+      "pass": true,
+      "actual": 4
+    },
+    {
+      "name": "button-group-1440-light-rtl theme",
+      "pass": true,
+      "actual": "light"
+    },
+    {
+      "name": "button-group-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "button-group-1440-light-rtl overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "button-group-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "button-group-1440-light-rtl three actions",
+      "pass": true,
+      "actual": 3
+    },
+    {
+      "name": "button-group-1440-light-rtl label",
+      "pass": true,
+      "actual": "إجراءات المستند"
+    },
+    {
+      "name": "button-group-1440-light-rtl state",
+      "pass": true,
+      "actual": {
+        "orientation": "horizontal",
+        "attached": "true"
+      }
+    },
+    {
+      "name": "button-group-1440-light-rtl content-sized host",
+      "pass": true,
+      "actual": {
+        "host": {
+          "x": 811.84375,
+          "y": 452.765625,
+          "width": 285.15625,
+          "height": 40
+        },
+        "content": {
+          "width": 285.15625,
+          "height": 40
+        }
+      }
+    },
+    {
+      "name": "button-group-1440-light-rtl event",
+      "pass": true,
+      "actual": "آخر تفاعلitemPressed: preview"
+    },
+    {
+      "name": "button-group-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "button-group-390-dark-ltr controls",
+      "pass": true,
+      "actual": 4
+    },
+    {
+      "name": "button-group-390-dark-ltr theme",
+      "pass": true,
+      "actual": "dark"
+    },
+    {
+      "name": "button-group-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "button-group-390-dark-ltr overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "button-group-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "button-group-390-dark-ltr three actions",
+      "pass": true,
+      "actual": 3
+    },
+    {
+      "name": "button-group-390-dark-ltr label",
+      "pass": true,
+      "actual": "إجراءات المستند"
+    },
+    {
+      "name": "button-group-390-dark-ltr state",
+      "pass": true,
+      "actual": {
+        "orientation": "vertical",
+        "attached": "false"
+      }
+    },
+    {
+      "name": "button-group-390-dark-ltr content-sized host",
+      "pass": true,
+      "actual": {
+        "host": {
+          "x": 57,
+          "y": 602.765625,
+          "width": 98.78125,
+          "height": 128
+        },
+        "content": {
+          "width": 98.78125,
+          "height": 128
+        }
+      }
+    },
+    {
+      "name": "button-group-390-dark-ltr event",
+      "pass": true,
+      "actual": "آخر تفاعلitemPressed: preview"
+    },
+    {
+      "name": "split-button-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "split-button-1440-light-rtl controls",
+      "pass": true,
+      "actual": 3
+    },
+    {
+      "name": "split-button-1440-light-rtl theme",
+      "pass": true,
+      "actual": "light"
+    },
+    {
+      "name": "split-button-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "split-button-1440-light-rtl overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "split-button-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "split-button-1440-light-rtl open",
+      "pass": true,
+      "actual": {
+        "open": "true",
+        "placement": "bottom"
+      }
+    },
+    {
+      "name": "split-button-1440-light-rtl trigger semantics",
+      "pass": true,
+      "actual": {
+        "expanded": "true",
+        "hasPopup": "menu",
+        "controls": "erp-split-button-menu-1"
+      }
+    },
+    {
+      "name": "split-button-1440-light-rtl one menu",
+      "pass": true,
+      "actual": {
+        "count": 1,
+        "label": "حفظ - القائمة"
+      }
+    },
+    {
+      "name": "split-button-1440-light-rtl mixed actions",
+      "pass": true,
+      "actual": [
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": true
+        },
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": false
+        },
+        {
+          "tag": "ERP-ICON-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": true
+        },
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": true
+        },
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": true,
+          "icon": true
+        }
+      ]
+    },
+    {
+      "name": "split-button-1440-light-rtl viewport containment",
+      "pass": true,
+      "actual": {
+        "id": "erp-split-button-menu-1",
+        "x": 895.046875,
+        "y": 496.765625,
+        "right": 1137.046875,
+        "bottom": 746.765625,
+        "width": 242,
+        "height": 250,
+        "overflowY": "auto"
+      }
+    },
+    {
+      "name": "split-button-1440-light-rtl primary event",
+      "pass": true,
+      "actual": "آخر تفاعلprimaryPressed: undefined"
+    },
+    {
+      "name": "split-button-1440-light-rtl selection event",
+      "pass": true,
+      "actual": "آخر تفاعلitemSelected: save-close"
+    },
+    {
+      "name": "split-button-1440-light-rtl keyboard and focus",
+      "pass": true,
+      "actual": {
+        "selectionEvent": "آخر تفاعلitemSelected: save-close",
+        "keyboardValue": "save-copy",
+        "closed": "false",
+        "expanded": "false",
+        "focusReturned": true
+      }
+    },
+    {
+      "name": "split-button-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "split-button-390-dark-ltr controls",
+      "pass": true,
+      "actual": 3
+    },
+    {
+      "name": "split-button-390-dark-ltr theme",
+      "pass": true,
+      "actual": "dark"
+    },
+    {
+      "name": "split-button-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "split-button-390-dark-ltr overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "split-button-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "split-button-390-dark-ltr open",
+      "pass": true,
+      "actual": {
+        "open": "true",
+        "placement": "top"
+      }
+    },
+    {
+      "name": "split-button-390-dark-ltr trigger semantics",
+      "pass": true,
+      "actual": {
+        "expanded": "true",
+        "hasPopup": "menu",
+        "controls": "erp-split-button-menu-1"
+      }
+    },
+    {
+      "name": "split-button-390-dark-ltr one menu",
+      "pass": true,
+      "actual": {
+        "count": 1,
+        "label": "حفظ - القائمة"
+      }
+    },
+    {
+      "name": "split-button-390-dark-ltr mixed actions",
+      "pass": true,
+      "actual": [
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": true
+        },
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": false
+        },
+        {
+          "tag": "ERP-ICON-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": true
+        },
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": false,
+          "icon": true
+        },
+        {
+          "tag": "ERP-BUTTON",
+          "role": "menuitem",
+          "disabled": true,
+          "icon": true
+        }
+      ]
+    },
+    {
+      "name": "split-button-390-dark-ltr viewport containment",
+      "pass": true,
+      "actual": {
+        "id": "erp-split-button-menu-1",
+        "x": 16.953125,
+        "y": 348.765625,
+        "right": 258.953125,
+        "bottom": 598.765625,
+        "width": 242,
+        "height": 250,
+        "overflowY": "auto"
+      }
+    },
+    {
+      "name": "split-button-390-dark-ltr primary event",
+      "pass": true,
+      "actual": "آخر تفاعلprimaryPressed: undefined"
+    },
+    {
+      "name": "split-button-390-dark-ltr selection event",
+      "pass": true,
+      "actual": "آخر تفاعلitemSelected: save-close"
+    },
+    {
+      "name": "split-button-390-dark-ltr keyboard and focus",
+      "pass": true,
+      "actual": {
+        "selectionEvent": "آخر تفاعلitemSelected: save-close",
+        "keyboardValue": "save-copy",
+        "closed": "false",
+        "expanded": "false",
+        "focusReturned": true
+      }
+    }
+  ],
+  "summary": {
+    "total": 50,
+    "passed": 50,
+    "failed": []
+  }
+}

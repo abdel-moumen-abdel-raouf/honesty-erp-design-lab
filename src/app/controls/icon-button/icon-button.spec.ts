@@ -98,6 +98,15 @@ describe('ErpIconButton', () => {
     expect(button.getAttribute('aria-label')).toBeNull();
   });
 
+  it('forwards the bounded menuitem role to the owned native button', () => {
+    const fixture = create();
+    fixture.componentRef.setInput('role', 'menuitem');
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('button')?.getAttribute('role'))
+      .toBe('menuitem');
+  });
+
   it('emits pressed only while ready', () => {
     const fixture = create();
     let count = 0;

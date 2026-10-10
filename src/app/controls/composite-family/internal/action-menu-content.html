@@ -2,6 +2,7 @@
   class="action-menu"
   gap="tight"
   role="menu"
+  [attr.aria-label]="label()"
   (keydown)="handleKeydown($event)"
 >
   @for (item of items(); track item.value) {
@@ -12,6 +13,7 @@
           [attr.data-value]="item.value"
           [icon]="item.icon"
           [label]="item.label"
+          role="menuitem"
           [disabled]="item.disabled ?? false"
           (pressed)="select(item)"
         />
@@ -24,6 +26,7 @@
         [icon]="item.presentation === 'text' ? null : (item.icon ?? null)"
         variant="ghost"
         tone="neutral"
+        role="menuitem"
         [disabled]="item.disabled ?? false"
         fullWidth
         (pressed)="select(item)"

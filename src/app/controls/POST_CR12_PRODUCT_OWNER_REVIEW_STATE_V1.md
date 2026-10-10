@@ -1,5 +1,20 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — ButtonGroup and SplitButton
+
+The grouped action owners completed internal browser review against the
+Skodash RTL component-buttons fallback. Host occupancy now matches the owned
+action surface, ButtonGroup supplies a native accessible group name, and
+SplitButton exposes one menu owner with synchronized trigger and menuitem
+semantics. The four-scenario audit passes 50/50 assertions with five mixed
+actions, disabled state, keyboard traversal, Escape/focus return, event
+evidence, and no overflow or browser diagnostics. Screenshots, measurements,
+and reproduction notes are under
+`docs/review-evidence/erp-grouped-actions/v1-internal-review/`. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: Fab, ExtendedFab,
+and FabMenu.
+
 ## Current review execution — 2026-10-10 — Button and IconButton
 
 The two basic action owners completed internal browser review against the

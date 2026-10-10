@@ -1,5 +1,22 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — grouped actions internal review
+
+`ErpButtonGroup` and `ErpSplitButton` completed internal browser review using
+the Skodash RTL component-buttons page as fallback presentation evidence. Both
+hosts now use content-sized occupancy. ButtonGroup supplies a compatible public
+group label; SplitButton has one menu semantic owner plus synchronized expanded,
+popup, and controlled-surface relationships. Four desktop/narrow Light/Dark
+RTL/LTR scenarios pass 50/50 assertions with five mixed actions, disabled state,
+keyboard traversal, Escape/focus return, primary/item events, and zero overflow,
+errors, or warnings. Evidence is under
+`docs/review-evidence/erp-grouped-actions/v1-internal-review/`. Canonical
+verification passes 128/128 files and 845/845 tests, both typechecks, all
+governance/lint, and the zero-warning 418.32 kB / 92.92 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: `ErpFab`, `ErpExtendedFab`, and
+`ErpFabMenu`.
+
 ## Current checkpoint — Button and IconButton internal review
 
 `ErpButton` and `ErpIconButton` completed internal browser review using the

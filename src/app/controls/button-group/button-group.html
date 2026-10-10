@@ -1,4 +1,4 @@
-<div class="button-group" role="group">
+<div class="button-group" role="group" [attr.aria-label]="ariaLabel()">
   @for (item of items(); track item.value; let index = $index) {
     <erp-button
       [attr.data-group-position]="position(index)"

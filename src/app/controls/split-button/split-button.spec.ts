@@ -70,6 +70,16 @@ describe('ErpSplitButton', () => {
     expect(trigger?.getAttribute('data-icon-button-tone')).toBe('primary');
     expect(trigger?.getAttribute('data-icon-button-shape')).toBe('default');
     expect(host.getAttribute('data-split-button-disabled')).toBe('false');
+    expect(host.querySelectorAll('[role="menu"]')).toHaveLength(1);
+    expect(host.querySelector('[role="menu"]')?.getAttribute('aria-label'))
+      .toBe('Export - القائمة');
+    expect(trigger?.querySelector('button')?.getAttribute('aria-haspopup'))
+      .toBe('menu');
+    expect(trigger?.querySelector('button')?.getAttribute('aria-expanded'))
+      .toBe('false');
+    expect(trigger?.querySelector('button')?.getAttribute('aria-controls'))
+      .toBe(host.querySelector('.split-button__menu')?.id);
+    expect(getComputedStyle(host).inlineSize).toBe('fit-content');
   });
 
   it('preserves the primary action and opens a nonblocking anchored top-layer menu', async () => {
@@ -96,6 +106,7 @@ describe('ErpSplitButton', () => {
     expect(primaryPressed).toHaveBeenCalledOnce();
     expect(manager.entries()).toHaveLength(0);
     expect(host.getAttribute('data-split-button-open')).toBe('true');
+    expect(buttons[1].getAttribute('aria-expanded')).toBe('true');
     expect(surface.getAttribute('popover')).toBe('manual');
     expect(surface.style.left).not.toBe('');
     expect(surface.style.top).not.toBe('');
@@ -108,6 +119,7 @@ describe('ErpSplitButton', () => {
 
     expect(selected).toHaveBeenCalledWith('pdf');
     expect(host.getAttribute('data-split-button-open')).toBe('false');
+    expect(buttons[1].getAttribute('aria-expanded')).toBe('false');
     expect(document.activeElement).toBe(buttons[1]);
   });
 
@@ -152,9 +164,11 @@ describe('ErpSplitButton', () => {
 
     expect(actions).toHaveLength(3);
     expect(actions[0].tagName.toLowerCase()).toBe('erp-button');
+    expect(actions[0].querySelector('button')?.getAttribute('role')).toBe('menuitem');
     expect(actions[0].querySelector('erp-icon')).toBeNull();
     expect(actions[1].tagName.toLowerCase()).toBe('erp-icon-button');
     expect(actions[1].closest('erp-tooltip')).not.toBeNull();
+    expect(actions[1].querySelector('button')?.getAttribute('role')).toBe('menuitem');
     expect(actions[2].tagName.toLowerCase()).toBe('erp-button');
     expect(actions[2].querySelector('erp-icon')).not.toBeNull();
   });

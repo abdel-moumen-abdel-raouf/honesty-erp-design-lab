@@ -13,6 +13,7 @@ describe('ErpButtonGroup', () => {
       {value: 'copy', label: 'Copy'},
       {value: 'delete', label: 'Delete', disabled: true},
     ]);
+    fixture.componentRef.setInput('ariaLabel', 'Document actions');
     fixture.detectChanges();
     return fixture;
   }
@@ -25,6 +26,9 @@ describe('ErpButtonGroup', () => {
     expect(fixture.componentInstance).toBeTruthy();
     expect(host.getAttribute('data-button-group-orientation')).toBe('horizontal');
     expect(host.getAttribute('data-button-group-attached')).toBe('true');
+    expect(host.querySelector('[role="group"]')?.getAttribute('aria-label'))
+      .toBe('Document actions');
+    expect(getComputedStyle(host).inlineSize).toBe('fit-content');
     expect(buttons.map((button) => button.getAttribute('data-group-position')))
       .toEqual(['first', 'middle', 'last']);
     expect(buttons.map((button) => button.getAttribute('data-attached-axis')))
