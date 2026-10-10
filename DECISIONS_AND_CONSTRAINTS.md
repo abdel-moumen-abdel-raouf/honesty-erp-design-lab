@@ -1,5 +1,18 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Foundational text-like field internal-review decisions — 2026-10-10
+
+- No binding component-specific external reference is recorded for the seven
+  text-like field owners; they remain original Honesty ERP candidates.
+- Production APIs, Field ownership, Component Tokens, visual defaults, and CVA
+  behavior remain unchanged. Review corrections are generated Workbench data,
+  event regression tests, and reproducible browser evidence only.
+- Every dedicated route must render one primary target with meaningful initial
+  ERP data and must apply edited values through its public CVA contract.
+- RTL and LTR evidence must set the computed document direction, not only the
+  `dir` attribute over the Design Lab's RTL author stylesheet default.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## Public Icon and Text internal-review decisions — 2026-10-10
 
 - No binding component-specific external reference is recorded for `ErpIcon`

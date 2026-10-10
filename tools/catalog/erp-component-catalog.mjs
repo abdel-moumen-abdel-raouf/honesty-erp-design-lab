@@ -146,7 +146,14 @@ const CVA_COMPONENTS = new Set([
 ]);
 
 const CVA_FIXTURE_VALUES = new Map([
+  ['ErpMoneyBox', 18450.75],
+  ['ErpNumberBox', 1250],
+  ['ErpPasswordBox', 'Honesty@2026'],
   ['ErpSelect', 'ahmed'],
+  ['ErpTelBox', '+20 100 123 4567'],
+  ['ErpTextAreaBox', 'ملاحظات طلب الشراء: يرجى مراجعة الكميات قبل الاعتماد.'],
+  ['ErpTextBox', 'شركة النور للتجارة'],
+  ['ErpUrlBox', 'https://honesty-erp.example'],
 ]);
 
 const PROJECTION_COMPONENTS = new Set([
@@ -433,7 +440,13 @@ const FIXTURE_INPUTS = new Map([
   ['ErpIcon', {name: 'settings'}],
   ['ErpIconButton', {icon: 'settings', label: 'الإعدادات'}],
   ['ErpItemPicker', {items: [{value: 'item-1', label: 'صنف مخزني'}]}],
-  ['ErpMoneyBox', {currency: 'EGP'}],
+  ['ErpMoneyBox', {currency: 'EGP', label: 'الرصيد الافتتاحي', helperText: 'بالجنيه المصري', clearable: true}],
+  ['ErpNumberBox', {label: 'كمية إعادة الطلب', helperText: 'وحدة مخزنية', clearable: true}],
+  ['ErpPasswordBox', {label: 'كلمة المرور', helperText: 'استخدم 12 محرفًا على الأقل', clearable: true}],
+  ['ErpTelBox', {label: 'هاتف المورد', helperText: 'رقم التواصل المعتمد', clearable: true}],
+  ['ErpTextAreaBox', {label: 'ملاحظات طلب الشراء', helperText: 'تظهر لفريق المشتريات', rows: 4, showCounter: true}],
+  ['ErpTextBox', {label: 'اسم العميل', helperText: 'الاسم التجاري كما يظهر في الفاتورة', clearable: true}],
+  ['ErpUrlBox', {label: 'موقع المورد', helperText: 'رابط HTTPS المعتمد', clearable: true}],
   ['ErpNotificationBell', {
     notifications: [
       {id: 'stock', title: 'حد إعادة الطلب', description: 'وصل صنفان في فرع القاهرة إلى الحد الأدنى.', timestamp: 'منذ دقيقتين', icon: 'inventory', read: false},

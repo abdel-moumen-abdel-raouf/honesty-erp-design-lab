@@ -22,12 +22,12 @@ export class ErpTextBoxShowcase {
   readonly controls = ENTRY.showcaseControls;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
-  readonly cvaValue = signal<unknown>(null);
+  readonly cvaValue = signal<unknown>("شركة النور للتجارة");
   readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({
     ...this.liveValues(),
     '$value': this.cvaValue(),
   }));
-  readonly control = new FormControl<unknown>({"value":null,"disabled":false});
+  readonly control = new FormControl<unknown>({"value":"شركة النور للتجارة","disabled":false});
 
   constructor() {
     this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {

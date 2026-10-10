@@ -1,5 +1,25 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Foundational text-like field internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `f5c9fd948a7cf19134e6f47f6e1f959f48a0ec2e` — synchronized `main` after the
+  public Icon and Text primitive checkpoint.
+
+Bounded scope:
+
+- Reviewed seven text-like field owners at desktop/narrow Light/Dark RTL/LTR.
+- Added meaningful generated Workbench fixtures and CVA/event regression
+  evidence; production APIs/defaults remain unchanged.
+- Persisted 112/112 browser assertions and paired screenshots under
+  `docs/review-evidence/erp-text-fields/v1-internal-review/`.
+- Canonical gate: 128/128 files, 828/828 tests, both typechecks, all
+  governance/lint, zero-warning 418.32 kB / 92.90 kB build.
+
+Product Owner visual status remains pending. The actual commit SHA is recorded
+by Git after this document snapshot; do not infer acceptance from the commit.
+
 ## Public Icon and Text primitive internal-review candidate — 2026-10-10
 
 Entry checkpoint:

@@ -1,5 +1,18 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — foundational text-like fields
+
+Seven text-like Input/Field owners completed browser review as original Honesty
+ERP candidates. Their generated Workbenches now use meaningful Arabic ERP
+labels, helper copy, and CVA values while retaining all production APIs and
+visual defaults. The 14-case desktop/narrow Light/Dark RTL/LTR evidence package
+is under `docs/review-evidence/erp-text-fields/v1-internal-review/` and passes
+112/112 assertions with no overflow, broken images, or browser diagnostics.
+Focused verification passes 8/8 files and 64/64 tests; canonical verification
+passes 128/128 files and 828/828 tests with a zero-warning 418.32 kB / 92.90 kB
+build. Product Owner acceptance is not recorded. Next Bottom-Up unit:
+`ErpNumberStepper` and `ErpRangeSlider`.
+
 ## Latest verified UI unit — ErpIcon and ErpText
 
 The remaining public primitives have completed browser review as original

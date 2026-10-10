@@ -188,6 +188,36 @@ describe('ComponentShowcase', () => {
     expect(target.getAttribute('dir')).toBe('ltr');
   });
 
+  it.each([
+    ['text-box', 'عميل جديد', 'عميل جديد'],
+    ['text-area-box', 'سطر أول\nسطر ثانٍ', 'سطر أول'],
+    ['password-box', 'Secret@123', 'Secret@123'],
+    ['number-box', 42, '42'],
+    ['money-box', 765.25, '765.25'],
+    ['tel-box', '+20 111 222 3333', '+20 111 222 3333'],
+    ['url-box', 'https://example.test', 'https://example.test'],
+  ] as const)('applies a meaningful CVA value to the %s target', async (id, value, evidence) => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl(`/components/${id}`, ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+    const root = harness.routeNativeElement as HTMLElement;
+    const panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    panel.editor(panel.controls().find((control) => control.name === '$value')!)
+      .setValue(JSON.stringify(value));
+    harness.fixture.detectChanges();
+
+    const target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    const nativeEditor = target.querySelector('input, textarea') as HTMLInputElement | HTMLTextAreaElement;
+    expect(root.querySelectorAll('[data-showcase-target]'), id).toHaveLength(1);
+    expect(nativeEditor.value.length, id).toBeGreaterThan(0);
+    expect(root.querySelector('[data-showcase-event-log]')?.textContent, id).toContain(evidence);
+  });
+
   it('renders ButtonGroup as one controlled group with multiple actions', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/components/button-group', ComponentShowcase);

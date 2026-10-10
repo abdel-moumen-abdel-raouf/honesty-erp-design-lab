@@ -22,12 +22,12 @@ export class ErpTelBoxShowcase {
   readonly controls = ENTRY.showcaseControls;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
-  readonly cvaValue = signal<unknown>(null);
+  readonly cvaValue = signal<unknown>("+20 100 123 4567");
   readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({
     ...this.liveValues(),
     '$value': this.cvaValue(),
   }));
-  readonly control = new FormControl<unknown>({"value":null,"disabled":false});
+  readonly control = new FormControl<unknown>({"value":"+20 100 123 4567","disabled":false});
 
   constructor() {
     this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {

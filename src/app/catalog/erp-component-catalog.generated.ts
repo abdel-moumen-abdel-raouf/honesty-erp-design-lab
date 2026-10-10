@@ -23366,8 +23366,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي",
-          "currency": "EGP"
+          "label": "الرصيد الافتتاحي",
+          "currency": "EGP",
+          "helperText": "بالجنيه المصري",
+          "clearable": true
         }
       }
     ],
@@ -23388,7 +23390,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "بالجنيه المصري",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": null,
@@ -23406,7 +23408,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "allowEmpty": true,
       "pattern": null,
       "digitSet": null,
-      "label": "حقل تجريبي",
+      "label": "الرصيد الافتتاحي",
       "currency": "EGP"
     },
     "showcaseControls": [
@@ -23418,7 +23420,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": 18450.75
       },
       {
         "name": "label",
@@ -23428,7 +23430,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "الرصيد الافتتاحي"
       },
       {
         "name": "name",
@@ -23627,7 +23629,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "بالجنيه المصري"
       },
       {
         "name": "helperPosition",
@@ -24330,7 +24332,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "كمية إعادة الطلب",
+          "helperText": "وحدة مخزنية",
+          "clearable": true
         }
       }
     ],
@@ -24351,7 +24355,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "وحدة مخزنية",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": null,
@@ -24365,7 +24369,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "step": 1,
       "allowEmpty": true,
       "pattern": null,
-      "label": "حقل تجريبي"
+      "label": "كمية إعادة الطلب"
     },
     "showcaseControls": [
       {
@@ -24376,7 +24380,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": 1250
       },
       {
         "name": "label",
@@ -24386,7 +24390,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "كمية إعادة الطلب"
       },
       {
         "name": "name",
@@ -24585,7 +24589,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "وحدة مخزنية"
       },
       {
         "name": "helperPosition",
@@ -26141,7 +26145,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "كلمة المرور",
+          "helperText": "استخدم 12 محرفًا على الأقل",
+          "clearable": true
         }
       }
     ],
@@ -26162,7 +26168,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "استخدم 12 محرفًا على الأقل",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": null,
@@ -26176,7 +26182,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "minLength": null,
       "maxLength": null,
       "pattern": null,
-      "label": "حقل تجريبي"
+      "label": "كلمة المرور"
     },
     "showcaseControls": [
       {
@@ -26187,7 +26193,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": "Honesty@2026"
       },
       {
         "name": "label",
@@ -26197,7 +26203,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "كلمة المرور"
       },
       {
         "name": "name",
@@ -26396,7 +26402,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "استخدم 12 محرفًا على الأقل"
       },
       {
         "name": "helperPosition",
@@ -30855,7 +30861,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "هاتف المورد",
+          "helperText": "رقم التواصل المعتمد",
+          "clearable": true
         }
       }
     ],
@@ -30876,7 +30884,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "رقم التواصل المعتمد",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": null,
@@ -30889,7 +30897,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "pattern": null,
       "minLength": null,
       "maxLength": null,
-      "label": "حقل تجريبي"
+      "label": "هاتف المورد"
     },
     "showcaseControls": [
       {
@@ -30900,7 +30908,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": "+20 100 123 4567"
       },
       {
         "name": "label",
@@ -30910,7 +30918,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "هاتف المورد"
       },
       {
         "name": "name",
@@ -31109,7 +31117,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "رقم التواصل المعتمد"
       },
       {
         "name": "helperPosition",
@@ -31744,7 +31752,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "ملاحظات طلب الشراء",
+          "helperText": "تظهر لفريق المشتريات",
+          "rows": 4,
+          "showCounter": true
         }
       }
     ],
@@ -31765,7 +31776,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "تظهر لفريق المشتريات",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": null,
@@ -31778,8 +31789,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "maxLength": null,
       "rows": 4,
       "resize": "vertical",
-      "showCounter": false,
-      "label": "حقل تجريبي"
+      "showCounter": true,
+      "label": "ملاحظات طلب الشراء"
     },
     "showcaseControls": [
       {
@@ -31790,7 +31801,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": "ملاحظات طلب الشراء: يرجى مراجعة الكميات قبل الاعتماد."
       },
       {
         "name": "label",
@@ -31800,7 +31811,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "ملاحظات طلب الشراء"
       },
       {
         "name": "name",
@@ -31999,7 +32010,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "تظهر لفريق المشتريات"
       },
       {
         "name": "helperPosition",
@@ -32148,7 +32159,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "false",
           "true"
         ],
-        "initialValue": false
+        "initialValue": true
       }
     ],
     "showcaseCoverage": {
@@ -32664,7 +32675,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "اسم العميل",
+          "helperText": "الاسم التجاري كما يظهر في الفاتورة",
+          "clearable": true
         }
       }
     ],
@@ -32685,7 +32698,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "الاسم التجاري كما يظهر في الفاتورة",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": null,
@@ -32700,7 +32713,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "autocomplete": null,
       "inputMode": "text",
       "spellcheck": true,
-      "label": "حقل تجريبي"
+      "label": "اسم العميل"
     },
     "showcaseControls": [
       {
@@ -32711,7 +32724,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": "شركة النور للتجارة"
       },
       {
         "name": "label",
@@ -32721,7 +32734,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "اسم العميل"
       },
       {
         "name": "name",
@@ -32920,7 +32933,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "الاسم التجاري كما يظهر في الفاتورة"
       },
       {
         "name": "helperPosition",
@@ -34457,7 +34470,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "موقع المورد",
+          "helperText": "رابط HTTPS المعتمد",
+          "clearable": true
         }
       }
     ],
@@ -34478,7 +34493,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "رابط HTTPS المعتمد",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": null,
@@ -34491,7 +34506,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "pattern": null,
       "minLength": null,
       "maxLength": null,
-      "label": "حقل تجريبي"
+      "label": "موقع المورد"
     },
     "showcaseControls": [
       {
@@ -34502,7 +34517,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": "https://honesty-erp.example"
       },
       {
         "name": "label",
@@ -34512,7 +34527,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "موقع المورد"
       },
       {
         "name": "name",
@@ -34711,7 +34726,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "رابط HTTPS المعتمد"
       },
       {
         "name": "helperPosition",

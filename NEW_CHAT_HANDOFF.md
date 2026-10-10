@@ -1,5 +1,16 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — foundational text-like fields reviewed internally
+
+Continue from synchronized `main` after the seven-owner Input/Field checkpoint.
+Production APIs/defaults are unchanged; generated Workbench fixtures now make
+their CVA values and field anatomy immediately observable. The evidence package
+under `docs/review-evidence/erp-text-fields/v1-internal-review/` passes 112/112
+browser assertions. Canonical verification passes 128/128 files and 828/828
+tests with a zero-warning 418.32 kB / 92.90 kB build. Product Owner acceptance
+is not recorded. Continue Bottom-Up with `ErpNumberStepper` and
+`ErpRangeSlider`.
+
 ## Current continuation point — public primitives fully reviewed internally
 
 Continue from synchronized `main` after the `ErpIcon` / `ErpText` checkpoint.

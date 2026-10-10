@@ -49,6 +49,9 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpGrid',
   'ErpIcon',
   'ErpInline',
+  'ErpMoneyBox',
+  'ErpNumberBox',
+  'ErpPasswordBox',
   'ErpRadioBox',
   'ErpRadioGroup',
   'ErpSection',
@@ -58,7 +61,11 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpSurface',
   'ErpTabs',
   'ErpTable',
+  'ErpTelBox',
   'ErpText',
+  'ErpTextAreaBox',
+  'ErpTextBox',
+  'ErpUrlBox',
   'ErpUserMenu',
 ]);
 
@@ -256,12 +263,15 @@ drift.
   **\`ErpSelect\`**, **\`ErpStatusBadge\`**, **\`ErpTabs\`**, **\`ErpTable\`**,
   **\`ErpUserMenu\`**, **\`ErpContainer\`**, **\`ErpDivider\`**, **\`ErpGrid\`**,
   **\`ErpInline\`**, **\`ErpSection\`**, **\`ErpStack\`**, **\`ErpSurface\`**,
-  **\`ErpIcon\`**, and **\`ErpText\`**. Their
+  **\`ErpIcon\`**, **\`ErpText\`**, **\`ErpTextBox\`**, **\`ErpTextAreaBox\`**,
+  **\`ErpPasswordBox\`**, **\`ErpNumberBox\`**, **\`ErpMoneyBox\`**,
+  **\`ErpTelBox\`**, and **\`ErpUrlBox\`**. Their
   Product Owner status remains pending.
 - All currently recorded binding-reference owners have completed internal
-  review, and the full public primitive layer has completed internal review.
-  The next Bottom-Up unit is the foundational text-like Input/Field family,
-  beginning with **\`ErpTextBox\`** and **\`ErpTextAreaBox\`**.
+  review, the full public primitive layer has completed internal review, and
+  the foundational text-like Input/Field family has completed internal review.
+  The next Bottom-Up unit is the numeric interaction family:
+  **\`ErpNumberStepper\`** and **\`ErpRangeSlider\`**.
 
 ## Public owner inventory
 

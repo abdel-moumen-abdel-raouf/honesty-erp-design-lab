@@ -1,5 +1,21 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Foundational Text-like Field Internal Review State
+
+`ErpTextBox`, `ErpTextAreaBox`, `ErpPasswordBox`, `ErpNumberBox`, `ErpMoneyBox`,
+`ErpTelBox`, and `ErpUrlBox` have completed their authorized original Honesty
+ERP internal review. Production APIs and visual defaults remain unchanged. The
+generated Workbenches now start with meaningful Arabic ERP labels, helper copy,
+and CVA values, and preserve immediate live editing and event evidence. Evidence
+under `docs/review-evidence/erp-text-fields/v1-internal-review/` passes 112/112
+browser assertions across 14 desktop/narrow Light/Dark RTL/LTR scenarios with
+zero overflow, broken images, errors, or warnings. Focused verification passes
+8/8 files and 64/64 tests; canonical verification passes 128/128 files and
+828/828 tests, both typechecks, all governance/lint, and the zero-warning
+418.32 kB / 92.90 kB build. Status remains `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Next Bottom-Up unit: `ErpNumberStepper` and `ErpRangeSlider`.
+
 ## Current Public Icon and Text Primitive Internal Review State
 
 `ErpIcon` and `ErpText` have completed their authorized original Honesty ERP

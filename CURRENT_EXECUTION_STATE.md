@@ -1,5 +1,22 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — foundational text-like field family internal review
+
+`ErpTextBox`, `ErpTextAreaBox`, `ErpPasswordBox`, `ErpNumberBox`, `ErpMoneyBox`,
+`ErpTelBox`, and `ErpUrlBox` completed internal browser review as explicitly
+labeled original Honesty ERP candidates. Production contracts and defaults are
+unchanged. Generated Workbench fixtures now provide meaningful Arabic ERP data
+and the public CVA path remains immediately interactive. The 14-scenario audit
+passes 112/112 assertions with one target per route, complete live controls,
+visible value-change evidence, actual RTL/LTR computation, zero overflow,
+broken images, errors, or warnings. Evidence is under
+`docs/review-evidence/erp-text-fields/v1-internal-review/`. Canonical
+verification passes 128/128 files and 828/828 tests, both typechecks, all
+governance/lint, and the zero-warning 418.32 kB / 92.90 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: `ErpNumberStepper` and
+`ErpRangeSlider`.
+
 ## Current checkpoint — public Icon and Text primitives internal review
 
 `ErpIcon` and `ErpText` completed desktop/narrow Light/Dark RTL/LTR browser

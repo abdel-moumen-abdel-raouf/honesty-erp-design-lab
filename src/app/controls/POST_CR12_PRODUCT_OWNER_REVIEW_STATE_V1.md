@@ -1,5 +1,17 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — foundational text-like fields
+
+Seven public Input/Field owners completed internal browser review as original
+Honesty ERP candidates. Generated Workbench evidence now supplies meaningful
+Arabic ERP values through the public CVA path and records live output evidence.
+The 14-scenario audit passes 112/112 assertions with no overflow, broken images,
+or browser diagnostics. Screenshots, measurements, and reproduction steps are
+under `docs/review-evidence/erp-text-fields/v1-internal-review/`. Production
+APIs/defaults are unchanged. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Next Bottom-Up unit: `ErpNumberStepper` and `ErpRangeSlider`.
+
 ## Current review execution — 2026-10-10 — ErpIcon and ErpText
 
 Both remaining public primitives completed internal browser review as original

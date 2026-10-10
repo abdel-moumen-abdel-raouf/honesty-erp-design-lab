@@ -1,0 +1,1696 @@
+{
+  "generatedAt": "2026-10-10T08:07:33.031Z",
+  "authority": "Original Honesty ERP candidate; no binding component-specific reference is recorded.",
+  "scenarios": [
+    {
+      "name": "text-box-1440-light-rtl-default",
+      "component": "text-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 31,
+      "targetBox": {
+        "x": 162,
+        "y": 452.765625,
+        "width": 935,
+        "height": 94.296875
+      },
+      "editorBox": {
+        "x": 211,
+        "y": 492.0625,
+        "width": 873,
+        "height": 18
+      },
+      "nativeTag": "input",
+      "nativeType": "text",
+      "nativeValue": "شركة النور للتجارة",
+      "editorStyle": {
+        "color": "rgb(24, 26, 32)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "clip"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c324650360": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "none",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "default",
+        "data-field-size": "md",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "static",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "false",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: شركة النور للتجارةالقيمة الحالية: شركة النور للتجارة",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "text-box-390-dark-ltr-alternate",
+      "component": "text-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 31,
+      "targetBox": {
+        "x": 57,
+        "y": 580.765625,
+        "width": 276,
+        "height": 74
+      },
+      "editorBox": {
+        "x": 74,
+        "y": 595.765625,
+        "width": 206,
+        "height": 18
+      },
+      "nativeTag": "input",
+      "nativeType": "text",
+      "nativeValue": "Alexandria Wholesale Customer 2026",
+      "editorStyle": {
+        "color": "rgb(248, 249, 251)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "clip"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c324650360": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "success",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: Alexandria Wholesale Customer 2026القيمة الحالية: Alexandria Wholesale Customer 2026",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "text-area-box-1440-light-rtl-default",
+      "component": "text-area-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 30,
+      "targetBox": {
+        "x": 162,
+        "y": 452.765625,
+        "width": 935,
+        "height": 152.296875
+      },
+      "editorBox": {
+        "x": 211,
+        "y": 494.0625,
+        "width": 873,
+        "height": 72
+      },
+      "nativeTag": "textarea",
+      "nativeType": null,
+      "nativeValue": "ملاحظات طلب الشراء: يرجى مراجعة الكميات قبل الاعتماد.",
+      "editorStyle": {
+        "color": "rgb(24, 26, 32)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "auto"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c3486685272": "",
+        "multiline": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "none",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "default",
+        "data-field-size": "md",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "static",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "false",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "true",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: ملاحظات طلب الشراء: يرجى مراجعة الكميات قبل الاعتماد.القيمة الحالية: ملاحظات طلب الشراء: يرجى مراجعة الكميات قبل الاعتماد.",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "text-area-box-390-dark-ltr-alternate",
+      "component": "text-area-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 30,
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 132
+      },
+      "editorBox": {
+        "x": 74,
+        "y": 619.765625,
+        "width": 206,
+        "height": 72
+      },
+      "nativeTag": "textarea",
+      "nativeType": null,
+      "nativeValue": "Purchase request reviewed. Confirm quantities before final approval.",
+      "editorStyle": {
+        "color": "rgb(248, 249, 251)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "auto"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c3486685272": "",
+        "multiline": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "warning",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "true",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: Purchase request reviewed. Confirm quantities before final approval.القيمة الحالية: Purchase request reviewed. Confirm quantities before final approval.",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "password-box-1440-light-rtl-default",
+      "component": "password-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 30,
+      "targetBox": {
+        "x": 162,
+        "y": 452.765625,
+        "width": 935,
+        "height": 94.296875
+      },
+      "editorBox": {
+        "x": 247,
+        "y": 492.0625,
+        "width": 837,
+        "height": 18
+      },
+      "nativeTag": "input",
+      "nativeType": "password",
+      "nativeValue": "Honesty@2026",
+      "editorStyle": {
+        "color": "rgb(24, 26, 32)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "clip"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c1809862926": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "none",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "default",
+        "data-field-size": "md",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "static",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "false",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: Honesty@2026القيمة الحالية: Honesty@2026",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "password-box-390-dark-ltr-alternate",
+      "component": "password-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 30,
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 74
+      },
+      "editorBox": {
+        "x": 74,
+        "y": 617.765625,
+        "width": 170,
+        "height": 18
+      },
+      "nativeTag": "input",
+      "nativeType": "password",
+      "nativeValue": "Secure@2026",
+      "editorStyle": {
+        "color": "rgb(248, 249, 251)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "clip"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c1809862926": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "danger",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: Secure@2026القيمة الحالية: Secure@2026",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "number-box-1440-light-rtl-default",
+      "component": "number-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 30,
+      "targetBox": {
+        "x": 162,
+        "y": 452.765625,
+        "width": 935,
+        "height": 94.296875
+      },
+      "editorBox": {
+        "x": 211,
+        "y": 492.0625,
+        "width": 873,
+        "height": 18
+      },
+      "nativeTag": "input",
+      "nativeType": "text",
+      "nativeValue": "1250",
+      "editorStyle": {
+        "color": "rgb(24, 26, 32)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "clip"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c2887318627": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "none",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "default",
+        "data-field-size": "md",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "static",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "false",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: 1250القيمة الحالية: 1250",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "number-box-390-dark-ltr-alternate",
+      "component": "number-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 30,
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 74
+      },
+      "editorBox": {
+        "x": 74,
+        "y": 617.765625,
+        "width": 206,
+        "height": 18
+      },
+      "nativeTag": "input",
+      "nativeType": "text",
+      "nativeValue": "4200",
+      "editorStyle": {
+        "color": "rgb(248, 249, 251)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "clip"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c2887318627": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "success",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: 4200القيمة الحالية: 4200",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "money-box-1440-light-rtl-default",
+      "component": "money-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 35,
+      "targetBox": {
+        "x": 162,
+        "y": 452.765625,
+        "width": 935,
+        "height": 94.296875
+      },
+      "editorBox": {
+        "x": 211,
+        "y": 492.0625,
+        "width": 873,
+        "height": 18
+      },
+      "nativeTag": "input",
+      "nativeType": "text",
+      "nativeValue": "18,450.75 EGP",
+      "editorStyle": {
+        "color": "rgb(24, 26, 32)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "clip"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c1747702134": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "none",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "default",
+        "data-field-size": "md",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "static",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "false",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: 18450.75القيمة الحالية: 18450.75",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "money-box-390-dark-ltr-alternate",
+      "component": "money-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 35,
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 74
+      },
+      "editorBox": {
+        "x": 74,
+        "y": 617.765625,
+        "width": 206,
+        "height": 18
+      },
+      "nativeTag": "input",
+      "nativeType": "text",
+      "nativeValue": "28,750.50 EGP",
+      "editorStyle": {
+        "color": "rgb(248, 249, 251)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "clip"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c1747702134": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "success",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: 28750.5القيمة الحالية: 28750.5",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "tel-box-1440-light-rtl-default",
+      "component": "tel-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 29,
+      "targetBox": {
+        "x": 162,
+        "y": 452.765625,
+        "width": 935,
+        "height": 138.296875
+      },
+      "editorBox": {
+        "x": 211,
+        "y": 492.0625,
+        "width": 873,
+        "height": 18
+      },
+      "nativeTag": "input",
+      "nativeType": "tel",
+      "nativeValue": "+20 100 123 4567",
+      "editorStyle": {
+        "color": "rgb(24, 26, 32)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "clip"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c776882082": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "danger",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "default",
+        "data-field-size": "md",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "static",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "false",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: +20 100 123 4567القيمة الحالية: +20 100 123 4567",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "tel-box-390-dark-ltr-alternate",
+      "component": "tel-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 29,
+      "targetBox": {
+        "x": 57,
+        "y": 580.765625,
+        "width": 276,
+        "height": 118
+      },
+      "editorBox": {
+        "x": 74,
+        "y": 595.765625,
+        "width": 206,
+        "height": 18
+      },
+      "nativeTag": "input",
+      "nativeType": "tel",
+      "nativeValue": "+20 111 222 3333",
+      "editorStyle": {
+        "color": "rgb(248, 249, 251)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "clip"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c776882082": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "danger",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: +20 111 222 3333القيمة الحالية: +20 111 222 3333",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "url-box-1440-light-rtl-default",
+      "component": "url-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 29,
+      "targetBox": {
+        "x": 162,
+        "y": 452.765625,
+        "width": 935,
+        "height": 94.296875
+      },
+      "editorBox": {
+        "x": 211,
+        "y": 492.0625,
+        "width": 873,
+        "height": 18
+      },
+      "nativeTag": "input",
+      "nativeType": "text",
+      "nativeValue": "https://honesty-erp.example",
+      "editorStyle": {
+        "color": "rgb(24, 26, 32)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "clip"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c1844129088": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "none",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "default",
+        "data-field-size": "md",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "static",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "false",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: https://honesty-erp.exampleالقيمة الحالية: https://honesty-erp.example",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "url-box-390-dark-ltr-alternate",
+      "component": "url-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 29,
+      "targetBox": {
+        "x": 57,
+        "y": 580.765625,
+        "width": 276,
+        "height": 74
+      },
+      "editorBox": {
+        "x": 74,
+        "y": 595.765625,
+        "width": 206,
+        "height": 18
+      },
+      "nativeTag": "input",
+      "nativeType": "text",
+      "nativeValue": "https://supplier.example",
+      "editorStyle": {
+        "color": "rgb(248, 249, 251)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontSize": "14px",
+        "lineHeight": "normal",
+        "overflow": "clip"
+      },
+      "frameAttributes": {
+        "_ngcontent-ng-c1844129088": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "success",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      },
+      "eventEvidence": "آخر تفاعلvalueChange: https://supplier.exampleالقيمة الحالية: https://supplier.example",
+      "scrollState": {
+        "windowY": 0,
+        "documentTop": 0,
+        "bodyTop": 0,
+        "contentTop": 0
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    }
+  ],
+  "assertions": [
+    {
+      "name": "text-box-1440-light-rtl-default target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "text-box-1440-light-rtl-default controls",
+      "pass": true,
+      "actual": 31
+    },
+    {
+      "name": "text-box-1440-light-rtl-default visible editor",
+      "pass": true,
+      "actual": {
+        "x": 211,
+        "y": 492.0625,
+        "width": 873,
+        "height": 18
+      }
+    },
+    {
+      "name": "text-box-1440-light-rtl-default meaningful value",
+      "pass": true,
+      "actual": "شركة النور للتجارة"
+    },
+    {
+      "name": "text-box-1440-light-rtl-default page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "text-box-1440-light-rtl-default diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "text-box-1440-light-rtl-default broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "text-box-390-dark-ltr-alternate target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "text-box-390-dark-ltr-alternate controls",
+      "pass": true,
+      "actual": 31
+    },
+    {
+      "name": "text-box-390-dark-ltr-alternate visible editor",
+      "pass": true,
+      "actual": {
+        "x": 74,
+        "y": 595.765625,
+        "width": 206,
+        "height": 18
+      }
+    },
+    {
+      "name": "text-box-390-dark-ltr-alternate meaningful value",
+      "pass": true,
+      "actual": "Alexandria Wholesale Customer 2026"
+    },
+    {
+      "name": "text-box-390-dark-ltr-alternate page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "text-box-390-dark-ltr-alternate diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "text-box-390-dark-ltr-alternate broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "text-box-390-dark-ltr-alternate applied large size",
+      "pass": true,
+      "actual": {
+        "_ngcontent-ng-c324650360": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "success",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      }
+    },
+    {
+      "name": "text-box-390-dark-ltr-alternate CVA event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: Alexandria Wholesale Customer 2026القيمة الحالية: Alexandria Wholesale Customer 2026"
+    },
+    {
+      "name": "text-area-box-1440-light-rtl-default target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "text-area-box-1440-light-rtl-default controls",
+      "pass": true,
+      "actual": 30
+    },
+    {
+      "name": "text-area-box-1440-light-rtl-default visible editor",
+      "pass": true,
+      "actual": {
+        "x": 211,
+        "y": 494.0625,
+        "width": 873,
+        "height": 72
+      }
+    },
+    {
+      "name": "text-area-box-1440-light-rtl-default meaningful value",
+      "pass": true,
+      "actual": "ملاحظات طلب الشراء: يرجى مراجعة الكميات قبل الاعتماد."
+    },
+    {
+      "name": "text-area-box-1440-light-rtl-default page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "text-area-box-1440-light-rtl-default diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "text-area-box-1440-light-rtl-default broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "text-area-box-390-dark-ltr-alternate target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "text-area-box-390-dark-ltr-alternate controls",
+      "pass": true,
+      "actual": 30
+    },
+    {
+      "name": "text-area-box-390-dark-ltr-alternate visible editor",
+      "pass": true,
+      "actual": {
+        "x": 74,
+        "y": 619.765625,
+        "width": 206,
+        "height": 72
+      }
+    },
+    {
+      "name": "text-area-box-390-dark-ltr-alternate meaningful value",
+      "pass": true,
+      "actual": "Purchase request reviewed. Confirm quantities before final approval."
+    },
+    {
+      "name": "text-area-box-390-dark-ltr-alternate page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "text-area-box-390-dark-ltr-alternate diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "text-area-box-390-dark-ltr-alternate broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "text-area-box-390-dark-ltr-alternate applied large size",
+      "pass": true,
+      "actual": {
+        "_ngcontent-ng-c3486685272": "",
+        "multiline": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "warning",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "true",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      }
+    },
+    {
+      "name": "text-area-box-390-dark-ltr-alternate CVA event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: Purchase request reviewed. Confirm quantities before final approval.القيمة الحالية: Purchase request reviewed. Confirm quantities before final approval."
+    },
+    {
+      "name": "password-box-1440-light-rtl-default target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "password-box-1440-light-rtl-default controls",
+      "pass": true,
+      "actual": 30
+    },
+    {
+      "name": "password-box-1440-light-rtl-default visible editor",
+      "pass": true,
+      "actual": {
+        "x": 247,
+        "y": 492.0625,
+        "width": 837,
+        "height": 18
+      }
+    },
+    {
+      "name": "password-box-1440-light-rtl-default meaningful value",
+      "pass": true,
+      "actual": "Honesty@2026"
+    },
+    {
+      "name": "password-box-1440-light-rtl-default page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "password-box-1440-light-rtl-default diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "password-box-1440-light-rtl-default broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "password-box-390-dark-ltr-alternate target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "password-box-390-dark-ltr-alternate controls",
+      "pass": true,
+      "actual": 30
+    },
+    {
+      "name": "password-box-390-dark-ltr-alternate visible editor",
+      "pass": true,
+      "actual": {
+        "x": 74,
+        "y": 617.765625,
+        "width": 170,
+        "height": 18
+      }
+    },
+    {
+      "name": "password-box-390-dark-ltr-alternate meaningful value",
+      "pass": true,
+      "actual": "Secure@2026"
+    },
+    {
+      "name": "password-box-390-dark-ltr-alternate page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "password-box-390-dark-ltr-alternate diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "password-box-390-dark-ltr-alternate broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "password-box-390-dark-ltr-alternate applied large size",
+      "pass": true,
+      "actual": {
+        "_ngcontent-ng-c1809862926": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "danger",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      }
+    },
+    {
+      "name": "password-box-390-dark-ltr-alternate CVA event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: Secure@2026القيمة الحالية: Secure@2026"
+    },
+    {
+      "name": "number-box-1440-light-rtl-default target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "number-box-1440-light-rtl-default controls",
+      "pass": true,
+      "actual": 30
+    },
+    {
+      "name": "number-box-1440-light-rtl-default visible editor",
+      "pass": true,
+      "actual": {
+        "x": 211,
+        "y": 492.0625,
+        "width": 873,
+        "height": 18
+      }
+    },
+    {
+      "name": "number-box-1440-light-rtl-default meaningful value",
+      "pass": true,
+      "actual": "1250"
+    },
+    {
+      "name": "number-box-1440-light-rtl-default page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "number-box-1440-light-rtl-default diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "number-box-1440-light-rtl-default broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "number-box-390-dark-ltr-alternate target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "number-box-390-dark-ltr-alternate controls",
+      "pass": true,
+      "actual": 30
+    },
+    {
+      "name": "number-box-390-dark-ltr-alternate visible editor",
+      "pass": true,
+      "actual": {
+        "x": 74,
+        "y": 617.765625,
+        "width": 206,
+        "height": 18
+      }
+    },
+    {
+      "name": "number-box-390-dark-ltr-alternate meaningful value",
+      "pass": true,
+      "actual": "4200"
+    },
+    {
+      "name": "number-box-390-dark-ltr-alternate page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "number-box-390-dark-ltr-alternate diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "number-box-390-dark-ltr-alternate broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "number-box-390-dark-ltr-alternate applied large size",
+      "pass": true,
+      "actual": {
+        "_ngcontent-ng-c2887318627": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "success",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      }
+    },
+    {
+      "name": "number-box-390-dark-ltr-alternate CVA event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: 4200القيمة الحالية: 4200"
+    },
+    {
+      "name": "money-box-1440-light-rtl-default target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "money-box-1440-light-rtl-default controls",
+      "pass": true,
+      "actual": 35
+    },
+    {
+      "name": "money-box-1440-light-rtl-default visible editor",
+      "pass": true,
+      "actual": {
+        "x": 211,
+        "y": 492.0625,
+        "width": 873,
+        "height": 18
+      }
+    },
+    {
+      "name": "money-box-1440-light-rtl-default meaningful value",
+      "pass": true,
+      "actual": "18,450.75 EGP"
+    },
+    {
+      "name": "money-box-1440-light-rtl-default page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "money-box-1440-light-rtl-default diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "money-box-1440-light-rtl-default broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "money-box-390-dark-ltr-alternate target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "money-box-390-dark-ltr-alternate controls",
+      "pass": true,
+      "actual": 35
+    },
+    {
+      "name": "money-box-390-dark-ltr-alternate visible editor",
+      "pass": true,
+      "actual": {
+        "x": 74,
+        "y": 617.765625,
+        "width": 206,
+        "height": 18
+      }
+    },
+    {
+      "name": "money-box-390-dark-ltr-alternate meaningful value",
+      "pass": true,
+      "actual": "28,750.50 EGP"
+    },
+    {
+      "name": "money-box-390-dark-ltr-alternate page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "money-box-390-dark-ltr-alternate diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "money-box-390-dark-ltr-alternate broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "money-box-390-dark-ltr-alternate applied large size",
+      "pass": true,
+      "actual": {
+        "_ngcontent-ng-c1747702134": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "success",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      }
+    },
+    {
+      "name": "money-box-390-dark-ltr-alternate CVA event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: 28750.5القيمة الحالية: 28750.5"
+    },
+    {
+      "name": "tel-box-1440-light-rtl-default target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "tel-box-1440-light-rtl-default controls",
+      "pass": true,
+      "actual": 29
+    },
+    {
+      "name": "tel-box-1440-light-rtl-default visible editor",
+      "pass": true,
+      "actual": {
+        "x": 211,
+        "y": 492.0625,
+        "width": 873,
+        "height": 18
+      }
+    },
+    {
+      "name": "tel-box-1440-light-rtl-default meaningful value",
+      "pass": true,
+      "actual": "+20 100 123 4567"
+    },
+    {
+      "name": "tel-box-1440-light-rtl-default page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "tel-box-1440-light-rtl-default diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "tel-box-1440-light-rtl-default broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "tel-box-390-dark-ltr-alternate target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "tel-box-390-dark-ltr-alternate controls",
+      "pass": true,
+      "actual": 29
+    },
+    {
+      "name": "tel-box-390-dark-ltr-alternate visible editor",
+      "pass": true,
+      "actual": {
+        "x": 74,
+        "y": 595.765625,
+        "width": 206,
+        "height": 18
+      }
+    },
+    {
+      "name": "tel-box-390-dark-ltr-alternate meaningful value",
+      "pass": true,
+      "actual": "+20 111 222 3333"
+    },
+    {
+      "name": "tel-box-390-dark-ltr-alternate page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "tel-box-390-dark-ltr-alternate diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "tel-box-390-dark-ltr-alternate broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "tel-box-390-dark-ltr-alternate applied large size",
+      "pass": true,
+      "actual": {
+        "_ngcontent-ng-c776882082": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "danger",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      }
+    },
+    {
+      "name": "tel-box-390-dark-ltr-alternate CVA event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: +20 111 222 3333القيمة الحالية: +20 111 222 3333"
+    },
+    {
+      "name": "url-box-1440-light-rtl-default target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "url-box-1440-light-rtl-default controls",
+      "pass": true,
+      "actual": 29
+    },
+    {
+      "name": "url-box-1440-light-rtl-default visible editor",
+      "pass": true,
+      "actual": {
+        "x": 211,
+        "y": 492.0625,
+        "width": 873,
+        "height": 18
+      }
+    },
+    {
+      "name": "url-box-1440-light-rtl-default meaningful value",
+      "pass": true,
+      "actual": "https://honesty-erp.example"
+    },
+    {
+      "name": "url-box-1440-light-rtl-default page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "url-box-1440-light-rtl-default diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "url-box-1440-light-rtl-default broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "url-box-390-dark-ltr-alternate target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "url-box-390-dark-ltr-alternate controls",
+      "pass": true,
+      "actual": 29
+    },
+    {
+      "name": "url-box-390-dark-ltr-alternate visible editor",
+      "pass": true,
+      "actual": {
+        "x": 74,
+        "y": 595.765625,
+        "width": 206,
+        "height": 18
+      }
+    },
+    {
+      "name": "url-box-390-dark-ltr-alternate meaningful value",
+      "pass": true,
+      "actual": "https://supplier.example"
+    },
+    {
+      "name": "url-box-390-dark-ltr-alternate page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "url-box-390-dark-ltr-alternate diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "url-box-390-dark-ltr-alternate broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "url-box-390-dark-ltr-alternate applied large size",
+      "pass": true,
+      "actual": {
+        "_ngcontent-ng-c1844129088": "",
+        "_nghost-ng-c1379192632": "",
+        "data-field-tone": "neutral",
+        "data-field-status": "success",
+        "data-field-variant": "outline",
+        "data-field-border-mode": "solid",
+        "data-field-shape": "rounded",
+        "data-field-size": "lg",
+        "data-field-appearance": "standard",
+        "data-field-label-mode": "floating",
+        "data-field-floating-position": "top",
+        "data-field-helper-position": "below",
+        "data-field-focused": "false",
+        "data-field-floating": "true",
+        "data-field-disabled": "false",
+        "data-field-configuration-state": "ready",
+        "data-field-multiline": "false",
+        "data-field-control-presentation": "standard",
+        "data-field-interaction": "editor"
+      }
+    },
+    {
+      "name": "url-box-390-dark-ltr-alternate CVA event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: https://supplier.exampleالقيمة الحالية: https://supplier.example"
+    }
+  ],
+  "summary": {
+    "total": 112,
+    "passed": 112,
+    "failed": []
+  }
+}
