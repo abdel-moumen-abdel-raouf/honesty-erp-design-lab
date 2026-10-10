@@ -2,6 +2,19 @@
 
 Status: `CURRENT — PRODUCT OWNER EXACT-REFERENCE CANDIDATE`
 
+## 2026-10-10 internal-review checkpoint
+
+The binding SHA was reverified and the rendered source was compared directly
+with `/components/avatar-picker`. A duplicate composed Tabs track, the former
+circle default, preview sizing and footer inset were corrected. The resulting
+fixed geometry matches at zero delta for the 520px surface, 44/34px track/tab,
+12px grid gap, 440px grid maximum, 2px/12px tile border/radius, 44px preview
+and source-contract 12px footer padding. The checked-in evidence is under
+`docs/review-evidence/erp-avatar-picker/v1-internal-review/` and the runtime
+checker passes 34/34 assertions. The reference's undefined `--erp-pad` use and
+390px demo overflow are documented source defects, not production contracts.
+Status remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## Authority
 
 - Filename: `ERP-AVATAR-PICKER.html`

@@ -1,5 +1,20 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — ErpAvatarPicker
+
+The binding Picker source was rehashed, rendered and compared with the Angular
+experience at matched desktop/narrow, Light/Dark and RTL/LTR conditions. The
+review corrected a duplicate Tabs track, restored the rounded default, added
+the Avatar-owned 44px preview and restored source-contract footer padding.
+All measured fixed geometry now has 0px delta and the runtime checker passes
+34/34 assertions with one target, 60/56 catalog counts, zero overflow, broken
+images or diagnostics. Evidence is under
+`docs/review-evidence/erp-avatar-picker/v1-internal-review/`. Focused tests pass
+4/4 files and 44/44 tests; canonical verification passes 128/128 files and
+819/819 tests with a zero-warning 418.32 kB / 92.91 kB build. Product Owner
+approval is not recorded. Next Bottom-Up unit: structural primitives beginning
+with `ErpContainer`.
+
 ## Latest verified UI unit — ErpAvatar
 
 The binding Avatar SHA was reverified and its actual file was rendered beside

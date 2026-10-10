@@ -101,7 +101,7 @@ export class CoreBatch {
   readonly avatarTone = signal<ErpAvatarTone>('brand');
   readonly avatarInteractionEvidence = signal('لم يحدث تفاعل بعد');
   readonly pickerSize = signal<ErpAvatarSize>('2xl');
-  readonly pickerShape = signal<ErpAvatarShape>('circle');
+  readonly pickerShape = signal<ErpAvatarShape>('rounded');
   readonly tabsOrientation = signal<ErpTabsOrientation>('horizontal');
   readonly tabsDistribution = signal<ErpTabsDistribution>('content');
   readonly tabsVariant = signal<ErpTabsVariant>('underline');

@@ -48,6 +48,7 @@ export type ErpTabsOrientation = 'horizontal' | 'vertical';
 export type ErpTabsVerticalPlacement = 'start' | 'end';
 export type ErpTabsDistribution = 'content' | 'fill';
 export type ErpTabsVariant = 'underline' | 'pill' | 'solid' | 'ghost' | 'pills';
+export type ErpTabsPresentation = 'default' | 'avatar-picker';
 export type ErpTabHeaderShape = 'reference' | 'rectangle' | 'rounded' | 'circle';
 export type ErpTabsTransition =
   | 'slide'
@@ -91,6 +92,7 @@ export class ErpTabPanel {
     './tabs.scss',
     './tabs-indicator-panel.scss',
     './tabs-facets.scss',
+    './tabs-presentations.scss',
     './tabs-responsive.scss',
     './tabs-motion.scss',
   ],
@@ -104,6 +106,7 @@ export class ErpTabPanel {
     '[attr.data-tabs-header-presentation]': 'headerPresentation()',
     '[attr.data-tabs-header-shape]': 'headerShape()',
     '[attr.data-tabs-render-panels]': 'renderPanels()',
+    '[attr.data-tabs-presentation]': 'presentation()',
   },
 })
 export class ErpTabs implements AfterViewInit, OnDestroy {
@@ -128,6 +131,7 @@ export class ErpTabs implements AfterViewInit, OnDestroy {
   readonly transition = input<ErpTabsTransition>('slide');
   readonly headerPresentation = input<ErpTabHeaderPresentation>('text');
   readonly headerShape = input<ErpTabHeaderShape>('reference');
+  readonly presentation = input<ErpTabsPresentation>('default');
   readonly renderPanels = input(true);
   readonly lazy = input(true);
   readonly keepAlive = input(true);

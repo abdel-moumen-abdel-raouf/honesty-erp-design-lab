@@ -1,5 +1,32 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## ErpAvatarPicker exact-reference internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `2cc43101f2bb7ecab5ef736a0c2c3a8fad67d06b` — synchronized `main` after the
+  ErpAvatar internal-review checkpoint.
+
+Bounded scope:
+
+- Rehashed and rendered the binding Picker source beside the dedicated
+  workbench at matched desktop/narrow, theme and direction states.
+- Corrected the duplicate Tabs track, default Avatar shape, 44px preview and
+  footer padding while preserving lower-owner semantics and public contracts.
+- Preserved the 116-image catalog, 40 compatibility mappings and all Picker
+  selection, search, keyboard, disabled and controlled-state behavior.
+- Added 34-assertion runtime evidence and advanced the lifecycle ledger to
+  structural primitives.
+
+Verification:
+
+- Focused: 4/4 files, 44/44 tests.
+- Canonical: 128/128 files, 819/819 tests; all governance/lint; both
+  typechecks; zero-warning 418.32 kB / 92.91 kB build.
+
+The commit SHA is established by Git after this document is written and is
+reported in the execution handoff. Product Owner visual review remains pending.
+
 ## ErpAvatar exact-reference internal-review candidate — 2026-10-10
 
 Entry checkpoint:

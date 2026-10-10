@@ -1,5 +1,18 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — ErpAvatarPicker reviewed internally
+
+Continue from synchronized `main` after the bounded Picker checkpoint. Direct
+reference/implementation captures and 34 passing runtime assertions are under
+`docs/review-evidence/erp-avatar-picker/v1-internal-review/`. The final result
+uses one Tabs track, a 44/34px track/trigger, rounded default avatars, 44px
+Avatar-owned preview, source-contract footer inset and the full 60/56 image
+catalog. No implementation capture has overflow, a broken image or browser
+diagnostic. Canonical verification passes 128/128 files and 819/819 tests with
+a zero-warning 418.32 kB / 92.91 kB build. Product Owner acceptance is not
+recorded. Continue Bottom-Up with structural primitives, starting at
+`ErpContainer`.
+
 ## Current continuation point — ErpAvatar reviewed internally
 
 Continue from synchronized `main` after the bounded Avatar checkpoint.

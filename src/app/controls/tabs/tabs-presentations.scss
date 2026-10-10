@@ -1,0 +1,10 @@
+@use '../../../styles/foundation/components/tabs' as tokens;
+
+:host([data-tabs-presentation='avatar-picker']) {
+  @include tokens.presentation-avatar-picker;
+}
+
+:host([data-tabs-presentation='avatar-picker']) .tabs__list {
+  border: var(--honesty-tabs-track-border-width) solid
+    var(--honesty-tabs-track-border-color);
+}

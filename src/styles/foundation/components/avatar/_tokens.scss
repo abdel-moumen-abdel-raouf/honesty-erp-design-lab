@@ -159,6 +159,16 @@
   --honesty-avatar-ring-offset: 1px;
 }
 
+@mixin presentation-avatar-picker-preview {
+  --honesty-avatar-size: 44px;
+  --honesty-avatar-font-size: 14px;
+  --honesty-avatar-icon-size: 22px;
+  --honesty-avatar-presence-size: 11px;
+  --honesty-avatar-presence-border-width: 2px;
+  --honesty-avatar-ring-width: 2px;
+  --honesty-avatar-ring-offset: 2px;
+}
+
 @mixin presentation-user-menu-trigger {
   --honesty-avatar-size: 60px;
   --honesty-avatar-font-size: 20px;

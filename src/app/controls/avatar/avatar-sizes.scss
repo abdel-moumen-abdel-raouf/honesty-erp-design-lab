@@ -13,6 +13,10 @@
   @include tokens.presentation-table-reference-photo;
 }
 
+:host([data-avatar-presentation='avatar-picker-preview']) {
+  @include tokens.presentation-avatar-picker-preview;
+}
+
 :host([data-avatar-presentation='user-menu-trigger']) {
   @include tokens.presentation-user-menu-trigger;
 }

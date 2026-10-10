@@ -82,7 +82,7 @@ erp-tab-trigger.is-disabled {
 }
 
 erp-tab-trigger.is-active .tabs__icon {
-  transform: scale(1.08);
+  transform: scale(var(--honesty-tabs-icon-active-scale));
 }
 
 .tabs__image {

@@ -1,5 +1,20 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — ErpAvatarPicker exact-reference internal review
+
+The binding Picker source was rehashed and rendered beside the dedicated live
+workbench. The reproduced duplicate Tabs track, circle default, preview size
+and footer inset were corrected through bounded Tabs/Avatar presentations.
+The surface, track, tab, grid, tile, preview and footer contract now matches at
+zero fixed-geometry delta. The complete 116-image catalog remains 60 male / 56
+female with all legacy mappings intact. Evidence and the 34/34 runtime result
+are under `docs/review-evidence/erp-avatar-picker/v1-internal-review/`.
+Status is `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Focused verification passes 4/4 files
+and 44/44 tests; canonical verification passes 128/128 files and 819/819 tests,
+both typechecks, all governance/lint and the zero-warning 418.32 kB / 92.91 kB
+build. Next Bottom-Up unit: structural primitives beginning with `ErpContainer`.
+
 ## Current checkpoint — ErpAvatar exact-reference internal review
 
 The binding Avatar source was rehashed and rendered directly beside the current

@@ -64,6 +64,7 @@ export type ErpAvatarCursor = 'default' | 'pointer';
 export type ErpAvatarImageLoading = 'eager' | 'lazy';
 export type ErpAvatarPresentation =
   | 'default'
+  | 'avatar-picker-preview'
   | 'table-reference-photo'
   | 'user-menu-trigger'
   | 'user-menu-identity';

@@ -1,5 +1,19 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — ErpAvatarPicker complete internally
+
+The binding source was rehashed, rendered and compared directly with the
+dedicated Angular workbench. The duplicate Tabs frame, circle default, preview
+size and footer inset were corrected. All measured fixed geometry is now zero
+delta, runtime evidence passes 34/34 assertions and the 60/56 canonical image
+catalog remains intact. Evidence is under
+`docs/review-evidence/erp-avatar-picker/v1-internal-review/`. Product Owner
+status remains pending. Focused verification passes 4/4 files and 44/44 tests;
+canonical verification passes 128/128 files and 819/819 tests with a
+zero-warning 418.32 kB / 92.91 kB build. The next Bottom-Up unit is the
+structural primitive family, beginning with `ErpContainer`; business
+Feature/Page, CRUD, transport and permissions work remain closed.
+
 ## Current UI continuation — ErpAvatar complete internally
 
 The binding source was rehashed, rendered and compared directly with the exact

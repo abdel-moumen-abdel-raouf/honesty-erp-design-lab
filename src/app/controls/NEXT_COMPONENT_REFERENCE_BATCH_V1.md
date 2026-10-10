@@ -1,5 +1,14 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — structural primitives
+
+The autonomous UI authorization remains active. All implemented owners with a
+binding component-specific exact reference have completed direct internal
+review without recording Product Owner acceptance. Continue in Bottom-Up order
+with the implemented structural primitive family, beginning at `ErpContainer`,
+using current system contracts and documented authority. Do not open business
+Feature/Page, CRUD, transport or permissions work.
+
 ## Authoritative next action — 2026-10-10 — ErpAvatarPicker
 
 The autonomous UI authorization remains active. `ErpAvatar` has completed

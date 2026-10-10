@@ -9,6 +9,7 @@
     [activeId]="gender()"
     distribution="fill"
     variant="pills"
+    presentation="avatar-picker"
     headerShape="rounded"
     [renderPanels]="false"
     (activeIdChange)="setGender($event)"
@@ -88,6 +89,7 @@
           [name]="avatarLabel(avatar)"
           [src]="avatar.imageUrl"
           size="md"
+          presentation="avatar-picker-preview"
           [shape]="avatarShape()"
         />
         <span class="avatar-picker__preview-copy">
@@ -95,7 +97,13 @@
           <erp-text type="caption" tone="secondary">{{ avatar.id }}</erp-text>
         </span>
       } @else {
-        <erp-avatar name="لم يتم اختيار صورة" fallbackIcon="user" size="md" [shape]="avatarShape()" />
+        <erp-avatar
+          name="لم يتم اختيار صورة"
+          fallbackIcon="user"
+          size="md"
+          presentation="avatar-picker-preview"
+          [shape]="avatarShape()"
+        />
         <erp-text type="caption" tone="secondary">لم يتم اختيار صورة</erp-text>
       }
     </div>

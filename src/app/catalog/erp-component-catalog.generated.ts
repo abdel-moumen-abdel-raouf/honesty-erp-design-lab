@@ -37652,6 +37652,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "ErpTabsDistribution",
       "ErpTabsIndicatorGeometry",
       "ErpTabsOrientation",
+      "ErpTabsPresentation",
       "ErpTabsTransition",
       "ErpTabsVariant",
       "ErpTabsVerticalPlacement",
@@ -38190,6 +38191,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "required": false,
           "values": [
             "default",
+            "avatar-picker-preview",
             "table-reference-photo",
             "user-menu-trigger",
             "user-menu-identity"
@@ -38870,6 +38872,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "type": "ErpAvatarPresentation",
         "options": [
           "default",
+          "avatar-picker-preview",
           "table-reference-photo",
           "user-menu-trigger",
           "user-menu-identity"
@@ -38979,6 +38982,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         ],
         "presentation": [
           "default",
+          "avatar-picker-preview",
           "table-reference-photo",
           "user-menu-trigger",
           "user-menu-identity"
@@ -40669,6 +40673,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "defaultExpression": "'reference'"
         },
         {
+          "name": "presentation",
+          "required": false,
+          "values": [
+            "default",
+            "avatar-picker"
+          ],
+          "type": "ErpTabsPresentation",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
+        },
+        {
           "name": "renderPanels",
           "required": false,
           "values": [
@@ -40735,6 +40751,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "ErpTabsDistribution",
       "ErpTabsIndicatorGeometry",
       "ErpTabsOrientation",
+      "ErpTabsPresentation",
       "ErpTabsTransition",
       "ErpTabsVariant",
       "ErpTabsVerticalPlacement",
@@ -41830,6 +41847,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "transition": "slide",
       "headerPresentation": "text",
       "headerShape": "reference",
+      "presentation": "default",
       "renderPanels": true,
       "lazy": true,
       "keepAlive": true,
@@ -42024,6 +42042,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "initialValue": "reference"
       },
       {
+        "name": "presentation",
+        "label": "presentation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTabsPresentation",
+        "options": [
+          "default",
+          "avatar-picker"
+        ],
+        "initialValue": "default"
+      },
+      {
         "name": "renderPanels",
         "label": "renderPanels",
         "source": "input",
@@ -42083,6 +42114,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "transition",
         "headerPresentation",
         "headerShape",
+        "presentation",
         "renderPanels",
         "lazy",
         "keepAlive"
@@ -42137,6 +42169,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "rectangle",
           "rounded",
           "circle"
+        ],
+        "presentation": [
+          "default",
+          "avatar-picker"
         ],
         "renderPanels": [
           "false",
@@ -45924,8 +45960,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           ],
           "type": "ErpAvatarShape",
           "hasDefault": true,
-          "defaultValue": "circle",
-          "defaultExpression": "'circle'"
+          "defaultValue": "rounded",
+          "defaultExpression": "'rounded'"
         },
         {
           "name": "avatarSize",
@@ -46100,7 +46136,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "savedLabel": "تم حفظ الصورة الشخصية",
       "disabled": false,
       "size": "default",
-      "avatarShape": "circle",
+      "avatarShape": "rounded",
       "avatarSize": null,
       "value": null,
       "gender": "male"
@@ -46273,7 +46309,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "rounded",
           "square"
         ],
-        "initialValue": "circle"
+        "initialValue": "rounded"
       },
       {
         "name": "avatarSize",

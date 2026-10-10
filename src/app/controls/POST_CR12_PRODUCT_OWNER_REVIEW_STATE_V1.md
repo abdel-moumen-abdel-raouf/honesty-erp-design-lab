@@ -1,5 +1,20 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — ErpAvatarPicker
+
+The binding Picker SHA was reverified and the source was rendered beside the
+dedicated workbench. Fresh evidence records zero fixed-geometry delta for the
+surface, Tabs, grid, tiles, preview and footer contract. The duplicated track,
+circle default, preview size and footer inset were corrected while retaining
+the complete 60/56 canonical image catalog and 40 legacy mappings. Screenshots,
+measurements and reproduction steps are under
+`docs/review-evidence/erp-avatar-picker/v1-internal-review/`. The runtime gate
+passes 34/34 assertions with no implementation overflow, broken images or
+diagnostics. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: structural
+primitives beginning with `ErpContainer`.
+
 ## Current review execution — 2026-10-10 — ErpAvatar
 
 The binding Avatar SHA was reverified and the source was rendered beside the

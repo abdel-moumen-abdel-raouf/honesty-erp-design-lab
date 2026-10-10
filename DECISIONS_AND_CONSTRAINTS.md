@@ -1,5 +1,20 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## ErpAvatarPicker internal-review decisions — 2026-10-10
+
+- `ERP-AVATAR-PICKER.html` at SHA-256
+  `24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`
+  remains the sole Picker geometry and behavior authority.
+- `ErpTabs` remains the only tab-semantic owner; its bounded Picker
+  presentation reproduces the reference track without a second visual frame.
+- `ErpAvatar` remains the only image/fallback owner and supplies the exact 44px
+  footer preview through a bounded presentation.
+- The later 116-image Product Owner library supersedes the reference's 60 demo
+  entries without changing Picker geometry or state behavior.
+- The source's undefined `--erp-pad` and narrow demonstrator overflow are
+  documented defects; the intact embedded `--picker-pad` contract governs.
+- Internal review does not change Product Owner visual status from pending.
+
 ## ErpAvatar internal-review decisions — 2026-10-10
 
 - `ERP-AVATAR.html` at SHA-256

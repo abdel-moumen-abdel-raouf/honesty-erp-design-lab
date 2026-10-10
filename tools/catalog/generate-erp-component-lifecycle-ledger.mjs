@@ -42,6 +42,7 @@ const SHELL_OWNERS = new Set([
 
 const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpAvatar',
+  'ErpAvatarPicker',
   'ErpEmptyState',
   'ErpRadioBox',
   'ErpRadioGroup',
@@ -246,8 +247,9 @@ drift.
   **\`ErpSelect\`**, **\`ErpStatusBadge\`**, **\`ErpTabs\`**, **\`ErpTable\`**, and
   **\`ErpUserMenu\`**. Their
   Product Owner status remains pending.
-- Explicitly reopened visual owners have completed internal review. The next
-  binding-reference unit is **\`ErpAvatarPicker\`**.
+- All currently recorded binding-reference owners have completed internal
+  review. The next Bottom-Up unit is the structural primitive family, beginning
+  with **\`ErpContainer\`** and its direct layout peers.
 
 ## Public owner inventory
 

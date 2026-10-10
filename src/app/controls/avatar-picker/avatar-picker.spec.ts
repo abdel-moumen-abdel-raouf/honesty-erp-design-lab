@@ -20,11 +20,16 @@ describe('ErpAvatarPicker', () => {
 
     expect(fixture.nativeElement.querySelectorAll(':scope > .avatar-picker__tabs erp-tabs'))
       .toHaveLength(1);
+    expect(
+      fixture.nativeElement.querySelector(':scope > .avatar-picker__tabs erp-tabs')
+        ?.getAttribute('data-tabs-presentation'),
+    ).toBe('avatar-picker');
     expect(fixture.nativeElement.querySelectorAll('[role="tab"]')).toHaveLength(2);
     expect(fixture.nativeElement.querySelectorAll('[role="tab"] erp-text')).toHaveLength(4);
     expect(fixture.nativeElement.querySelectorAll('erp-avatar-picker-tile')).toHaveLength(60);
     expect(fixture.nativeElement.querySelectorAll('erp-avatar-picker-tile erp-avatar'))
       .toHaveLength(60);
+    expect(fixture.nativeElement.getAttribute('data-avatar-picker-avatar-shape')).toBe('rounded');
     expect(fixture.nativeElement.querySelector('erp-avatar-picker-tile img')).not.toBeNull();
     expect(
       [...fixture.nativeElement.querySelectorAll('erp-avatar-picker-tile img')]
@@ -35,6 +40,28 @@ describe('ErpAvatarPicker', () => {
     fixture.detectChanges();
     expect(fixture.componentInstance.gender()).toBe('female');
     expect(fixture.nativeElement.querySelectorAll('erp-avatar-picker-tile')).toHaveLength(56);
+  });
+
+  it('uses the reference preview presentation and footer block inset', () => {
+    const fixture = TestBed.createComponent(ErpAvatarPicker);
+    fixture.detectChanges();
+
+    const preview = fixture.nativeElement.querySelector(
+      '.avatar-picker__preview erp-avatar',
+    ) as HTMLElement;
+    const footer = fixture.nativeElement.querySelector(
+      '.avatar-picker__footer',
+    ) as HTMLElement;
+    expect(preview.getAttribute('data-avatar-presentation')).toBe('avatar-picker-preview');
+    expect(getComputedStyle(preview).getPropertyValue('--honesty-avatar-size').trim()).toBe('44px');
+    expect(
+      getComputedStyle(fixture.nativeElement)
+        .getPropertyValue('--honesty-avatar-picker-footer-padding-block')
+        .trim(),
+    ).toBe('0.75rem');
+    expect(getComputedStyle(footer).paddingBlock).toContain(
+      '--honesty-avatar-picker-footer-padding-block',
+    );
   });
 
   it('stages selection and commits the controlled value only through Confirm', () => {

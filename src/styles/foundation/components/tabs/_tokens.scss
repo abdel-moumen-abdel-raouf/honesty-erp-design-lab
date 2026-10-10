@@ -28,6 +28,7 @@
   --honesty-tabs-active-font-weight: 600;
   --honesty-tabs-active-font-weight-contrast: 700;
   --honesty-tabs-icon-size: 16px;
+  --honesty-tabs-icon-active-scale: 1.08;
   --honesty-tabs-image-size: 24px;
   --honesty-tabs-image-border-width: 1.5px;
   --honesty-tabs-image-bg: var(--honesty-color-surface-canvas);
@@ -104,4 +105,29 @@
 
 @mixin variant-ghost {
   --honesty-tabs-track-border-color: transparent;
+}
+
+// Bounded composition mode for the exact AvatarPicker gender filter. Tabs
+// keeps the only tab semantics while the parent reference supplies its denser
+// 34px trigger, plain micro-count, and raised active treatment.
+@mixin presentation-avatar-picker {
+  --honesty-tabs-track-border-width: 1px;
+  --honesty-tabs-track-border-color: var(--honesty-border-subtle);
+  --honesty-tabs-track-radius: 12px;
+  --honesty-tabs-track-padding: 4px;
+  --honesty-tabs-track-gap: 4px;
+  --honesty-tabs-tab-padding-block: 8px;
+  --honesty-tabs-tab-padding-inline: 12px;
+  --honesty-tabs-tab-gap: 8px;
+  --honesty-tabs-font-size: 12px;
+  --honesty-tabs-line-height: 1.5;
+  --honesty-tabs-tab-radius: 8px;
+  --honesty-tabs-tab-active-bg: var(--honesty-color-surface-elevated);
+  --honesty-tabs-tab-shadow: var(--honesty-elevation-raised);
+  --honesty-tabs-icon-active-scale: 1.12;
+  --honesty-tabs-count-min-size: 0;
+  --honesty-tabs-count-padding-inline: 0;
+  --honesty-tabs-count-radius: 0;
+  --honesty-tabs-count-bg: transparent;
+  --honesty-tabs-count-active-bg: transparent;
 }

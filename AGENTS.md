@@ -1,5 +1,22 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current ErpAvatarPicker Exact-Reference Internal Review State
+
+`ERP-AVATAR-PICKER.html` remains binding at SHA-256
+`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`.
+Fresh evidence is under
+`docs/review-evidence/erp-avatar-picker/v1-internal-review/`. The corrected
+result has one composed Tabs track, exact 520px surface, 44/34px track/tab,
+12px grid gap, 440px grid maximum, 2px/12px tile border/radius, 44px preview
+and source-contract 12px footer padding. Runtime evidence passes 34/34
+assertions with 60 male and 56 female canonical assets and no implementation
+overflow, broken images or diagnostics. Focused verification passes 4/4 files
+and 44/44 tests; canonical verification passes 128/128 files and 819/819 tests,
+all governance/lint, both typechecks and the zero-warning 418.32 kB / 92.91 kB
+build. Status is `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: structural
+primitives beginning with `ErpContainer`.
+
 ## Current ErpAvatar Exact-Reference Internal Review State
 
 `ERP-AVATAR.html` remains binding at SHA-256

@@ -50,11 +50,6 @@
   z-index: 2;
   margin-block-start: var(--honesty-avatar-picker-tabs-overlap);
   margin-inline: var(--honesty-avatar-picker-padding);
-  padding: var(--honesty-avatar-picker-tabs-padding);
-  border: var(--honesty-avatar-picker-border-width) solid
-    var(--honesty-avatar-picker-tabs-border-color);
-  border-radius: var(--honesty-avatar-picker-tabs-radius);
-  background: var(--honesty-avatar-picker-tabs-bg);
   transform: translateY(var(--honesty-avatar-picker-tabs-offset));
 }
 

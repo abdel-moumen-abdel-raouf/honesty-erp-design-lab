@@ -86,7 +86,7 @@ export class ErpAvatarPicker implements OnDestroy {
   readonly savedLabel = input('تم حفظ الصورة الشخصية');
   readonly disabled = input(false, {transform: booleanAttribute});
   readonly size = input<ErpAvatarPickerSize>('default');
-  readonly avatarShape = input<ErpAvatarShape>('circle');
+  readonly avatarShape = input<ErpAvatarShape>('rounded');
   readonly avatarSize = input<ErpAvatarSize | null>(null);
 
   readonly value = model<string | null>(null);

@@ -4,8 +4,8 @@
   justify-content: space-between;
   gap: var(--honesty-avatar-picker-footer-gap);
   margin-block-start: var(--honesty-avatar-picker-footer-gap);
-  padding: var(--honesty-avatar-picker-padding);
-  padding-block-start: var(--honesty-avatar-picker-footer-padding-block-start);
+  padding-block: var(--honesty-avatar-picker-footer-padding-block);
+  padding-inline: var(--honesty-avatar-picker-padding);
   border-block-start: var(--honesty-avatar-picker-border-width) solid
     var(--honesty-avatar-picker-footer-border-color);
 }
