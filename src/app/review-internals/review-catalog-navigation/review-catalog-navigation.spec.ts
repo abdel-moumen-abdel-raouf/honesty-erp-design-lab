@@ -11,12 +11,12 @@ describe('ErpReviewCatalogNavigation', () => {
     }).compileComponents();
   });
 
-  it('offers all 82 dedicated component routes through compact category groups', () => {
+  it('offers all 83 dedicated component routes through compact category groups', () => {
     const fixture = TestBed.createComponent(ErpReviewCatalogNavigation);
     fixture.detectChanges();
     const links = fixture.nativeElement.querySelectorAll('.catalog-navigation__link');
-    expect(ERP_COMPONENT_NAVIGATION).toHaveLength(82);
-    expect(links).toHaveLength(82);
+    expect(ERP_COMPONENT_NAVIGATION).toHaveLength(83);
+    expect(links).toHaveLength(83);
     expect(fixture.nativeElement.querySelector('.lab-component-catalog')).toBeNull();
   });
 

@@ -1,5 +1,16 @@
 # Next Component Reference Batch V1
 
+## Authoritative current action — 2026-10-11 — review-only planned patterns
+
+`ErpEntityReview` and `ErpDataPage` are technically verified public lower
+owners. The catalog now has 83 public owners and the complete route audit
+passes. Product Owner visual acceptance remains pending.
+
+The remaining safe UI scope is review-only composition evidence for Entity
+Wizard, EntityDirectory, and EntityDetail. Reuse StandardEntityForm, Stepper,
+EntityReview, DataPage, Page, and PageShell; do not register redundant public
+facades or invent business behavior. Workflow engine remains deferred.
+
 ## Authoritative current action — 2026-10-11 — DataPage composition
 
 The planned-pattern readiness assessment and immutable `ErpEntityReview` V1

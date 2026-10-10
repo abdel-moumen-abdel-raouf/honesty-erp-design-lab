@@ -1,5 +1,21 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — consumer-controlled DataPage V1
+
+`ErpDataPage` composes the existing Page, PageHeader, PageShell, SmartTable,
+toolbar, filter, chooser, Table, and Pagination owners without duplicating
+their semantics. Query/page/sort/filter/selection state remains controlled,
+and refresh/export/row activation remain typed intents. Rich cells and named
+header/side/footer regions stay consumer-authored through typed projection.
+
+The catalog now reports 83 public, 46 supporting, and four planned identities.
+The dedicated route and 83-route runtime audit pass with one primary target,
+zero page/target overflow, zero unexpected clipping, broken images, or browser
+diagnostics. Canonical verification passes 155/155 files and 896/896 tests
+with a zero-warning 426.61 kB / 93.26 kB build. Entity Wizard,
+EntityDirectory, and EntityDetail remain review-only compositions; Workflow
+engine remains a deferred non-UI business system.
+
 ## Current checkpoint — immutable Entity Review V1
 
 `ErpEntityReview` is now the public read-only entity-value presentation owner.

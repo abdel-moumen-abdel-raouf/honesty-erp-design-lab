@@ -1,5 +1,22 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current DataPage V1 State
+
+`ErpDataPage` is the public consumer-controlled Page/SmartTable composition.
+It owns no HTTP, CRUD, persistence, routing, permissions, DTO mapping, or
+backend behavior. Typed projection delegates rich cells and optional page
+regions to the established lower owners; unused side/footer regions reserve no
+geometry.
+
+The generated catalog contains 83 public owners, 46 supporting entries, and
+four remaining planned identities. The 83-route audit and desktop/narrow
+DataPage evidence pass with one primary target and zero unexpected clipping,
+overflow, broken images, or browser diagnostics. Canonical verification passes
+155/155 files and 896/896 tests, both typechecks, all governance, production
+build, and zero warnings. Next are review-only Entity Wizard,
+EntityDirectory, and EntityDetail compositions. Workflow engine remains
+deferred. Technical/internal PASS is not Product Owner visual acceptance.
+
 ## Current Planned UI Pattern State
 
 The Product Owner-authorized planned-pattern assessment entered from clean

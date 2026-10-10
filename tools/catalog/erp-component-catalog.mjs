@@ -97,6 +97,7 @@ const ARABIC_COMPONENT_METADATA = new Map([
   ['date-box', ['حقل التاريخ', 'تحرير تاريخ من خلال عقد الإدخال المعتمد.']],
   ['date-range-box', ['حقل نطاق التاريخ', 'اختيار نطاق زمني مضبوط.']],
   ['date-time-box', ['حقل التاريخ والوقت', 'تحرير تاريخ ووقت ضمن عقد واحد.']],
+  ['data-page', ['صفحة البيانات', 'تركيب صفحة بيانات ينسق عنوان الصفحة والجدول الذكي دون امتلاك مصدر البيانات.']],
   ['file-picker', ['منتقي الملفات', 'اختيار ملفات محلية متعدد دون نقل شبكي.']],
   ['icon-picker', ['منتقي الأيقونة', 'اختيار أيقونة دلالية من سجل النظام.']],
   ['image-picker', ['منتقي الصور', 'اختيار صور محلية مع معاينات مضبوطة.']],
@@ -225,7 +226,7 @@ const CATEGORY_GROUPS = [
     'erp-validation-summary',
   ])],
   ['Page Composition', new Set([
-    'erp-page', 'erp-page-header', 'erp-page-shell',
+    'erp-data-page', 'erp-page', 'erp-page-header', 'erp-page-shell',
   ])],
   ['Application Shell', new Set([
     'erp-app-footer', 'erp-app-shell', 'erp-applications-menu', 'erp-branch-selector', 'erp-global-search',
@@ -477,6 +478,27 @@ const FIXTURE_INPUTS = new Map([
   ['ErpDateBox', {label: 'تاريخ الاستحقاق', helperText: 'تاريخ استحقاق الفاتورة', min: '2026-01-01', max: '2026-12-31', weekStartsOn: 6, clearable: true}],
   ['ErpDateRangeBox', {label: 'فترة التقرير', helperText: 'حدّد بداية ونهاية الفترة المالية', min: '2026-01-01', max: '2026-12-31', clearable: true}],
   ['ErpDateTimeBox', {label: 'موعد التسليم', helperText: 'التاريخ والوقت المحليان للتسليم', min: '2026-01-01T00:00', max: '2026-12-31T23:55', clearable: true}],
+  ['ErpDataPage', {
+    title: 'دليل العملاء',
+    subtitle: 'عرض واستعلام ببيانات يملكها المستهلك',
+    caption: 'حسابات العملاء',
+    columns: [
+      {key: 'name', label: 'العميل', sortable: true, required: true, initialWidth: 220, overflow: 'ellipsis'},
+      {key: 'city', label: 'المدينة', hideable: true, initialWidth: 130, overflow: 'ellipsis'},
+      {key: 'status', label: 'الحالة', hideable: true, initialWidth: 140, overflow: 'ellipsis'},
+    ],
+    rows: [
+      {id: 'customer-1', name: 'شركة النيل للتوريدات', city: 'القاهرة', status: 'نشط'},
+      {id: 'customer-2', name: 'مؤسسة الصفا التجارية', city: 'الإسكندرية', status: 'قيد المراجعة'},
+      {id: 'customer-3', name: 'مجموعة المستقبل', city: 'المنصورة', status: 'نشط'},
+    ],
+    filterDefinitions: [
+      {key: 'name', label: 'العميل', placeholder: 'ابحث باسم العميل'},
+      {key: 'city', label: 'المدينة', placeholder: 'ابحث بالمدينة'},
+    ],
+    selectable: true,
+    pageSize: 10,
+  }],
   ['ErpEntityReview', {
     context: {
       $implicit: {name: 'شركة النيل للتوريدات', active: true, branch: 'cairo', limit: 250000},

@@ -1,5 +1,5 @@
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
-import {ErpTableAlign, ErpTableRow} from '../table/table';
+import {ErpTableAlign, ErpTableOverflow, ErpTableRow} from '../table/table';
 
 export type ErpSortDirection = 'none' | 'ascending' | 'descending';
 
@@ -10,6 +10,11 @@ export interface ErpDataColumn {
   readonly sortable?: boolean;
   readonly hideable?: boolean;
   readonly required?: boolean;
+  readonly overflow?: ErpTableOverflow;
+  readonly resizable?: boolean;
+  readonly initialWidth?: number;
+  readonly minWidth?: number;
+  readonly maxWidth?: number;
 }
 
 export interface ErpDataFilter {

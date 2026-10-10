@@ -1,5 +1,21 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest planned UI checkpoint — consumer-controlled DataPage V1
+
+`ErpDataPage` is now the bounded public Page-composition owner over the
+existing PageHeader, PageShell, and SmartTable contracts. Consumers own rows,
+columns, query state, rich cells, and optional named regions; HTTP, CRUD,
+persistence, routing, permissions, DTO mapping, and backend behavior remain
+excluded. Unused side/footer projections no longer reserve page geometry.
+
+The generated catalog contains 83 public owners, 46 supporting entries, and
+four remaining planned identities. `/components/data-page` has one primary
+target, controlled query/event evidence, and bounded desktop/narrow review
+captures. The 83-route audit reports zero failures. Canonical verification
+passes 155/155 files and 896/896 tests, both typechecks, all governance, and a
+zero-warning 426.61 kB / 93.26 kB build. This is technical/internal evidence;
+Product Owner visual acceptance remains pending.
+
 ## Latest planned UI checkpoint — immutable Entity Review V1
 
 The Product Owner-authorized planned-pattern assessment now records a bounded

@@ -65,7 +65,7 @@
       [selectable]="selectable()"
       [selectedKeys]="selectedKeys()"
       [sort]="sort()"
-      [cellDefinitions]="projectedCellDefinitions()"
+      [cellDefinitions]="effectiveCellDefinitions()"
       rowActivatable
       (selectedKeysChange)="changeSelection($event)"
       (sortChange)="changeSort($event)"

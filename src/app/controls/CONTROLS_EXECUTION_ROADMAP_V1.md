@@ -1,5 +1,18 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — DataPage V1 complete
+
+`ErpDataPage` is now the verified public consumer-controlled Page/SmartTable
+composition. The catalog has 83 public owners, 46 supporting entries, and four
+planned identities. Its one-target Workbench, desktop/narrow evidence, and
+83-route audit pass; canonical verification is 155/155 files and 896/896 tests
+with a zero-warning 426.61 kB / 93.26 kB build.
+
+Continue only with review-only Entity Wizard, EntityDirectory, and EntityDetail
+composition evidence using existing owners. Do not register duplicate public
+facades. Workflow engine remains a deferred non-UI business system. No HTTP,
+CRUD, persistence, permissions, routing, or backend behavior is opened.
+
 ## Current UI continuation — immutable Entity Review V1 complete
 
 The six-identity readiness assessment is recorded in

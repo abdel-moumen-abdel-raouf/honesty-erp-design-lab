@@ -531,7 +531,7 @@ async function main() {
         || result.diagnostics.length !== 0,
       );
       routeAudit = {
-        expectedRoutes: 82,
+        expectedRoutes: 83,
         auditedRoutes: routeResults.length,
         passedRoutes: routeResults.length - failures.length,
         failedRoutes: failures.length,

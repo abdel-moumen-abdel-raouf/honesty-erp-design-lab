@@ -52,6 +52,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpDateBox',
   'ErpDateRangeBox',
   'ErpDateTimeBox',
+  'ErpDataPage',
   'ErpDivider',
   'ErpEmptyState',
   'ErpEntitySchemaFields',
@@ -146,13 +147,6 @@ const PLANNED = [
     source: 'src/app/controls/ENTITY_FORM_ENGINE_V1.md',
     dependency: 'not established',
     action: 'PLANNED / backend and business workflow authority remains closed.',
-  },
-  {
-    identity: 'DataPage',
-    owner: 'planned page pattern',
-    source: 'src/app/controls/ENTITY_FORM_ENGINE_V1.md',
-    dependency: 'Table/Data + Page composition',
-    action: 'PLANNED / Feature/Page scope remains closed.',
   },
   {
     identity: 'EntityDirectory',
@@ -252,9 +246,9 @@ function buildLedger(catalog) {
       || left.className.localeCompare(right.className),
     );
 
-  if (publicEntries.length !== 82 || supportingEntries.length !== 45) {
+  if (publicEntries.length !== 83 || supportingEntries.length !== 46) {
     throw new Error(
-      `Catalog inventory drift: expected 82 public and 45 supporting; received ${publicEntries.length} and ${supportingEntries.length}.`,
+      `Catalog inventory drift: expected 83 public and 46 supporting; received ${publicEntries.length} and ${supportingEntries.length}.`,
     );
   }
   if (publicEntries.filter((entry) => entry.visualStatus === 'ACCEPTED').map((entry) => entry.className).join(',') !== 'ErpCheckBox') {
@@ -348,8 +342,8 @@ if (process.argv.includes('--check')) {
     console.error('ERP component lifecycle ledger is stale. Run npm run erp-component-lifecycle:generate.');
     process.exit(1);
   }
-  console.log('ERP component lifecycle ledger: PASS (82 public, 45 supporting, 5 planned).');
+  console.log('ERP component lifecycle ledger: PASS (83 public, 46 supporting, 4 planned).');
 } else {
   await fs.writeFile(OUTPUT_PATH, output, 'utf8');
-  console.log('Generated ERP component lifecycle ledger (82 public, 45 supporting, 5 planned).');
+  console.log('Generated ERP component lifecycle ledger (83 public, 46 supporting, 4 planned).');
 }

@@ -1,0 +1,259 @@
+{
+  "generatedAt": "2026-10-10T22:50:33.359Z",
+  "authority": {
+    "component": "data-page",
+    "classification": "Original Honesty ERP presentation candidate; no binding external visual reference exists.",
+    "contract": "src/app/controls/PLANNED_UI_PATTERN_READINESS_V1.md"
+  },
+  "scenarios": [
+    {
+      "name": "data-page-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 8
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "ownerCount": 13,
+      "targetBox": {
+        "x": 147,
+        "y": 187.421875,
+        "width": 950,
+        "height": 525.6875
+      },
+      "itemCount": 3,
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "clipped": [],
+      "diagnostics": []
+    },
+    {
+      "name": "data-page-390-dark-ltr",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 12295
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "ownerCount": 13,
+      "targetBox": {
+        "x": 57,
+        "y": -1.609375,
+        "width": 276,
+        "height": 847.875
+      },
+      "itemCount": 3,
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "clipped": [],
+      "diagnostics": []
+    }
+  ],
+  "assertions": [
+    {
+      "name": "data-page-1440-light-rtl ownership",
+      "pass": true,
+      "actual": {
+        "name": "data-page-1440-light-rtl",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 8
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "ownerCount": 13,
+        "targetBox": {
+          "x": 147,
+          "y": 187.421875,
+          "width": 950,
+          "height": 525.6875
+        },
+        "itemCount": 3,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "data-page-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "name": "data-page-1440-light-rtl",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 8
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "ownerCount": 13,
+        "targetBox": {
+          "x": 147,
+          "y": 187.421875,
+          "width": 950,
+          "height": 525.6875
+        },
+        "itemCount": 3,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "data-page-1440-light-rtl overflow-clipping",
+      "pass": true,
+      "actual": {
+        "name": "data-page-1440-light-rtl",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 8
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "ownerCount": 13,
+        "targetBox": {
+          "x": 147,
+          "y": 187.421875,
+          "width": 950,
+          "height": 525.6875
+        },
+        "itemCount": 3,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "data-page-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "data-page-390-dark-ltr ownership",
+      "pass": true,
+      "actual": {
+        "name": "data-page-390-dark-ltr",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 12295
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "ownerCount": 13,
+        "targetBox": {
+          "x": 57,
+          "y": -1.609375,
+          "width": 276,
+          "height": 847.875
+        },
+        "itemCount": 3,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "data-page-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "name": "data-page-390-dark-ltr",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 12295
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "ownerCount": 13,
+        "targetBox": {
+          "x": 57,
+          "y": -1.609375,
+          "width": 276,
+          "height": 847.875
+        },
+        "itemCount": 3,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "data-page-390-dark-ltr overflow-clipping",
+      "pass": true,
+      "actual": {
+        "name": "data-page-390-dark-ltr",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 12295
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "ownerCount": 13,
+        "targetBox": {
+          "x": 57,
+          "y": -1.609375,
+          "width": 276,
+          "height": 847.875
+        },
+        "itemCount": 3,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "data-page-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": []
+  }
+}

@@ -5,6 +5,8 @@ import process from 'node:process';
 const ROOT = process.cwd();
 const SMART_TABLE = 'src/app/controls/smart-table/smart-table.ts';
 const SMART_TABLE_TEMPLATE = 'src/app/controls/smart-table/smart-table.html';
+const DATA_PAGE = 'src/app/controls/data-page/data-page.ts';
+const DATA_PAGE_TEMPLATE = 'src/app/controls/data-page/data-page.html';
 const CONTRACTS = 'src/app/controls/data-table/data-table-contracts.ts';
 const ROUTES = 'src/app/app.routes.ts';
 const REVIEW = 'src/app/review-internals/legacy-data-batch/data-batch.html';
@@ -21,6 +23,7 @@ const COMPONENTS = [
   'bulk-action-bar',
   'view-switcher',
   'smart-table',
+  'data-page',
 ];
 
 function read(relative) {
@@ -31,6 +34,8 @@ export function validateDataTableContracts(files) {
   const errors = [];
   const source = files.get(SMART_TABLE) ?? '';
   const template = files.get(SMART_TABLE_TEMPLATE) ?? '';
+  const dataPage = files.get(DATA_PAGE) ?? '';
+  const dataPageTemplate = files.get(DATA_PAGE_TEMPLATE) ?? '';
   const contracts = files.get(CONTRACTS) ?? '';
   const routes = files.get(ROUTES) ?? '';
   const review = files.get(REVIEW) ?? '';
@@ -40,6 +45,15 @@ export function validateDataTableContracts(files) {
 
   if (/\b(?:HttpClient|XMLHttpRequest)\b|\bfetch\s*\(/.test(source)) {
     errors.push('ErpSmartTable must remain transport-agnostic and must not fetch data');
+  }
+  if (/\b(?:HttpClient|XMLHttpRequest)\b|\bfetch\s*\(|https?:\/\/|\/api\b/.test(dataPage)) {
+    errors.push('ErpDataPage must remain transport-agnostic and consumer controlled');
+  }
+  for (const owner of ['<erp-page', '<erp-page-shell', '<erp-page-header', '<erp-smart-table']) {
+    if (!dataPageTemplate.includes(owner)) errors.push(`ErpDataPage must compose ${owner}`);
+  }
+  for (const forbidden of ['<table', '<button', '<input', '<select', '<form']) {
+    if (dataPageTemplate.includes(forbidden)) errors.push(`ErpDataPage must not bypass ERP owner with ${forbidden}`);
   }
 
   for (const owner of [
@@ -134,6 +148,8 @@ function fixture(overrides = new Map()) {
   const files = new Map([
     [SMART_TABLE, 'export class ErpSmartTable { sortable: column.sortable }'],
     [SMART_TABLE_TEMPLATE, '<erp-table-toolbar/><erp-column-chooser/><erp-filter-drawer/><erp-filter-bar/><erp-bulk-action-bar/><erp-skeleton/><erp-empty-state/><erp-alert/><erp-table [sort]="sort()" (sortChange)="changeSort($event)"><ng-content /></erp-table><erp-pagination/>'],
+    [DATA_PAGE, 'export class ErpDataPage {}'],
+    [DATA_PAGE_TEMPLATE, '<erp-page><erp-page-shell><erp-page-header/><erp-smart-table/></erp-page-shell></erp-page>'],
     [CONTRACTS, "export type ErpSmartTableMode = 'local' | 'remote'; readonly revision: number; readonly filters: readonly ErpDataFilter[]; readonly visibleColumns: readonly string[];"],
     [ROUTES, "path: 'controls/data-batch'"],
     [REVIEW, '<erp-smart-table/>'],
@@ -174,6 +190,8 @@ function runCheck() {
   const files = new Map([
     [SMART_TABLE, read(SMART_TABLE)],
     [SMART_TABLE_TEMPLATE, read(SMART_TABLE_TEMPLATE)],
+    [DATA_PAGE, read(DATA_PAGE)],
+    [DATA_PAGE_TEMPLATE, read(DATA_PAGE_TEMPLATE)],
     [CONTRACTS, read(CONTRACTS)],
     [ROUTES, read(ROUTES)],
     [REVIEW, read(REVIEW)],
@@ -191,7 +209,7 @@ function runCheck() {
     process.exit(1);
   }
   console.log('ERP data-table governance: PASS');
-  console.log('8 accelerated data/table components verified.');
+  console.log('9 data/table and page-composition owners verified.');
 }
 
 if (process.argv.includes('--self-test')) runSelfTest();

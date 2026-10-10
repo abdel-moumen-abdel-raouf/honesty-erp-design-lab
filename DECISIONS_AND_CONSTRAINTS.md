@@ -1,5 +1,21 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## DataPage decisions — 2026-10-11
+
+- `ErpDataPage` is the distinct public page-composition owner; it passes
+  consumer-controlled data/query state and typed intents through existing
+  Page and SmartTable owners.
+- `ErpDataPageSlot` supplies bounded named projection into existing PageHeader,
+  PageShell, and SmartTable regions. It creates no competing renderer.
+- Optional side/footer regions are explicit. Compatible PageShell visibility
+  inputs prevent unused projected regions from reserving layout geometry.
+- SmartTable accepts explicit rich-cell definitions and bounded Table column
+  geometry; native table semantics remain owned by `ErpTable`.
+- DataPage owns no fetch, cache, CRUD, DTO mapping, routing, permissions,
+  persistence, transport, or backend behavior.
+- DataPage is `TECHNICAL_VERIFIED` and internally browser-reviewed; it remains
+  `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## Planned UI pattern decisions — 2026-10-11
 
 - `ErpEntityReview` is a distinct immutable presentation owner over the

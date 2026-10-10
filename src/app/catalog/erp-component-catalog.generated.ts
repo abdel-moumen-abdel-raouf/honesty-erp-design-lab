@@ -11573,6 +11573,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             100
           ],
           "defaultExpression": "[10, 25, 50, 100]"
+        },
+        {
+          "name": "cellDefinitions",
+          "required": false,
+          "values": [],
+          "type": "readonly ErpTableCell[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         }
       ],
       "outputs": [
@@ -12467,6 +12476,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         5,
         10
       ],
+      "cellDefinitions": [],
       "page": 1,
       "pageSize": 3,
       "sort": null,
@@ -12739,6 +12749,16 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         ]
       },
       {
+        "name": "cellDefinitions",
+        "label": "cellDefinitions",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpTableCell[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
         "name": "page",
         "label": "page",
         "source": "model",
@@ -12820,7 +12840,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "selectable",
         "compact",
         "filterDefinitions",
-        "pageSizeOptions"
+        "pageSizeOptions",
+        "cellDefinitions"
       ],
       "coveredModels": [
         "page",
@@ -46886,6 +46907,57 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "reviewGalleryCoverage": null
   },
   {
+    "id": "data-page-slot",
+    "selector": "[erpDataPageBreadcrumbs],[erpDataPageMeta],[erpDataPageSecondary],[erpDataPagePrimary],[erpDataPageBulkActions],[erpDataPageSide],[erpDataPageFooter]",
+    "className": "ErpDataPageSlot",
+    "category": "Internal Owners",
+    "classification": "DIRECTIVE / TEMPLATE EXTENSION",
+    "sourcePath": "src/app/controls/data-page/data-page.ts",
+    "purpose": "Extends its parent ERP owner with typed [erpDataPageBreadcrumbs],[erpDataPageMeta],[erpDataPageSecondary],[erpDataPagePrimary],[erpDataPageBulkActions],[erpDataPageSide],[erpDataPageFooter] template projection.",
+    "publicApi": {
+      "inputs": [],
+      "outputs": [],
+      "models": []
+    },
+    "lowerLevelOwners": [
+      "ErpDataColumn",
+      "ErpDataFilter",
+      "ErpDataFilterDefinition",
+      "ErpDataPage",
+      "ErpDataPageSlotName",
+      "ErpDataSort",
+      "ErpPage",
+      "ErpPageHeader",
+      "ErpPageScrollMode",
+      "ErpPageShell",
+      "ErpPageWidthMode",
+      "ErpSmartTable",
+      "ErpSmartTableMode",
+      "ErpSmartTableQuery",
+      "ErpTableCell",
+      "ErpTableRow"
+    ],
+    "nativeElementsOwned": [],
+    "nativeCoverage": [],
+    "coverageScope": "parent-owner-only",
+    "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
+    "visualReference": null,
+    "visualStatus": "PENDING",
+    "showcaseFacets": [],
+    "showcaseCases": [],
+    "displayNameAr": "ErpDataPageSlot",
+    "descriptionAr": "Extends its parent ERP owner with typed [erpDataPageBreadcrumbs],[erpDataPageMeta],[erpDataPageSecondary],[erpDataPagePrimary],[erpDataPageBulkActions],[erpDataPageSide],[erpDataPageFooter] template projection.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
+  },
+  {
     "id": "empty-state-extra",
     "selector": "[erpEmptyStateExtra]",
     "className": "ErpEmptyStateExtra",
@@ -54840,6 +54912,1815 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     }
   },
   {
+    "id": "data-page",
+    "selector": "erp-data-page",
+    "className": "ErpDataPage",
+    "category": "Page Composition",
+    "classification": "PUBLIC ERP COMPONENT",
+    "sourcePath": "src/app/controls/data-page/data-page.ts",
+    "purpose": "Owns the public ERP data page semantic and presentation contract.",
+    "publicApi": {
+      "inputs": [
+        {
+          "name": "title",
+          "required": true,
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
+        },
+        {
+          "name": "subtitle",
+          "required": false,
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
+          "name": "caption",
+          "required": true,
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
+        },
+        {
+          "name": "columns",
+          "required": true,
+          "values": [],
+          "type": "readonly ErpDataColumn[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
+        },
+        {
+          "name": "rows",
+          "required": false,
+          "values": [],
+          "type": "readonly ErpTableRow[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
+        },
+        {
+          "name": "mode",
+          "required": false,
+          "values": [
+            "local",
+            "remote"
+          ],
+          "type": "ErpSmartTableMode",
+          "hasDefault": true,
+          "defaultValue": "local",
+          "defaultExpression": "'local'"
+        },
+        {
+          "name": "rowKey",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "id",
+          "defaultExpression": "'id'"
+        },
+        {
+          "name": "loading",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        },
+        {
+          "name": "error",
+          "required": false,
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
+          "name": "totalItems",
+          "required": false,
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
+          "name": "selectable",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        },
+        {
+          "name": "compact",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        },
+        {
+          "name": "filterDefinitions",
+          "required": false,
+          "values": [],
+          "type": "readonly ErpDataFilterDefinition[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
+        },
+        {
+          "name": "pageSizeOptions",
+          "required": false,
+          "values": [],
+          "type": "readonly number[]",
+          "hasDefault": true,
+          "defaultValue": [
+            10,
+            25,
+            50,
+            100
+          ],
+          "defaultExpression": "[10, 25, 50, 100]"
+        },
+        {
+          "name": "widthMode",
+          "required": false,
+          "values": [
+            "boxed",
+            "fluid",
+            "full"
+          ],
+          "type": "ErpPageWidthMode",
+          "hasDefault": true,
+          "defaultValue": "fluid",
+          "defaultExpression": "'fluid'"
+        },
+        {
+          "name": "scrollMode",
+          "required": false,
+          "values": [
+            "document",
+            "page",
+            "free"
+          ],
+          "type": "ErpPageScrollMode",
+          "hasDefault": true,
+          "defaultValue": "document",
+          "defaultExpression": "'document'"
+        },
+        {
+          "name": "showSide",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        },
+        {
+          "name": "showFooter",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        }
+      ],
+      "outputs": [
+        "queryChanged",
+        "rowActivated",
+        "refreshRequested",
+        "exportRequested"
+      ],
+      "models": [
+        {
+          "name": "page",
+          "required": false,
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 1,
+          "defaultExpression": "1"
+        },
+        {
+          "name": "pageSize",
+          "required": false,
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 25,
+          "defaultExpression": "25"
+        },
+        {
+          "name": "sort",
+          "required": false,
+          "values": [],
+          "type": "ErpDataSort | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
+          "name": "filters",
+          "required": false,
+          "values": [],
+          "type": "readonly ErpDataFilter[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
+        },
+        {
+          "name": "visibleColumns",
+          "required": false,
+          "values": [],
+          "type": "readonly string[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
+        },
+        {
+          "name": "selectedKeys",
+          "required": false,
+          "values": [],
+          "type": "readonly string[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
+        }
+      ]
+    },
+    "lowerLevelOwners": [
+      "ErpDataColumn",
+      "ErpDataFilter",
+      "ErpDataFilterDefinition",
+      "ErpDataPageSlot",
+      "ErpDataPageSlotName",
+      "ErpDataSort",
+      "ErpPage",
+      "ErpPageHeader",
+      "ErpPageScrollMode",
+      "ErpPageShell",
+      "ErpPageWidthMode",
+      "ErpSmartTable",
+      "ErpSmartTableMode",
+      "ErpSmartTableQuery",
+      "ErpTableCell",
+      "ErpTableRow",
+      "erp-page",
+      "erp-page-header",
+      "erp-page-shell",
+      "erp-smart-table"
+    ],
+    "nativeElementsOwned": [
+      "div"
+    ],
+    "nativeCoverage": [],
+    "coverageScope": "public-consumer",
+    "showcaseRoute": "/components/data-page",
+    "showcaseOwnerPath": "src/app/showcase/components/data-page/data-page-showcase.ts",
+    "showcaseLoader": "data-page",
+    "visualReference": null,
+    "visualStatus": "PENDING",
+    "showcaseFacets": [
+      "widthMode",
+      "scrollMode",
+      "loading",
+      "mode"
+    ],
+    "showcaseCases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "title": "دليل العملاء",
+          "subtitle": "عرض واستعلام ببيانات يملكها المستهلك",
+          "caption": "حسابات العملاء",
+          "columns": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "sortable": true,
+              "required": true,
+              "initialWidth": 220,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "hideable": true,
+              "initialWidth": 130,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "hideable": true,
+              "initialWidth": 140,
+              "overflow": "ellipsis"
+            }
+          ],
+          "rows": [
+            {
+              "id": "customer-1",
+              "name": "شركة النيل للتوريدات",
+              "city": "القاهرة",
+              "status": "نشط"
+            },
+            {
+              "id": "customer-2",
+              "name": "مؤسسة الصفا التجارية",
+              "city": "الإسكندرية",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "customer-3",
+              "name": "مجموعة المستقبل",
+              "city": "المنصورة",
+              "status": "نشط"
+            }
+          ],
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "ابحث بالمدينة"
+            }
+          ],
+          "selectable": true,
+          "pageSize": 10,
+          "page": 1,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": []
+        }
+      },
+      {
+        "id": "mode-local",
+        "label": "mode: local",
+        "inputs": {
+          "title": "دليل العملاء",
+          "subtitle": "عرض واستعلام ببيانات يملكها المستهلك",
+          "caption": "حسابات العملاء",
+          "columns": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "sortable": true,
+              "required": true,
+              "initialWidth": 220,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "hideable": true,
+              "initialWidth": 130,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "hideable": true,
+              "initialWidth": 140,
+              "overflow": "ellipsis"
+            }
+          ],
+          "rows": [
+            {
+              "id": "customer-1",
+              "name": "شركة النيل للتوريدات",
+              "city": "القاهرة",
+              "status": "نشط"
+            },
+            {
+              "id": "customer-2",
+              "name": "مؤسسة الصفا التجارية",
+              "city": "الإسكندرية",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "customer-3",
+              "name": "مجموعة المستقبل",
+              "city": "المنصورة",
+              "status": "نشط"
+            }
+          ],
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "ابحث بالمدينة"
+            }
+          ],
+          "selectable": true,
+          "pageSize": 10,
+          "page": 1,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "mode": "local"
+        }
+      },
+      {
+        "id": "mode-remote",
+        "label": "mode: remote",
+        "inputs": {
+          "title": "دليل العملاء",
+          "subtitle": "عرض واستعلام ببيانات يملكها المستهلك",
+          "caption": "حسابات العملاء",
+          "columns": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "sortable": true,
+              "required": true,
+              "initialWidth": 220,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "hideable": true,
+              "initialWidth": 130,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "hideable": true,
+              "initialWidth": 140,
+              "overflow": "ellipsis"
+            }
+          ],
+          "rows": [
+            {
+              "id": "customer-1",
+              "name": "شركة النيل للتوريدات",
+              "city": "القاهرة",
+              "status": "نشط"
+            },
+            {
+              "id": "customer-2",
+              "name": "مؤسسة الصفا التجارية",
+              "city": "الإسكندرية",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "customer-3",
+              "name": "مجموعة المستقبل",
+              "city": "المنصورة",
+              "status": "نشط"
+            }
+          ],
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "ابحث بالمدينة"
+            }
+          ],
+          "selectable": true,
+          "pageSize": 10,
+          "page": 1,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "mode": "remote"
+        }
+      },
+      {
+        "id": "loading-false",
+        "label": "loading: false",
+        "inputs": {
+          "title": "دليل العملاء",
+          "subtitle": "عرض واستعلام ببيانات يملكها المستهلك",
+          "caption": "حسابات العملاء",
+          "columns": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "sortable": true,
+              "required": true,
+              "initialWidth": 220,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "hideable": true,
+              "initialWidth": 130,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "hideable": true,
+              "initialWidth": 140,
+              "overflow": "ellipsis"
+            }
+          ],
+          "rows": [
+            {
+              "id": "customer-1",
+              "name": "شركة النيل للتوريدات",
+              "city": "القاهرة",
+              "status": "نشط"
+            },
+            {
+              "id": "customer-2",
+              "name": "مؤسسة الصفا التجارية",
+              "city": "الإسكندرية",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "customer-3",
+              "name": "مجموعة المستقبل",
+              "city": "المنصورة",
+              "status": "نشط"
+            }
+          ],
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "ابحث بالمدينة"
+            }
+          ],
+          "selectable": true,
+          "pageSize": 10,
+          "page": 1,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "loading": false
+        }
+      },
+      {
+        "id": "loading-true",
+        "label": "loading: true",
+        "inputs": {
+          "title": "دليل العملاء",
+          "subtitle": "عرض واستعلام ببيانات يملكها المستهلك",
+          "caption": "حسابات العملاء",
+          "columns": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "sortable": true,
+              "required": true,
+              "initialWidth": 220,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "hideable": true,
+              "initialWidth": 130,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "hideable": true,
+              "initialWidth": 140,
+              "overflow": "ellipsis"
+            }
+          ],
+          "rows": [
+            {
+              "id": "customer-1",
+              "name": "شركة النيل للتوريدات",
+              "city": "القاهرة",
+              "status": "نشط"
+            },
+            {
+              "id": "customer-2",
+              "name": "مؤسسة الصفا التجارية",
+              "city": "الإسكندرية",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "customer-3",
+              "name": "مجموعة المستقبل",
+              "city": "المنصورة",
+              "status": "نشط"
+            }
+          ],
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "ابحث بالمدينة"
+            }
+          ],
+          "selectable": true,
+          "pageSize": 10,
+          "page": 1,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "loading": true
+        }
+      },
+      {
+        "id": "widthMode-boxed",
+        "label": "widthMode: boxed",
+        "inputs": {
+          "title": "دليل العملاء",
+          "subtitle": "عرض واستعلام ببيانات يملكها المستهلك",
+          "caption": "حسابات العملاء",
+          "columns": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "sortable": true,
+              "required": true,
+              "initialWidth": 220,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "hideable": true,
+              "initialWidth": 130,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "hideable": true,
+              "initialWidth": 140,
+              "overflow": "ellipsis"
+            }
+          ],
+          "rows": [
+            {
+              "id": "customer-1",
+              "name": "شركة النيل للتوريدات",
+              "city": "القاهرة",
+              "status": "نشط"
+            },
+            {
+              "id": "customer-2",
+              "name": "مؤسسة الصفا التجارية",
+              "city": "الإسكندرية",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "customer-3",
+              "name": "مجموعة المستقبل",
+              "city": "المنصورة",
+              "status": "نشط"
+            }
+          ],
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "ابحث بالمدينة"
+            }
+          ],
+          "selectable": true,
+          "pageSize": 10,
+          "page": 1,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "widthMode": "boxed"
+        }
+      },
+      {
+        "id": "widthMode-fluid",
+        "label": "widthMode: fluid",
+        "inputs": {
+          "title": "دليل العملاء",
+          "subtitle": "عرض واستعلام ببيانات يملكها المستهلك",
+          "caption": "حسابات العملاء",
+          "columns": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "sortable": true,
+              "required": true,
+              "initialWidth": 220,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "hideable": true,
+              "initialWidth": 130,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "hideable": true,
+              "initialWidth": 140,
+              "overflow": "ellipsis"
+            }
+          ],
+          "rows": [
+            {
+              "id": "customer-1",
+              "name": "شركة النيل للتوريدات",
+              "city": "القاهرة",
+              "status": "نشط"
+            },
+            {
+              "id": "customer-2",
+              "name": "مؤسسة الصفا التجارية",
+              "city": "الإسكندرية",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "customer-3",
+              "name": "مجموعة المستقبل",
+              "city": "المنصورة",
+              "status": "نشط"
+            }
+          ],
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "ابحث بالمدينة"
+            }
+          ],
+          "selectable": true,
+          "pageSize": 10,
+          "page": 1,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "widthMode": "fluid"
+        }
+      },
+      {
+        "id": "widthMode-full",
+        "label": "widthMode: full",
+        "inputs": {
+          "title": "دليل العملاء",
+          "subtitle": "عرض واستعلام ببيانات يملكها المستهلك",
+          "caption": "حسابات العملاء",
+          "columns": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "sortable": true,
+              "required": true,
+              "initialWidth": 220,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "hideable": true,
+              "initialWidth": 130,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "hideable": true,
+              "initialWidth": 140,
+              "overflow": "ellipsis"
+            }
+          ],
+          "rows": [
+            {
+              "id": "customer-1",
+              "name": "شركة النيل للتوريدات",
+              "city": "القاهرة",
+              "status": "نشط"
+            },
+            {
+              "id": "customer-2",
+              "name": "مؤسسة الصفا التجارية",
+              "city": "الإسكندرية",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "customer-3",
+              "name": "مجموعة المستقبل",
+              "city": "المنصورة",
+              "status": "نشط"
+            }
+          ],
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "ابحث بالمدينة"
+            }
+          ],
+          "selectable": true,
+          "pageSize": 10,
+          "page": 1,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "widthMode": "full"
+        }
+      },
+      {
+        "id": "scrollMode-document",
+        "label": "scrollMode: document",
+        "inputs": {
+          "title": "دليل العملاء",
+          "subtitle": "عرض واستعلام ببيانات يملكها المستهلك",
+          "caption": "حسابات العملاء",
+          "columns": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "sortable": true,
+              "required": true,
+              "initialWidth": 220,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "hideable": true,
+              "initialWidth": 130,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "hideable": true,
+              "initialWidth": 140,
+              "overflow": "ellipsis"
+            }
+          ],
+          "rows": [
+            {
+              "id": "customer-1",
+              "name": "شركة النيل للتوريدات",
+              "city": "القاهرة",
+              "status": "نشط"
+            },
+            {
+              "id": "customer-2",
+              "name": "مؤسسة الصفا التجارية",
+              "city": "الإسكندرية",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "customer-3",
+              "name": "مجموعة المستقبل",
+              "city": "المنصورة",
+              "status": "نشط"
+            }
+          ],
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "ابحث بالمدينة"
+            }
+          ],
+          "selectable": true,
+          "pageSize": 10,
+          "page": 1,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "scrollMode": "document"
+        }
+      },
+      {
+        "id": "scrollMode-page",
+        "label": "scrollMode: page",
+        "inputs": {
+          "title": "دليل العملاء",
+          "subtitle": "عرض واستعلام ببيانات يملكها المستهلك",
+          "caption": "حسابات العملاء",
+          "columns": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "sortable": true,
+              "required": true,
+              "initialWidth": 220,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "hideable": true,
+              "initialWidth": 130,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "hideable": true,
+              "initialWidth": 140,
+              "overflow": "ellipsis"
+            }
+          ],
+          "rows": [
+            {
+              "id": "customer-1",
+              "name": "شركة النيل للتوريدات",
+              "city": "القاهرة",
+              "status": "نشط"
+            },
+            {
+              "id": "customer-2",
+              "name": "مؤسسة الصفا التجارية",
+              "city": "الإسكندرية",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "customer-3",
+              "name": "مجموعة المستقبل",
+              "city": "المنصورة",
+              "status": "نشط"
+            }
+          ],
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "ابحث بالمدينة"
+            }
+          ],
+          "selectable": true,
+          "pageSize": 10,
+          "page": 1,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "scrollMode": "page"
+        }
+      },
+      {
+        "id": "scrollMode-free",
+        "label": "scrollMode: free",
+        "inputs": {
+          "title": "دليل العملاء",
+          "subtitle": "عرض واستعلام ببيانات يملكها المستهلك",
+          "caption": "حسابات العملاء",
+          "columns": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "sortable": true,
+              "required": true,
+              "initialWidth": 220,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "hideable": true,
+              "initialWidth": 130,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "hideable": true,
+              "initialWidth": 140,
+              "overflow": "ellipsis"
+            }
+          ],
+          "rows": [
+            {
+              "id": "customer-1",
+              "name": "شركة النيل للتوريدات",
+              "city": "القاهرة",
+              "status": "نشط"
+            },
+            {
+              "id": "customer-2",
+              "name": "مؤسسة الصفا التجارية",
+              "city": "الإسكندرية",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "customer-3",
+              "name": "مجموعة المستقبل",
+              "city": "المنصورة",
+              "status": "نشط"
+            }
+          ],
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "ابحث بالمدينة"
+            }
+          ],
+          "selectable": true,
+          "pageSize": 10,
+          "page": 1,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "scrollMode": "free"
+        }
+      },
+      {
+        "id": "loading",
+        "label": "حالة تحميل",
+        "inputs": {
+          "title": "دليل العملاء",
+          "subtitle": "عرض واستعلام ببيانات يملكها المستهلك",
+          "caption": "حسابات العملاء",
+          "columns": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "sortable": true,
+              "required": true,
+              "initialWidth": 220,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "hideable": true,
+              "initialWidth": 130,
+              "overflow": "ellipsis"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "hideable": true,
+              "initialWidth": 140,
+              "overflow": "ellipsis"
+            }
+          ],
+          "rows": [
+            {
+              "id": "customer-1",
+              "name": "شركة النيل للتوريدات",
+              "city": "القاهرة",
+              "status": "نشط"
+            },
+            {
+              "id": "customer-2",
+              "name": "مؤسسة الصفا التجارية",
+              "city": "الإسكندرية",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "customer-3",
+              "name": "مجموعة المستقبل",
+              "city": "المنصورة",
+              "status": "نشط"
+            }
+          ],
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "ابحث بالمدينة"
+            }
+          ],
+          "selectable": true,
+          "pageSize": 10,
+          "page": 1,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "loading": true
+        }
+      }
+    ],
+    "displayNameAr": "صفحة البيانات",
+    "descriptionAr": "تركيب صفحة بيانات ينسق عنوان الصفحة والجدول الذكي دون امتلاك مصدر البيانات.",
+    "showcaseInitialValues": {
+      "subtitle": "عرض واستعلام ببيانات يملكها المستهلك",
+      "rows": [
+        {
+          "id": "customer-1",
+          "name": "شركة النيل للتوريدات",
+          "city": "القاهرة",
+          "status": "نشط"
+        },
+        {
+          "id": "customer-2",
+          "name": "مؤسسة الصفا التجارية",
+          "city": "الإسكندرية",
+          "status": "قيد المراجعة"
+        },
+        {
+          "id": "customer-3",
+          "name": "مجموعة المستقبل",
+          "city": "المنصورة",
+          "status": "نشط"
+        }
+      ],
+      "mode": "local",
+      "rowKey": "id",
+      "loading": false,
+      "error": null,
+      "totalItems": null,
+      "selectable": true,
+      "compact": false,
+      "filterDefinitions": [
+        {
+          "key": "name",
+          "label": "العميل",
+          "placeholder": "ابحث باسم العميل"
+        },
+        {
+          "key": "city",
+          "label": "المدينة",
+          "placeholder": "ابحث بالمدينة"
+        }
+      ],
+      "pageSizeOptions": [
+        10,
+        25,
+        50,
+        100
+      ],
+      "widthMode": "fluid",
+      "scrollMode": "document",
+      "showSide": false,
+      "showFooter": false,
+      "page": 1,
+      "pageSize": 10,
+      "sort": null,
+      "filters": [],
+      "visibleColumns": [],
+      "selectedKeys": [],
+      "title": "دليل العملاء",
+      "caption": "حسابات العملاء",
+      "columns": [
+        {
+          "key": "name",
+          "label": "العميل",
+          "sortable": true,
+          "required": true,
+          "initialWidth": 220,
+          "overflow": "ellipsis"
+        },
+        {
+          "key": "city",
+          "label": "المدينة",
+          "hideable": true,
+          "initialWidth": 130,
+          "overflow": "ellipsis"
+        },
+        {
+          "key": "status",
+          "label": "الحالة",
+          "hideable": true,
+          "initialWidth": 140,
+          "overflow": "ellipsis"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "title",
+        "label": "title",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "دليل العملاء"
+      },
+      {
+        "name": "subtitle",
+        "label": "subtitle",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": "عرض واستعلام ببيانات يملكها المستهلك"
+      },
+      {
+        "name": "caption",
+        "label": "caption",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حسابات العملاء"
+      },
+      {
+        "name": "columns",
+        "label": "columns",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpDataColumn[]",
+        "options": [],
+        "initialValue": [
+          {
+            "key": "name",
+            "label": "العميل",
+            "sortable": true,
+            "required": true,
+            "initialWidth": 220,
+            "overflow": "ellipsis"
+          },
+          {
+            "key": "city",
+            "label": "المدينة",
+            "hideable": true,
+            "initialWidth": 130,
+            "overflow": "ellipsis"
+          },
+          {
+            "key": "status",
+            "label": "الحالة",
+            "hideable": true,
+            "initialWidth": 140,
+            "overflow": "ellipsis"
+          }
+        ]
+      },
+      {
+        "name": "rows",
+        "label": "rows",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpTableRow[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "customer-1",
+            "name": "شركة النيل للتوريدات",
+            "city": "القاهرة",
+            "status": "نشط"
+          },
+          {
+            "id": "customer-2",
+            "name": "مؤسسة الصفا التجارية",
+            "city": "الإسكندرية",
+            "status": "قيد المراجعة"
+          },
+          {
+            "id": "customer-3",
+            "name": "مجموعة المستقبل",
+            "city": "المنصورة",
+            "status": "نشط"
+          }
+        ]
+      },
+      {
+        "name": "mode",
+        "label": "mode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSmartTableMode",
+        "options": [
+          "local",
+          "remote"
+        ],
+        "initialValue": "local"
+      },
+      {
+        "name": "rowKey",
+        "label": "rowKey",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "id"
+      },
+      {
+        "name": "loading",
+        "label": "loading",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "error",
+        "label": "error",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "totalItems",
+        "label": "totalItems",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "selectable",
+        "label": "selectable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "compact",
+        "label": "compact",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "filterDefinitions",
+        "label": "filterDefinitions",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpDataFilterDefinition[]",
+        "options": [],
+        "initialValue": [
+          {
+            "key": "name",
+            "label": "العميل",
+            "placeholder": "ابحث باسم العميل"
+          },
+          {
+            "key": "city",
+            "label": "المدينة",
+            "placeholder": "ابحث بالمدينة"
+          }
+        ]
+      },
+      {
+        "name": "pageSizeOptions",
+        "label": "pageSizeOptions",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "readonly number[]",
+        "options": [],
+        "initialValue": [
+          10,
+          25,
+          50,
+          100
+        ]
+      },
+      {
+        "name": "widthMode",
+        "label": "widthMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpPageWidthMode",
+        "options": [
+          "boxed",
+          "fluid",
+          "full"
+        ],
+        "initialValue": "fluid"
+      },
+      {
+        "name": "scrollMode",
+        "label": "scrollMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpPageScrollMode",
+        "options": [
+          "document",
+          "page",
+          "free"
+        ],
+        "initialValue": "document"
+      },
+      {
+        "name": "showSide",
+        "label": "showSide",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "showFooter",
+        "label": "showFooter",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "page",
+        "label": "page",
+        "source": "model",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 1
+      },
+      {
+        "name": "pageSize",
+        "label": "pageSize",
+        "source": "model",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 10
+      },
+      {
+        "name": "sort",
+        "label": "sort",
+        "source": "model",
+        "kind": "json",
+        "required": false,
+        "type": "ErpDataSort | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "filters",
+        "label": "filters",
+        "source": "model",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpDataFilter[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "visibleColumns",
+        "label": "visibleColumns",
+        "source": "model",
+        "kind": "json",
+        "required": false,
+        "type": "readonly string[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "selectedKeys",
+        "label": "selectedKeys",
+        "source": "model",
+        "kind": "json",
+        "required": false,
+        "type": "readonly string[]",
+        "options": [],
+        "initialValue": []
+      }
+    ],
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "title",
+        "subtitle",
+        "caption",
+        "columns",
+        "rows",
+        "mode",
+        "rowKey",
+        "loading",
+        "error",
+        "totalItems",
+        "selectable",
+        "compact",
+        "filterDefinitions",
+        "pageSizeOptions",
+        "widthMode",
+        "scrollMode",
+        "showSide",
+        "showFooter"
+      ],
+      "coveredModels": [
+        "page",
+        "pageSize",
+        "sort",
+        "filters",
+        "visibleColumns",
+        "selectedKeys"
+      ],
+      "coveredOutputs": [
+        "queryChanged",
+        "rowActivated",
+        "refreshRequested",
+        "exportRequested"
+      ],
+      "coveredValues": {
+        "mode": [
+          "local",
+          "remote"
+        ],
+        "loading": [
+          "false",
+          "true"
+        ],
+        "selectable": [
+          "false",
+          "true"
+        ],
+        "compact": [
+          "false",
+          "true"
+        ],
+        "widthMode": [
+          "boxed",
+          "fluid",
+          "full"
+        ],
+        "scrollMode": [
+          "document",
+          "page",
+          "free"
+        ],
+        "showSide": [
+          "false",
+          "true"
+        ],
+        "showFooter": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "loading",
+        "selectable",
+        "compact",
+        "showSide",
+        "showFooter"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "widthMode",
+        "label": "العرض",
+        "cases": [
+          {
+            "id": "widthMode-boxed",
+            "label": "widthMode: boxed",
+            "inputs": {}
+          },
+          {
+            "id": "widthMode-fluid",
+            "label": "widthMode: fluid",
+            "inputs": {}
+          },
+          {
+            "id": "widthMode-full",
+            "label": "كامل (full)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "scrollMode",
+        "label": "التمرير",
+        "cases": [
+          {
+            "id": "scrollMode-document",
+            "label": "scrollMode: document",
+            "inputs": {}
+          },
+          {
+            "id": "scrollMode-page",
+            "label": "scrollMode: page",
+            "inputs": {}
+          },
+          {
+            "id": "scrollMode-free",
+            "label": "scrollMode: free",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "loading",
+        "label": "loading",
+        "cases": [
+          {
+            "id": "loading-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "loading-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "mode",
+        "label": "الأوضاع",
+        "cases": [
+          {
+            "id": "mode-local",
+            "label": "mode: local",
+            "inputs": {}
+          },
+          {
+            "id": "mode-remote",
+            "label": "mode: remote",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "loading",
+            "label": "حالة تحميل",
+            "inputs": {}
+          }
+        ]
+      }
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 12,
+      "supportedFacets": [
+        "widthMode",
+        "scrollMode",
+        "loading",
+        "mode"
+      ],
+      "coveredFacets": [
+        "widthMode",
+        "scrollMode",
+        "loading",
+        "mode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
+  },
+  {
     "id": "page",
     "selector": "erp-page",
     "className": "ErpPage",
@@ -55255,7 +57136,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "sourcePath": "src/app/controls/page-shell/page-shell.ts",
     "purpose": "Composes page header, main, contextual side, and footer regions inside an ErpPage boundary.",
     "publicApi": {
-      "inputs": [],
+      "inputs": [
+        {
+          "name": "sideVisible",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
+        },
+        {
+          "name": "footerVisible",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
+        }
+      ],
       "outputs": [],
       "models": []
     },
@@ -55283,14 +57189,59 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "تكوين الصفحة",
     "descriptionAr": "تنظيم الرأس والمحتوى والسياق والتذييل.",
-    "showcaseInitialValues": {},
-    "showcaseControls": [],
+    "showcaseInitialValues": {
+      "sideVisible": true,
+      "footerVisible": true
+    },
+    "showcaseControls": [
+      {
+        "name": "sideVisible",
+        "label": "sideVisible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "footerVisible",
+        "label": "footerVisible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      }
+    ],
     "showcaseCoverage": {
-      "coveredInputs": [],
+      "coveredInputs": [
+        "sideVisible",
+        "footerVisible"
+      ],
       "coveredModels": [],
       "coveredOutputs": [],
-      "coveredValues": {},
-      "coveredStates": [],
+      "coveredValues": {
+        "sideVisible": [
+          "false",
+          "true"
+        ],
+        "footerVisible": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "sideVisible",
+        "footerVisible"
+      ],
       "coveredProjectionSlots": [
         "default-authored-content"
       ],
@@ -63881,6 +65832,7 @@ export const ERP_PUBLIC_SHOWCASE_LOADERS: Readonly<Record<string, () => Promise<
   "sort-header": () => import("../showcase/components/sort-header/sort-header-showcase").then((module) => module.ErpSortHeaderShowcase),
   "stepper": () => import("../showcase/components/stepper/stepper-showcase").then((module) => module.ErpStepperShowcase),
   "tabs": () => import("../showcase/components/tabs/tabs-showcase").then((module) => module.ErpTabsShowcase),
+  "data-page": () => import("../showcase/components/data-page/data-page-showcase").then((module) => module.ErpDataPageShowcase),
   "page": () => import("../showcase/components/page/page-showcase").then((module) => module.ErpPageShowcase),
   "page-header": () => import("../showcase/components/page-header/page-header-showcase").then((module) => module.ErpPageHeaderShowcase),
   "page-shell": () => import("../showcase/components/page-shell/page-shell-showcase").then((module) => module.ErpPageShellShowcase),

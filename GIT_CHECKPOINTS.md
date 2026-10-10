@@ -1,5 +1,29 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Consumer-controlled DataPage V1 candidate — 2026-10-11
+
+Entry checkpoint:
+
+- `dbc2aa68e7fba4121e21fc58d98433113c1dbba9` — synchronized clean `main`
+  after immutable Entity Review V1.
+
+Bounded scope:
+
+- Added `ErpDataPage` as the public consumer-controlled Page/SmartTable
+  composition, typed optional regions, rich cells, and controlled intents.
+- Added compatible PageShell optional-region visibility and SmartTable/Table
+  column-geometry pass-through without changing owner defaults.
+- Registered the dedicated route/one-target Workbench, generated catalog and
+  lifecycle authority, governance, evidence, and 83-route audit.
+
+Verification before commit:
+
+- Browser audit: 83/83 routes, zero failures; DataPage desktop/narrow evidence
+  has zero unexpected clipping, page/target overflow, broken images, or
+  diagnostics.
+- `npm run verify:clean`: 155/155 files, 896/896 tests, both typechecks, all
+  governance/lint, and a zero-warning 426.61 kB / 93.26 kB build.
+
 ## Immutable Entity Review V1 candidate — 2026-10-11
 
 Entry checkpoint:

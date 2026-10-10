@@ -71,6 +71,7 @@ export class ErpSmartTable {
   readonly compact = input(false, {transform: booleanAttribute});
   readonly filterDefinitions = input<readonly ErpDataFilterDefinition[]>([]);
   readonly pageSizeOptions = input<readonly number[]>([10, 25, 50, 100]);
+  readonly cellDefinitions = input<readonly ErpTableCell[]>([]);
 
   readonly page = model(1);
   readonly pageSize = model(25);
@@ -85,6 +86,11 @@ export class ErpSmartTable {
   readonly exportRequested = output<void>();
 
   protected readonly projectedCellDefinitions = contentChildren(ErpTableCell);
+  protected readonly effectiveCellDefinitions = computed(() =>
+    this.cellDefinitions().length > 0
+      ? this.cellDefinitions()
+      : this.projectedCellDefinitions(),
+  );
 
   protected readonly queryRevision = signal(0);
   protected readonly effectiveVisibleKeys = computed(() => {
@@ -106,6 +112,11 @@ export class ErpSmartTable {
       header: column.label,
       align: column.align,
       sortable: column.sortable,
+      overflow: column.overflow,
+      resizable: column.resizable,
+      initialWidth: column.initialWidth,
+      minWidth: column.minWidth,
+      maxWidth: column.maxWidth,
     })),
   );
   protected readonly filteredRows = computed(() => {

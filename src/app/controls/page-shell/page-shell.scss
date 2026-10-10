@@ -26,6 +26,10 @@
   align-items: start;
 }
 
+:host([data-page-shell-side-visible='false']) .page-shell__body {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .page-shell__side:empty,
 .page-shell__footer:empty,
 .page-shell__header:empty {

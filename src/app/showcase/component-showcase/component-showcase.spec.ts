@@ -83,7 +83,7 @@ describe('ComponentShowcase', () => {
     const publicEntries = ERP_COMPONENT_CATALOG.filter(
       (candidate) => candidate.classification === 'PUBLIC ERP COMPONENT',
     );
-    expect(publicEntries).toHaveLength(82);
+    expect(publicEntries).toHaveLength(83);
     expect(publicEntries.filter((entry) => entry.reviewStatus?.kind === 'accepted-frozen')
       .map((entry) => entry.className)).toEqual(['ErpCheckBox']);
     expect(publicEntries.filter((entry) => entry.reviewStatus?.kind === 'reopened')
@@ -188,8 +188,8 @@ describe('ComponentShowcase', () => {
     const publicEntries = ERP_COMPONENT_CATALOG.filter(
       (candidate) => candidate.classification === 'PUBLIC ERP COMPONENT',
     );
-    expect(publicEntries).toHaveLength(82);
-    expect(Object.keys(ERP_PUBLIC_SHOWCASE_LOADERS)).toHaveLength(82);
+    expect(publicEntries).toHaveLength(83);
+    expect(Object.keys(ERP_PUBLIC_SHOWCASE_LOADERS)).toHaveLength(83);
 
     const owners = await Promise.all(publicEntries.map(async (entry) => {
       expect(entry.showcaseOwnerPath).toBe(

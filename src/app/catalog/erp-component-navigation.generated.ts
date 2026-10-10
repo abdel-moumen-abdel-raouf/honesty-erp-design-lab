@@ -1038,6 +1038,22 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     }
   },
   {
+    "id": "data-page",
+    "className": "ErpDataPage",
+    "selector": "erp-data-page",
+    "category": "Page Composition",
+    "showcaseRoute": "/components/data-page",
+    "displayNameAr": "صفحة البيانات",
+    "descriptionAr": "تركيب صفحة بيانات ينسق عنوان الصفحة والجدول الذكي دون امتلاك مصدر البيانات.",
+    "purpose": "Owns the public ERP data page semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
+  },
+  {
     "id": "page",
     "className": "ErpPage",
     "selector": "erp-page",

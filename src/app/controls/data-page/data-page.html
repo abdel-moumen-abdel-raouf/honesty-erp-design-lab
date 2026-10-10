@@ -1,0 +1,41 @@
+<erp-page [widthMode]="widthMode()" [scrollMode]="scrollMode()">
+  <erp-page-shell [sideVisible]="showSide()" [footerVisible]="showFooter()">
+    <erp-page-header erpPageShellHeader [title]="title()" [subtitle]="subtitle()">
+      @if (hasSlot('breadcrumbs')) { <div erpPageHeaderBreadcrumbs><ng-content select="[erpDataPageBreadcrumbs]" /></div> }
+      @if (hasSlot('meta')) { <div erpPageHeaderMeta><ng-content select="[erpDataPageMeta]" /></div> }
+      @if (hasSlot('secondary')) { <div erpPageHeaderSecondary><ng-content select="[erpDataPageSecondary]" /></div> }
+      @if (hasSlot('primary')) { <div erpPageHeaderPrimary><ng-content select="[erpDataPagePrimary]" /></div> }
+    </erp-page-header>
+
+    <erp-smart-table
+      [caption]="caption()"
+      [columns]="columns()"
+      [rows]="rows()"
+      [mode]="mode()"
+      [rowKey]="rowKey()"
+      [loading]="loading()"
+      [error]="error()"
+      [totalItems]="totalItems()"
+      [selectable]="selectable()"
+      [compact]="compact()"
+      [filterDefinitions]="filterDefinitions()"
+      [pageSizeOptions]="pageSizeOptions()"
+      [cellDefinitions]="cellDefinitions()"
+      [(page)]="page"
+      [(pageSize)]="pageSize"
+      [(sort)]="sort"
+      [(filters)]="filters"
+      [(visibleColumns)]="visibleColumns"
+      [(selectedKeys)]="selectedKeys"
+      (queryChanged)="queryChanged.emit($event)"
+      (rowActivated)="rowActivated.emit($event)"
+      (refreshRequested)="refreshRequested.emit()"
+      (exportRequested)="exportRequested.emit()"
+    >
+      @if (hasSlot('bulk-actions')) { <div erpSmartTableBulkActions><ng-content select="[erpDataPageBulkActions]" /></div> }
+    </erp-smart-table>
+
+    @if (showSide()) { <div erpPageShellSide><ng-content select="[erpDataPageSide]" /></div> }
+    @if (showFooter()) { <div erpPageShellFooter><ng-content select="[erpDataPageFooter]" /></div> }
+  </erp-page-shell>
+</erp-page>

@@ -18,7 +18,6 @@ const VISUAL_TOKENS = ['standard-entity-form', 'entity-schema-fields', 'entity-r
 const FORBIDDEN_SCOPE = [
   ['ErpEntityWizard', /\bErpEntityWizard\b/],
   ['EntityWorkflowEngine', /\bEntityWorkflowEngine\b/],
-  ['ErpDataPage', /\bErpDataPage\b/],
   ['ErpEntityDirectory', /\bErpEntityDirectory\b/],
   ['ErpEntityDetail', /\bErpEntityDetail\b/],
   ['ErpAppShell', /\bErpAppShell\b/],

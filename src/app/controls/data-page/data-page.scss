@@ -1,0 +1,7 @@
+@use '../../../styles/foundation/components/data-page' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-inline-size: var(--honesty-data-page-min-inline-size);
+}

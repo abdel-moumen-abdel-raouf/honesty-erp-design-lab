@@ -1,5 +1,20 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — review-only planned compositions
+
+Continue after the technically verified `ErpDataPage` V1 checkpoint. The
+catalog contains 83 public owners, 46 supporting entries, and four remaining
+planned identities. The DataPage Workbench, desktop/narrow evidence, and
+83/83 route audit pass; canonical verification is 155/155 files, 896/896
+tests, and a zero-warning 426.61 kB / 93.26 kB build.
+
+The next authorized work is bounded review-only composition evidence for
+Entity Wizard, EntityDirectory, and EntityDetail using the verified lower
+owners. These are not additional public facade owners. Workflow engine remains
+excluded because no UI/business execution contract exists. No HTTP, CRUD,
+persistence, permissions, routing, or backend behavior is opened. Product
+Owner visual acceptance remains pending.
+
 ## Current continuation point — DataPage presentation contract
 
 Continue from synchronized `main` after the immutable `ErpEntityReview` V1
