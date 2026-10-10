@@ -432,11 +432,27 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
         direction: getComputedStyle(anchor).direction === 'rtl' ? 'rtl' : 'ltr',
         anchorGap: 8,
         viewportInset: 12,
+        allowedPlacements: ['bottom', 'top'],
         showArrow: false,
         arrowWidth: 0,
         arrowHeight: 0,
         arrowSafeInset: 0,
       }),
+      prepareGeometry: ({anchor: anchorRect, viewport}) => {
+        const availableAbove = Math.max(
+          0,
+          anchorRect.top - viewport.top - 12 - 8,
+        );
+        const availableBelow = Math.max(
+          0,
+          viewport.bottom - anchorRect.bottom - 12 - 8,
+        );
+        const maxBlockSize = `${Math.max(availableAbove, availableBelow)}px`;
+        if (popup.style.maxBlockSize !== maxBlockSize) {
+          popup.style.maxBlockSize = maxBlockSize;
+        }
+      },
+      measureSurface: () => ({width: popup.offsetWidth, height: popup.offsetHeight}),
       applyGeometry: (result) => this.applyGeometry(result),
     });
     if (!this.controller.show()) return;

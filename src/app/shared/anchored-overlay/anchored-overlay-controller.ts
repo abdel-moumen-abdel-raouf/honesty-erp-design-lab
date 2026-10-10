@@ -47,7 +47,8 @@ export class AnchoredOverlayController {
       const anchor = this.options.anchor.getBoundingClientRect();
       const viewport = this.viewportRect();
       this.options.prepareGeometry?.({anchor, viewport});
-      const surface = this.options.surface.getBoundingClientRect();
+      const renderedSurface = this.options.surface.getBoundingClientRect();
+      const surface = this.options.measureSurface?.() ?? renderedSurface;
       this.options.applyGeometry(calculateAnchoredOverlayGeometry({
         ...this.options.readGeometryInput(), anchor, surfaceWidth: surface.width,
         surfaceHeight: surface.height, viewport,

@@ -12,6 +12,7 @@ import {
   resolveVisibleBackgroundColor,
 } from './app';
 import {routes} from './app.routes';
+import {ERP_PUBLIC_SHOWCASE_LOADERS} from './catalog/erp-component-catalog.generated';
 import {ErpOverlayManager} from './shared/overlay/overlay-manager';
 import {ErpReviewAppShellWorkbenchState} from './review-internals/app-shell-workbench/app-shell-workbench-state';
 
@@ -302,6 +303,10 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(workbench.lastEvent()).toContain('navigationActivated');
     expect(workbench.lastEvent()).toContain('intent');
 
+    // Keep this navigation assertion deterministic under the complete parallel
+    // suite without extending timeouts: the interaction remains real, while
+    // the target's lazy module is warmed before the route transition.
+    await ERP_PUBLIC_SHOWCASE_LOADERS['table']();
     links[1].click();
     await vi.waitFor(() => {
       fixture.detectChanges();

@@ -180,6 +180,26 @@ describe('ComponentShowcase', () => {
     expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
   }, 20000);
 
+  it('starts the Select workbench with meaningful Arabic ERP data on its only live target', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/select', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(target.querySelector('.select__single-label')?.textContent).toContain('أحمد محمود');
+
+    const panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    const optionsControl = panel.controls().find((control) => control.name === 'options')!;
+    expect(JSON.parse(String(panel.editor(optionsControl).value))).toHaveLength(3);
+  });
+
   it('restores RadioBox and RadioGroup family evidence on demand with one live target', async () => {
     const harness = await RouterTestingHarness.create();
 

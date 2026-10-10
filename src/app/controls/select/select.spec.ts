@@ -1,4 +1,5 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {OverlayRect} from '../../shared/anchored-overlay/anchored-overlay-contracts';
 import {ErpSelect} from './select';
 import {ErpSelectOption, ErpSelectRenderRow, ErpSelectValue} from './select-contracts';
 
@@ -9,6 +10,7 @@ interface SelectTestAccess {
   readonly activeIndex: () => number;
   readonly popupPhase: () => string;
   readonly referenceSize: () => 'sm' | 'md' | 'lg';
+  readonly controller: unknown;
   select(option: ErpSelectOption): void;
   clearSelection(): void;
   selectAllVisible(): void;
@@ -90,6 +92,17 @@ describe('ErpSelect', () => {
     )).not.toBeNull();
     expect(fixture.nativeElement.querySelector('.select__toolbar')).toBeNull();
     expect(fixture.nativeElement.querySelector('.select__sort-menu')).toBeNull();
+  });
+
+  it('keeps the exact-reference popup and option-list ownership distinct', () => {
+    const fixture = createSelect();
+    const host = fixture.nativeElement as HTMLElement;
+    const popup = host.querySelector('.select__popup') as HTMLElement;
+    const listbox = host.querySelector('.select__listbox') as HTMLElement;
+
+    expect(host.querySelector('.select__trigger')).not.toBeNull();
+    expect(popup.contains(listbox)).toBe(true);
+    expect(popup.querySelectorAll('.select__listbox')).toHaveLength(1);
   });
 
   it('normalizes controlled single and multiple values without publishing form writes', () => {
@@ -291,6 +304,40 @@ describe('ErpSelect', () => {
     expect(test.selectedValues()).toEqual([]);
     expect(onChange).toHaveBeenLastCalledWith(null);
     vi.useRealTimers();
+  });
+
+  it('restricts popup placement to the reference vertical axis and measures its unscaled layout box', () => {
+    const fixture = createSelect();
+    const component = fixture.componentInstance;
+    const test = access(component);
+    test.toggle();
+    const controller = test.controller as {
+      options: {
+        readGeometryInput(): {allowedPlacements?: readonly string[]};
+        prepareGeometry?(context: {
+          anchor: OverlayRect;
+          viewport: OverlayRect;
+        }): void;
+        measureSurface?(): Readonly<{width: number; height: number}>;
+      };
+    };
+    const popup = fixture.nativeElement.querySelector('.select__popup') as HTMLElement;
+    Object.defineProperties(popup, {
+      offsetWidth: {configurable: true, value: 240},
+      offsetHeight: {configurable: true, value: 180},
+    });
+
+    expect(controller.options.readGeometryInput().allowedPlacements).toEqual(['bottom', 'top']);
+    controller.options.prepareGeometry?.({
+      anchor: {
+        left: 40, top: 260, right: 280, bottom: 300, width: 240, height: 40,
+      },
+      viewport: {
+        left: 0, top: 0, right: 320, bottom: 568, width: 320, height: 568,
+      },
+    });
+    expect(popup.style.maxBlockSize).toBe('248px');
+    expect(controller.options.measureSurface?.()).toEqual({width: 240, height: 180});
   });
 
   it('supports Backspace removal and Escape/Tab lifecycle in multiple mode', async () => {

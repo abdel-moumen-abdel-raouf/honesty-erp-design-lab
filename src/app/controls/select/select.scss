@@ -19,6 +19,8 @@
   border-radius: var(--honesty-select-control-radius);
   background: var(--honesty-select-control-bg);
   color: var(--honesty-select-control-fg);
+  font-size: var(--honesty-select-control-font-size);
+  line-height: 1.5;
   cursor: pointer;
   transition:
     border-color var(--honesty-select-panel-motion-fast) var(--honesty-select-panel-easing-standard),
@@ -43,6 +45,8 @@
 .select__trigger {
   flex: 1 1 auto;
   min-inline-size: 0;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .select__value {

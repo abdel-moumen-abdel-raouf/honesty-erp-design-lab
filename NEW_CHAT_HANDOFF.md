@@ -1,5 +1,20 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — ErpSelect V3 reviewed internally
+
+Continue from live `main` after the bounded ErpSelect checkpoint. Direct
+reference/implementation evidence lives at
+`docs/review-evidence/erp-select/v3-internal-review/`. The verified correction
+sets the medium control to the reference 13 px type, aligns the popup to the
+control at 0 px delta by measuring its unscaled layout box, keeps only
+top/bottom placement, assigns the 300 px limit to the listbox, and bounds the
+320 x 568 popup to measured vertical space without trigger overlap. The one
+primary workbench target uses searchable Arabic ERP options; exact evidence
+remains secondary/on demand. Product Owner visual approval is not recorded.
+Canonical verification passes 128/128 test files and 816/816 tests, both
+typechecks, all governance, and the zero-warning 418.32 kB / 92.88 kB build.
+The next reopened exact-reference unit is `ErpTabs`.
+
 ## Current continuation point — EmptyState reviewed internally
 
 The EmptyState dedicated page keeps one primary live target and offers the

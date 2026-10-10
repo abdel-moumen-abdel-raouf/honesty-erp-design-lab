@@ -33,5 +33,6 @@ export interface AnchoredOverlayControllerOptions {
     readonly anchor: OverlayRect;
     readonly viewport: OverlayRect;
   }) => void;
+  readonly measureSurface?: () => Readonly<{width: number; height: number}>;
   readonly applyGeometry: (result: AnchoredOverlayGeometryResult) => void;
 }

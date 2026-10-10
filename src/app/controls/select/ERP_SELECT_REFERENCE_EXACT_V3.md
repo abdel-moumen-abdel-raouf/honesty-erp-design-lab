@@ -83,3 +83,22 @@ Tokens. Production Select SCSS consumes no raw reference color.
 The review route remains ERP-only authored. The strict rebuild does not reopen
 Data/Table visual correction or any other Core component. Product Owner
 runtime/Light/Dark/RTL/narrow acceptance remains pending.
+
+## 2026-10-10 internal comparison checkpoint
+
+The binding source hash was verified again and the rendered reference was
+compared directly with `/components/select`. The review corrected inherited
+14 px trigger type to the 13 px reference value, measured popup geometry from
+its unscaled layout box, constrained placement to top/bottom, restored the
+300 px cap to the listbox rather than the complete popup, and populated the
+single live workbench target with meaningful Arabic ERP options. A constrained
+320 x 568 recapture also exposed and closed trigger overlap by sizing the popup
+to the measured space above or below while preserving list-owned scrolling.
+
+Evidence is stored at
+`docs/review-evidence/erp-select/v3-internal-review/`. Measured control/popup
+width and inline-start deltas are 0 px across the implementation captures;
+the constrained upward state has a 0.33 px anchor-gap delta and no overlap;
+Light/Dark, RTL/LTR, 1440/1280/390/320, downward and constrained upward states
+were inspected. This establishes `INTERNAL_VISUAL_REVIEW_COMPLETED`, not
+Product Owner visual acceptance.

@@ -1,5 +1,22 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current ErpSelect V3 Internal Review State
+
+`ERP-SELECT.html` remains binding at SHA-256
+`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`.
+Direct browser comparison corrected the medium control from an inherited 14 px
+to the exact 13 px type, removed popup alignment drift caused by measuring the
+entrance `scale(.97)` box, restricted placement to top/bottom and restored the
+300 px cap to the listbox. A constrained 320 x 568 overlap was then closed by
+bounding the popup to measured vertical space while preserving list-owned
+scrolling. The single live target now contains meaningful Arabic ERP options;
+the complete exact matrix stays on demand. Evidence is
+under `docs/review-evidence/erp-select/v3-internal-review/`. Technical/internal
+review is complete; canonical verification passes 128/128 files and 816/816
+tests, both typechecks, all governance, and the zero-warning 418.32 kB / 92.88
+kB build. Product Owner visual review remains pending, and `ErpTabs` is the
+next prioritized reopened unit.
+
 ## Current EmptyState Internal Review State
 
 `ErpEmptyState` now restores the complete five-scenario Product Owner evidence

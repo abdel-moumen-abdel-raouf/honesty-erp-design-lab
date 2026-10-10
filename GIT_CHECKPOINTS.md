@@ -1,5 +1,35 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## ErpSelect V3 internal visual-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `a10a133adaa773d5ef8e78514200782adbdd03d8` — synchronized `main` after the
+  EmptyState internal-review checkpoint.
+
+Bounded scope:
+
+- Reverified the binding Select SHA and compared the rendered source and
+  implementation at matched desktop/narrow, theme and direction conditions.
+- Corrected 13 px type inheritance, unscaled popup measurement, top/bottom-only
+  placement, list-owned 300 px scrolling, and a measured 320 x 568 trigger
+  overlap without changing public API.
+- Added meaningful Arabic ERP data to the single primary workbench target and
+  preserved the on-demand exact matrix.
+- Added reproducible screenshots, runtime measurements, focused tests and
+  governance protections.
+- Made the existing root navigation regression deterministic under the full
+  parallel suite by warming its lazy Table showcase module before the real
+  Sidebar click, without changing timeouts, retries, or production behavior.
+
+Status: `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Focused tests pass 3/3 files and 44/44
+tests; canonical verification passes 128/128 files and 816/816 tests, both
+typechecks, all governance, and the zero-warning 418.32 kB / 92.88 kB build.
+The bounded commit message is
+`fix(select): close exact reference internal review`; the actual SHA is
+reported after Git creates it. The next reopened unit is `ErpTabs`.
+
 ## EmptyState internal visual-review candidate — 2026-10-10
 
 Entry checkpoint:

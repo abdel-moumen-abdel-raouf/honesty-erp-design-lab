@@ -1,5 +1,22 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — ErpSelect V3
+
+The binding Select SHA was verified and its live reference compared directly
+with `/components/select`. The implementation now matches the recorded medium
+geometry and popup relationship: 38 px height, 13 px type, 12/5 px padding,
+8 px control radius, 8 px gap, 12 px desktop popup radius, equal width and
+0 px inline-start delta. The option list, not the complete popup, owns the
+300 px cap and vertical scrolling. Reference/implementation captures cover
+Light/Dark, RTL/LTR, desktop and 390/320 narrow cases. One live target is
+retained with meaningful Arabic ERP data. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The constrained 320 x 568 case uses
+measured available space, retains list-only scrolling, and does not overlap the
+trigger. Canonical verification passes 128/128 files and 816/816 tests, both
+typechecks, all governance, and the zero-warning 418.32 kB / 92.88 kB build.
+Next reopened unit: `ErpTabs`.
+
 ## Current review execution — 2026-10-10 — EmptyState
 
 `ErpEmptyState` has completed the authorized internal browser review. Its

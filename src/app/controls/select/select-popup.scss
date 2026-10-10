@@ -2,13 +2,12 @@
 
 .select__popup {
   position: fixed;
+  display: flex;
+  flex-direction: column;
   inset: auto;
   box-sizing: border-box;
   max-inline-size: calc(100dvw - (2 * var(--honesty-select-panel-viewport-inset)));
-  max-block-size: min(
-    var(--honesty-select-panel-max-block-size),
-    calc(100dvh - (2 * var(--honesty-select-panel-viewport-inset)))
-  );
+  max-block-size: calc(100dvh - (2 * var(--honesty-select-panel-viewport-inset)));
   margin: 0;
   padding: 0;
   border: var(--honesty-border-width-default) solid var(--honesty-select-panel-border);
@@ -40,8 +39,13 @@
 
 @include query.viewport-down('sm') {
   .select__popup {
-    max-block-size: 52dvh;
     border-radius: 0.5rem;
+  }
+
+  .select__listbox {
+    flex: 1 1 auto;
+    min-block-size: 0;
+    max-block-size: 52dvh;
   }
 }
 

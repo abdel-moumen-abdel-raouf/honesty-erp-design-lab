@@ -145,6 +145,10 @@ const CVA_COMPONENTS = new Set([
   'ErpTimeBox', 'ErpUrlBox',
 ]);
 
+const CVA_FIXTURE_VALUES = new Map([
+  ['ErpSelect', 'ahmed'],
+]);
+
 const PROJECTION_COMPONENTS = new Set([
   'ErpAppShell', 'ErpContainer', 'ErpForm', 'ErpFormActions', 'ErpFormSection',
   'ErpGrid', 'ErpInline', 'ErpPage', 'ErpPageHeader', 'ErpPageShell',
@@ -460,6 +464,37 @@ const FIXTURE_INPUTS = new Map([
     },
   ]}],
   ['ErpRadioGroup', {options: [{value: 'active', label: 'نشط'}]}],
+  ['ErpSelect', {
+    label: 'الموظف المسؤول',
+    searchable: true,
+    groupBy: 'group',
+    options: [
+      {
+        value: 'ahmed',
+        label: 'أحمد محمود',
+        description: 'محاسب أول — فرع القاهرة',
+        group: 'المالية',
+        imageUrl: '/assets/honesty-erp-avatars/users/male/avatar-01.png',
+        meta: 'FIN',
+      },
+      {
+        value: 'sara',
+        label: 'سارة علي',
+        description: 'مسؤولة مشتريات — فرع الإسكندرية',
+        group: 'العمليات',
+        imageUrl: '/assets/honesty-erp-avatars/users/female/avatar-21.png',
+        meta: 'OPS',
+      },
+      {
+        value: 'mahmoud',
+        label: 'محمود حسين',
+        description: 'موظف موقوف مؤقتًا',
+        group: 'العمليات',
+        icon: 'user',
+        disabled: true,
+      },
+    ],
+  }],
   ['ErpSidebar', {
     items: [
       {
@@ -869,7 +904,7 @@ function showcaseControlsFor(entry) {
       options: [],
       initialValue: entry.className === 'ErpCheckBox' || entry.className === 'ErpRadioBox'
         ? false
-        : null,
+        : CVA_FIXTURE_VALUES.get(entry.className) ?? null,
     });
   }
   if (['ErpFab', 'ErpExtendedFab', 'ErpFabMenu'].includes(entry.className)) {

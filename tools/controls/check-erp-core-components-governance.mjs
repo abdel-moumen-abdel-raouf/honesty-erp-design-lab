@@ -229,6 +229,28 @@ export function validateCoreComponents(files) {
       !selectTs.includes('Math.min(control.getBoundingClientRect().width, availableWidth)')) {
     errors.push('ErpSelect must match the exact visible Select control width while respecting viewport space');
   }
+  if (!selectTs.includes("allowedPlacements: ['bottom', 'top']")) {
+    errors.push('ErpSelect popup placement must remain on the reference top/bottom axis');
+  }
+  if (!selectTs.includes('measureSurface: () => ({width: popup.offsetWidth, height: popup.offsetHeight})')) {
+    errors.push('ErpSelect positioning must measure the unscaled popup layout box');
+  }
+  if (!selectTs.includes('Math.max(availableAbove, availableBelow)') ||
+      !selectTs.includes('popup.style.maxBlockSize = maxBlockSize')) {
+    errors.push('ErpSelect must cap its popup to measured vertical space without covering its trigger');
+  }
+  if (!selectScss.includes('.select__trigger {') ||
+      !selectScss.includes('font-size: var(--honesty-select-control-font-size);') ||
+      !selectScss.includes('font-size: inherit;') ||
+      !selectScss.includes('line-height: inherit;')) {
+    errors.push('ErpSelect trigger must inherit the exact reference type metrics');
+  }
+  if (!selectScss.includes('max-block-size: calc(100dvh - (2 * var(--honesty-select-panel-viewport-inset)))') ||
+      !selectScss.includes('display: flex;') ||
+      !selectScss.includes('flex-direction: column;') ||
+      !selectScss.includes('.select__listbox {\n    flex: 1 1 auto;\n    min-block-size: 0;\n    max-block-size: 52dvh;')) {
+    errors.push('ErpSelect must keep viewport containment separate from the reference list-height cap');
+  }
   for (const contract of [
     "readonly searchLabel = input('البحث')",
     "readonly sortMode = input<ErpSelectSortMode>('none')",
@@ -779,10 +801,10 @@ function fixture(overrides = new Map()) {
     [REVIEW_TABLE, '<div data-table-reference-evidence="exact"><div data-table-reference-experience="complete"><erp-table-toolbar/><erp-search-box/><erp-column-chooser/><erp-table/><erp-pagination/></div><div data-table-specimen="fixed-height"></div><div data-table-specimen="compact"></div><div data-table-specimen="vertical"></div><div data-table-specimen="header-types"></div></div>'],
     [REVIEW_TABS, '<div data-tabs-reference="ERP-TABS.html" data-tabs-direction-evidence="ltr"><div data-tabs-specimen="demo-h1"></div><div data-tabs-specimen="demo-h2"></div><div data-tabs-specimen="demo-h3" distribution="fill"></div><div data-tabs-specimen="demo-h4"></div><div data-tabs-specimen="demo-h5"></div><div data-tabs-specimen="demo-h6" variant="pill"></div><div data-tabs-specimen="demo-h7" variant="solid"></div><div data-tabs-specimen="demo-v1" orientation="vertical"></div><div data-tabs-specimen="demo-v2"></div><div data-tabs-specimen="demo-anim"></div><div data-tabs-direction-evidence="rtl"></div></div>'],
     [SELECT, '<div class="select__control"></div><erp-field-trigger semanticRole="combobox" (blurred)="handleTriggerBlur()"/><erp-search-box presentation="select-panel"/><erp-selection-tile presentation="select-option"/><div class="select__group-label"></div><div class="select__footer"></div><erp-avatar/><erp-select-action icon="dismiss"/><erp-icon name="check-mark"/>'],
-    [SELECT_TS, "this.controlSurface()?.nativeElement; Math.min(control.getBoundingClientRect().width, availableWidth); event.target.matches(':focus-visible'); this.triggerFocusVisible.set(false); readonly searchLabel = input('البحث'); readonly sortMode = input<ErpSelectSortMode>('none'); readonly groupBy = input<keyof ErpSelectOption | null>(null); readonly selectSize = input<ErpSelectSize>('md'); readonly selectAppearance = input<ErpSelectAppearance | null>(null)"],
-    [SELECT_SCSS, '@media (prefers-reduced-motion: reduce) {}'],
+    [SELECT_TS, "this.controlSurface()?.nativeElement; Math.min(control.getBoundingClientRect().width, availableWidth); event.target.matches(':focus-visible'); this.triggerFocusVisible.set(false); allowedPlacements: ['bottom', 'top']; Math.max(availableAbove, availableBelow); popup.style.maxBlockSize = maxBlockSize; measureSurface: () => ({width: popup.offsetWidth, height: popup.offsetHeight}); readonly searchLabel = input('البحث'); readonly sortMode = input<ErpSelectSortMode>('none'); readonly groupBy = input<keyof ErpSelectOption | null>(null); readonly selectSize = input<ErpSelectSize>('md'); readonly selectAppearance = input<ErpSelectAppearance | null>(null)"],
+    [SELECT_SCSS, '.select__control { font-size: var(--honesty-select-control-font-size); line-height: 1.5; } .select__trigger { font-size: inherit; line-height: inherit; } @media (prefers-reduced-motion: reduce) {}'],
     [SELECT_OPTION_SCSS, 'margin-block-start: var(--honesty-select-panel-option-row-gap)'],
-    [SELECT_MOTION_SCSS, ''],
+    [SELECT_MOTION_SCSS, 'display: flex; flex-direction: column; max-block-size: calc(100dvh - (2 * var(--honesty-select-panel-viewport-inset))); .select__listbox {\n    flex: 1 1 auto;\n    min-block-size: 0;\n    max-block-size: 52dvh; }'],
     [SELECT_TOKENS, '@mixin base {}; --honesty-select-control-height: 2.375rem; --honesty-select-control-height: 1.875rem; --honesty-select-control-height: 2.875rem;'],
     [SELECT_PANEL_TOKENS, '@mixin base {}; --honesty-select-panel-radius: 0.75rem; --honesty-select-panel-max-block-size: 18.75rem; --honesty-select-panel-list-padding: 0.25rem; --honesty-select-panel-option-row-gap: 0.25rem;'],
     [SELECT_CONTRACT, `${SELECT_REFERENCE_SHA}; ERP-SELECT.html supersedes all previous ErpSelect visual references`],

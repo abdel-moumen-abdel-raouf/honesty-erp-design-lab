@@ -1,0 +1,306 @@
+{
+  "capturedAt": "2026-10-10T04:15:13.550Z",
+  "referenceUrl": "http://127.0.0.1:8766/ERP-SELECT.html",
+  "implementationUrl": "http://127.0.0.1:4999",
+  "measurements": [
+    {
+      "name": "reference-1440-light-ltr-open",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/ERP-SELECT.html",
+      "theme": "light",
+      "direction": "ltr",
+      "primaryTargetCount": 0,
+      "control": {
+        "x": 117.5,
+        "y": 99,
+        "width": 355.328125,
+        "height": 38
+      },
+      "popup": {
+        "x": 117.5,
+        "y": 145,
+        "width": 355.328125,
+        "height": 371.390625
+      },
+      "list": {
+        "x": 118.5,
+        "y": 198.390625,
+        "width": 353.328125,
+        "height": 300
+      },
+      "placement": "bottom",
+      "geometryDelta": {
+        "inlineStart": 0,
+        "width": 0,
+        "gap": 0
+      },
+      "computed": {
+        "controlFontSize": "13px",
+        "controlLineHeight": "18.85px",
+        "controlRadius": "8px",
+        "controlPaddingInline": "12px",
+        "controlPaddingBlock": "5px",
+        "popupRadius": "12px",
+        "popupOverflowY": "hidden",
+        "listMaxHeight": "300px",
+        "listOverflowY": "auto"
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": [
+        {
+          "level": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        }
+      ]
+    },
+    {
+      "name": "reference-390-dark-rtl-open",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/ERP-SELECT.html",
+      "theme": "dark",
+      "direction": "rtl",
+      "primaryTargetCount": 0,
+      "control": {
+        "x": 42,
+        "y": 116.5,
+        "width": 288,
+        "height": 38
+      },
+      "popup": {
+        "x": 42,
+        "y": 162.5,
+        "width": 288,
+        "height": 371.390625
+      },
+      "list": {
+        "x": 43,
+        "y": 215.890625,
+        "width": 286,
+        "height": 300
+      },
+      "placement": "bottom",
+      "geometryDelta": {
+        "inlineStart": 0,
+        "width": 0,
+        "gap": 0
+      },
+      "computed": {
+        "controlFontSize": "13px",
+        "controlLineHeight": "18.85px",
+        "controlRadius": "8px",
+        "controlPaddingInline": "12px",
+        "controlPaddingBlock": "5px",
+        "popupRadius": "8px",
+        "popupOverflowY": "hidden",
+        "listMaxHeight": "300px",
+        "listOverflowY": "auto"
+      },
+      "pageHorizontalOverflow": 224,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-1440-light-ltr-open",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/components/select",
+      "theme": "light",
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "control": {
+        "x": 915,
+        "y": 453.421875,
+        "width": 150,
+        "height": 38
+      },
+      "popup": {
+        "x": 915,
+        "y": 499.421875,
+        "width": 150,
+        "height": 307
+      },
+      "list": {
+        "x": 916,
+        "y": 551.421875,
+        "width": 148,
+        "height": 254
+      },
+      "placement": "bottom",
+      "geometryDelta": {
+        "inlineStart": 0,
+        "width": 0,
+        "gap": 0
+      },
+      "computed": {
+        "controlFontSize": "13px",
+        "controlLineHeight": "19.5px",
+        "controlRadius": "8px",
+        "controlPaddingInline": "12px",
+        "controlPaddingBlock": "5px",
+        "popupRadius": "12px",
+        "popupOverflowY": "hidden",
+        "listMaxHeight": "300px",
+        "listOverflowY": "auto"
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-1280-dark-rtl-open",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "route": "/components/select",
+      "theme": "dark",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "control": {
+        "x": 755,
+        "y": 453.015625,
+        "width": 150,
+        "height": 38
+      },
+      "popup": {
+        "x": 755,
+        "y": 499.015625,
+        "width": 150,
+        "height": 307
+      },
+      "list": {
+        "x": 756,
+        "y": 551.015625,
+        "width": 148,
+        "height": 254
+      },
+      "placement": "bottom",
+      "geometryDelta": {
+        "inlineStart": 0,
+        "width": 0,
+        "gap": 0
+      },
+      "computed": {
+        "controlFontSize": "13px",
+        "controlLineHeight": "19.5px",
+        "controlRadius": "8px",
+        "controlPaddingInline": "12px",
+        "controlPaddingBlock": "5px",
+        "popupRadius": "12px",
+        "popupOverflowY": "hidden",
+        "listMaxHeight": "300px",
+        "listOverflowY": "auto"
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-390-dark-rtl-live-open",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/components/select",
+      "theme": "dark",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "control": {
+        "x": 57,
+        "y": 417.25,
+        "width": 261,
+        "height": 38
+      },
+      "popup": {
+        "x": 57,
+        "y": 463.25,
+        "width": 261,
+        "height": 287
+      },
+      "list": {
+        "x": 58,
+        "y": 515.25,
+        "width": 259,
+        "height": 234
+      },
+      "placement": "bottom",
+      "geometryDelta": {
+        "inlineStart": 0,
+        "width": 0,
+        "gap": 0
+      },
+      "computed": {
+        "controlFontSize": "13px",
+        "controlLineHeight": "19.5px",
+        "controlRadius": "8px",
+        "controlPaddingInline": "12px",
+        "controlPaddingBlock": "5px",
+        "popupRadius": "8px",
+        "popupOverflowY": "hidden",
+        "listMaxHeight": "300px",
+        "listOverflowY": "auto"
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-320-light-ltr-live-open",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "route": "/components/select",
+      "theme": "light",
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "control": {
+        "x": 57,
+        "y": 279.328125,
+        "width": 191,
+        "height": 38
+      },
+      "popup": {
+        "x": 57,
+        "y": 12.328125,
+        "width": 191,
+        "height": 259.328125
+      },
+      "list": {
+        "x": 58,
+        "y": 64.328125,
+        "width": 189,
+        "height": 206.328125
+      },
+      "placement": "top",
+      "geometryDelta": {
+        "inlineStart": 0,
+        "width": 0,
+        "gap": 0.328125
+      },
+      "computed": {
+        "controlFontSize": "13px",
+        "controlLineHeight": "19.5px",
+        "controlRadius": "8px",
+        "controlPaddingInline": "12px",
+        "controlPaddingBlock": "5px",
+        "popupRadius": "8px",
+        "popupOverflowY": "hidden",
+        "listMaxHeight": "300px",
+        "listOverflowY": "auto"
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    }
+  ]
+}

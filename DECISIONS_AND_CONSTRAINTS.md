@@ -1,5 +1,25 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## ErpSelect internal-review decisions — 2026-10-10
+
+- `ERP-SELECT.html` and its verified SHA remain the sole visual/behavioral
+  authority; colors and font family remain the only system substitutions.
+- The Select visible control owns the exact type metrics even though native
+  trigger semantics remain inside `ErpFieldTrigger`.
+- A scaled entrance surface must be positioned from its untransformed layout
+  box. The shared anchored controller exposes this as an optional consumer
+  measurement and changes no other overlay by default.
+- Select placement remains vertical (`bottom`/`top`) and never falls back to a
+  side placement.
+- Viewport containment belongs to the popup; the reference 300 px maximum and
+  narrow 52dvh override belong to the options list.
+- Select measures the actual space above and below before placement. When a
+  full popup cannot fit, the popup shrinks to that space and only the listbox
+  scrolls; viewport clamping must not cover the trigger.
+- One live target may use meaningful catalog fixtures while the complete exact
+  matrix remains secondary/on demand. Internal review does not establish
+  Product Owner acceptance.
+
 ## EmptyState internal-review decision — 2026-10-10
 
 - Keep the five Product Owner-supplied Lottie scenarios, public projection

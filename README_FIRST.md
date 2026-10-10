@@ -1,5 +1,23 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — ErpSelect V3
+
+The binding `ERP-SELECT.html` SHA was reverified and compared directly with
+the rendered `/components/select` implementation. The review corrected the
+medium control's inherited 14 px type to the exact 13 px contract, eliminated
+the entrance-scale popup alignment error, restored the 300 px maximum to the
+option list instead of the whole popup, constrained placement to top/bottom,
+and gave the single live target meaningful Arabic ERP options. Reproducible
+reference/implementation captures and geometry are under
+`docs/review-evidence/erp-select/v3-internal-review/`. Final implementation
+cases have 0 px popup alignment/width delta, 0 page overflow, no broken images
+and no browser diagnostics. The 320 x 568 popup is bounded to measured vertical
+space with a 0.33 px gap delta and no trigger overlap. Canonical verification
+passes 128/128 test files and 816/816 tests, both typechecks, all governance,
+and the zero-warning 418.32 kB / 92.88 kB production build. Status remains
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`;
+the next reopened exact unit is `ErpTabs`.
+
 ## Latest verified UI unit — EmptyState
 
 The dedicated EmptyState Workbench now exposes the full five-scenario reference

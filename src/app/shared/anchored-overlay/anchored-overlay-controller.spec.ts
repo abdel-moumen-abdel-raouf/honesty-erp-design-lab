@@ -159,6 +159,7 @@ describe('AnchoredOverlayController', () => {
       setTimeout(() => callback(0), 0),
     );
     vi.stubGlobal('cancelAnimationFrame', (id: number) => clearTimeout(id));
+    Object.defineProperty(window, 'visualViewport', {configurable: true, value: null});
 
     const anchor = document.createElement('button');
     const surface = document.createElement('span');
@@ -194,6 +195,47 @@ describe('AnchoredOverlayController', () => {
 
     expect(surface.style.maxBlockSize).toBe('120px');
     expect(applyGeometry).toHaveBeenCalledOnce();
+
+    controller.destroy();
+    vi.unstubAllGlobals();
+    vi.useRealTimers();
+  });
+
+  it('allows a consumer to position from an untransformed layout measurement', () => {
+    vi.useFakeTimers();
+    vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) =>
+      setTimeout(() => callback(0), 0),
+    );
+    vi.stubGlobal('cancelAnimationFrame', (id: number) => clearTimeout(id));
+    Object.defineProperty(window, 'visualViewport', {configurable: true, value: null});
+
+    const anchor = document.createElement('button');
+    const surface = document.createElement('span');
+    Object.assign(surface, {showPopover: vi.fn(), hidePopover: vi.fn()});
+    vi.spyOn(anchor, 'getBoundingClientRect').mockReturnValue({
+      left: 100, top: 100, right: 340, bottom: 138,
+      width: 240, height: 38, x: 100, y: 100, toJSON: () => ({}),
+    } as DOMRect);
+    vi.spyOn(surface, 'getBoundingClientRect').mockReturnValue({
+      left: 0, top: 0, right: 232.8, bottom: 145.5,
+      width: 232.8, height: 145.5, x: 0, y: 0, toJSON: () => ({}),
+    } as DOMRect);
+    const applyGeometry = vi.fn();
+    const controller = new AnchoredOverlayController({
+      anchor,
+      surface,
+      measureSurface: () => ({width: 240, height: 150}),
+      readGeometryInput: () => ({
+        preferredPlacement: 'bottom', direction: 'ltr', anchorGap: 8,
+        viewportInset: 12, showArrow: false, arrowWidth: 0,
+        arrowHeight: 0, arrowSafeInset: 0, allowedPlacements: ['bottom', 'top'],
+      }),
+      applyGeometry,
+    });
+
+    expect(controller.show()).toBe(true);
+    vi.runAllTimers();
+    expect(applyGeometry).toHaveBeenCalledWith(expect.objectContaining({x: 100, y: 146}));
 
     controller.destroy();
     vi.unstubAllGlobals();

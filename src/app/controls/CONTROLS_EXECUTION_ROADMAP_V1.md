@@ -1,5 +1,19 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — ErpSelect V3 complete internally
+
+The binding Select source and SHA were recovered, rendered and compared at
+matching viewports. The resulting bounded correction restores the 13 px
+medium type, 0 px popup alignment/width deltas, vertical-only placement and
+list-owned 300 px scrolling. The primary workbench target now begins with
+meaningful Arabic ERP records while the full exact matrix remains on demand.
+Evidence covers Light/Dark, RTL/LTR, 1440/1280/390/320 and constrained upward
+placement with no implementation overflow, broken images or diagnostics.
+The constrained 320 x 568 case is bounded to measured space with list-owned
+scrolling and no trigger overlap. Canonical verification passes 128/128 files
+and 816/816 tests with a zero-warning 418.32 kB / 92.88 kB build. Product Owner
+status remains pending. The next reopened exact unit is `ErpTabs`.
+
 ## Current UI continuation — EmptyState complete internally
 
 The dedicated EmptyState page now combines one interactive API target with an

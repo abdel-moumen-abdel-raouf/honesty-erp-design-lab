@@ -1,5 +1,23 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — ErpSelect V3 internal review
+
+`ErpSelect` was compared in a real browser with the binding
+`ERP-SELECT.html` at the verified SHA
+`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`.
+The 38 px medium control now renders 13 px type, 12/5 px inline/block padding,
+8 px radius and an exactly aligned popup with an 8 px gap. The popup and
+control have equal width and 0 px inline-start delta; only the listbox owns
+the 300 px vertical cap/scrolling. Browser evidence covers Light/Dark,
+RTL/LTR, 1440/1280/390/320 and top/bottom placement. The workbench still has
+one primary target and now starts with searchable Arabic ERP data. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The 320 x 568 constrained popup now
+uses measured vertical space, remains separated from its trigger within the
+0.5 px tolerance, and leaves scrolling on the listbox. Canonical verification
+passes 128/128 test files and 816/816 tests, both typechecks, all governance,
+and the zero-warning 418.32 kB / 92.88 kB build. Next reopened unit: `ErpTabs`.
+
 ## Current checkpoint — EmptyState internal review
 
 `ErpEmptyState` retains its Product Owner-supplied five Lottie scenarios and

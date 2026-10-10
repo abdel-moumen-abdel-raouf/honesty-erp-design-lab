@@ -17,6 +17,8 @@
 }
 
 .select__listbox {
+  flex: 1 1 auto;
+  min-block-size: 0;
   max-block-size: var(--honesty-select-panel-max-block-size);
   padding: var(--honesty-select-panel-list-padding);
   overflow-y: auto;

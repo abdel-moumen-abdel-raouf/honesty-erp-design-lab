@@ -28292,7 +28292,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "الموظف المسؤول",
+          "searchable": true,
+          "groupBy": "group",
+          "options": [
+            {
+              "value": "ahmed",
+              "label": "أحمد محمود",
+              "description": "محاسب أول — فرع القاهرة",
+              "group": "المالية",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "meta": "FIN"
+            },
+            {
+              "value": "sara",
+              "label": "سارة علي",
+              "description": "مسؤولة مشتريات — فرع الإسكندرية",
+              "group": "العمليات",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "meta": "OPS"
+            },
+            {
+              "value": "mahmoud",
+              "label": "محمود حسين",
+              "description": "موظف موقوف مؤقتًا",
+              "group": "العمليات",
+              "icon": "user",
+              "disabled": true
+            }
+          ],
           "sort": null
         }
       },
@@ -28300,7 +28328,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "multiple-false",
         "label": "multiple: false",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "الموظف المسؤول",
+          "searchable": true,
+          "groupBy": "group",
+          "options": [
+            {
+              "value": "ahmed",
+              "label": "أحمد محمود",
+              "description": "محاسب أول — فرع القاهرة",
+              "group": "المالية",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "meta": "FIN"
+            },
+            {
+              "value": "sara",
+              "label": "سارة علي",
+              "description": "مسؤولة مشتريات — فرع الإسكندرية",
+              "group": "العمليات",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "meta": "OPS"
+            },
+            {
+              "value": "mahmoud",
+              "label": "محمود حسين",
+              "description": "موظف موقوف مؤقتًا",
+              "group": "العمليات",
+              "icon": "user",
+              "disabled": true
+            }
+          ],
           "sort": null,
           "multiple": false
         }
@@ -28309,7 +28365,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "multiple-true",
         "label": "multiple: true",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "الموظف المسؤول",
+          "searchable": true,
+          "groupBy": "group",
+          "options": [
+            {
+              "value": "ahmed",
+              "label": "أحمد محمود",
+              "description": "محاسب أول — فرع القاهرة",
+              "group": "المالية",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "meta": "FIN"
+            },
+            {
+              "value": "sara",
+              "label": "سارة علي",
+              "description": "مسؤولة مشتريات — فرع الإسكندرية",
+              "group": "العمليات",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "meta": "OPS"
+            },
+            {
+              "value": "mahmoud",
+              "label": "محمود حسين",
+              "description": "موظف موقوف مؤقتًا",
+              "group": "العمليات",
+              "icon": "user",
+              "disabled": true
+            }
+          ],
           "sort": null,
           "multiple": true
         }
@@ -28318,7 +28402,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "selectSize-sm",
         "label": "selectSize: sm",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "الموظف المسؤول",
+          "searchable": true,
+          "groupBy": "group",
+          "options": [
+            {
+              "value": "ahmed",
+              "label": "أحمد محمود",
+              "description": "محاسب أول — فرع القاهرة",
+              "group": "المالية",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "meta": "FIN"
+            },
+            {
+              "value": "sara",
+              "label": "سارة علي",
+              "description": "مسؤولة مشتريات — فرع الإسكندرية",
+              "group": "العمليات",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "meta": "OPS"
+            },
+            {
+              "value": "mahmoud",
+              "label": "محمود حسين",
+              "description": "موظف موقوف مؤقتًا",
+              "group": "العمليات",
+              "icon": "user",
+              "disabled": true
+            }
+          ],
           "sort": null,
           "selectSize": "sm"
         }
@@ -28327,7 +28439,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "selectSize-md",
         "label": "selectSize: md",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "الموظف المسؤول",
+          "searchable": true,
+          "groupBy": "group",
+          "options": [
+            {
+              "value": "ahmed",
+              "label": "أحمد محمود",
+              "description": "محاسب أول — فرع القاهرة",
+              "group": "المالية",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "meta": "FIN"
+            },
+            {
+              "value": "sara",
+              "label": "سارة علي",
+              "description": "مسؤولة مشتريات — فرع الإسكندرية",
+              "group": "العمليات",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "meta": "OPS"
+            },
+            {
+              "value": "mahmoud",
+              "label": "محمود حسين",
+              "description": "موظف موقوف مؤقتًا",
+              "group": "العمليات",
+              "icon": "user",
+              "disabled": true
+            }
+          ],
           "sort": null,
           "selectSize": "md"
         }
@@ -28336,7 +28476,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "selectSize-normal",
         "label": "selectSize: normal",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "الموظف المسؤول",
+          "searchable": true,
+          "groupBy": "group",
+          "options": [
+            {
+              "value": "ahmed",
+              "label": "أحمد محمود",
+              "description": "محاسب أول — فرع القاهرة",
+              "group": "المالية",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "meta": "FIN"
+            },
+            {
+              "value": "sara",
+              "label": "سارة علي",
+              "description": "مسؤولة مشتريات — فرع الإسكندرية",
+              "group": "العمليات",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "meta": "OPS"
+            },
+            {
+              "value": "mahmoud",
+              "label": "محمود حسين",
+              "description": "موظف موقوف مؤقتًا",
+              "group": "العمليات",
+              "icon": "user",
+              "disabled": true
+            }
+          ],
           "sort": null,
           "selectSize": "normal"
         }
@@ -28345,7 +28513,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "selectSize-lg",
         "label": "selectSize: lg",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "الموظف المسؤول",
+          "searchable": true,
+          "groupBy": "group",
+          "options": [
+            {
+              "value": "ahmed",
+              "label": "أحمد محمود",
+              "description": "محاسب أول — فرع القاهرة",
+              "group": "المالية",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "meta": "FIN"
+            },
+            {
+              "value": "sara",
+              "label": "سارة علي",
+              "description": "مسؤولة مشتريات — فرع الإسكندرية",
+              "group": "العمليات",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "meta": "OPS"
+            },
+            {
+              "value": "mahmoud",
+              "label": "محمود حسين",
+              "description": "موظف موقوف مؤقتًا",
+              "group": "العمليات",
+              "icon": "user",
+              "disabled": true
+            }
+          ],
           "sort": null,
           "selectSize": "lg"
         }
@@ -28354,7 +28550,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "selectSize-xlg",
         "label": "selectSize: xlg",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "الموظف المسؤول",
+          "searchable": true,
+          "groupBy": "group",
+          "options": [
+            {
+              "value": "ahmed",
+              "label": "أحمد محمود",
+              "description": "محاسب أول — فرع القاهرة",
+              "group": "المالية",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "meta": "FIN"
+            },
+            {
+              "value": "sara",
+              "label": "سارة علي",
+              "description": "مسؤولة مشتريات — فرع الإسكندرية",
+              "group": "العمليات",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "meta": "OPS"
+            },
+            {
+              "value": "mahmoud",
+              "label": "محمود حسين",
+              "description": "موظف موقوف مؤقتًا",
+              "group": "العمليات",
+              "icon": "user",
+              "disabled": true
+            }
+          ],
           "sort": null,
           "selectSize": "xlg"
         }
@@ -28363,7 +28587,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "placement-bottom",
         "label": "placement: bottom",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "الموظف المسؤول",
+          "searchable": true,
+          "groupBy": "group",
+          "options": [
+            {
+              "value": "ahmed",
+              "label": "أحمد محمود",
+              "description": "محاسب أول — فرع القاهرة",
+              "group": "المالية",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "meta": "FIN"
+            },
+            {
+              "value": "sara",
+              "label": "سارة علي",
+              "description": "مسؤولة مشتريات — فرع الإسكندرية",
+              "group": "العمليات",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "meta": "OPS"
+            },
+            {
+              "value": "mahmoud",
+              "label": "محمود حسين",
+              "description": "موظف موقوف مؤقتًا",
+              "group": "العمليات",
+              "icon": "user",
+              "disabled": true
+            }
+          ],
           "sort": null,
           "placement": "bottom"
         }
@@ -28372,7 +28624,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "placement-top",
         "label": "placement: top",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "الموظف المسؤول",
+          "searchable": true,
+          "groupBy": "group",
+          "options": [
+            {
+              "value": "ahmed",
+              "label": "أحمد محمود",
+              "description": "محاسب أول — فرع القاهرة",
+              "group": "المالية",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "meta": "FIN"
+            },
+            {
+              "value": "sara",
+              "label": "سارة علي",
+              "description": "مسؤولة مشتريات — فرع الإسكندرية",
+              "group": "العمليات",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "meta": "OPS"
+            },
+            {
+              "value": "mahmoud",
+              "label": "محمود حسين",
+              "description": "موظف موقوف مؤقتًا",
+              "group": "العمليات",
+              "icon": "user",
+              "disabled": true
+            }
+          ],
           "sort": null,
           "placement": "top"
         }
@@ -28381,7 +28661,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "sort-source",
         "label": "sort: source",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "الموظف المسؤول",
+          "searchable": true,
+          "groupBy": "group",
+          "options": [
+            {
+              "value": "ahmed",
+              "label": "أحمد محمود",
+              "description": "محاسب أول — فرع القاهرة",
+              "group": "المالية",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "meta": "FIN"
+            },
+            {
+              "value": "sara",
+              "label": "سارة علي",
+              "description": "مسؤولة مشتريات — فرع الإسكندرية",
+              "group": "العمليات",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "meta": "OPS"
+            },
+            {
+              "value": "mahmoud",
+              "label": "محمود حسين",
+              "description": "موظف موقوف مؤقتًا",
+              "group": "العمليات",
+              "icon": "user",
+              "disabled": true
+            }
+          ],
           "sort": "source"
         }
       },
@@ -28389,7 +28697,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "sort-ascending",
         "label": "sort: ascending",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "الموظف المسؤول",
+          "searchable": true,
+          "groupBy": "group",
+          "options": [
+            {
+              "value": "ahmed",
+              "label": "أحمد محمود",
+              "description": "محاسب أول — فرع القاهرة",
+              "group": "المالية",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "meta": "FIN"
+            },
+            {
+              "value": "sara",
+              "label": "سارة علي",
+              "description": "مسؤولة مشتريات — فرع الإسكندرية",
+              "group": "العمليات",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "meta": "OPS"
+            },
+            {
+              "value": "mahmoud",
+              "label": "محمود حسين",
+              "description": "موظف موقوف مؤقتًا",
+              "group": "العمليات",
+              "icon": "user",
+              "disabled": true
+            }
+          ],
           "sort": "ascending"
         }
       },
@@ -28397,7 +28733,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "sort-descending",
         "label": "sort: descending",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "الموظف المسؤول",
+          "searchable": true,
+          "groupBy": "group",
+          "options": [
+            {
+              "value": "ahmed",
+              "label": "أحمد محمود",
+              "description": "محاسب أول — فرع القاهرة",
+              "group": "المالية",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "meta": "FIN"
+            },
+            {
+              "value": "sara",
+              "label": "سارة علي",
+              "description": "مسؤولة مشتريات — فرع الإسكندرية",
+              "group": "العمليات",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "meta": "OPS"
+            },
+            {
+              "value": "mahmoud",
+              "label": "محمود حسين",
+              "description": "موظف موقوف مؤقتًا",
+              "group": "العمليات",
+              "icon": "user",
+              "disabled": true
+            }
+          ],
           "sort": "descending"
         }
       }
@@ -28426,9 +28790,34 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "clearable": true,
       "feedbackText": null,
       "feedbackDismissible": false,
-      "options": [],
+      "options": [
+        {
+          "value": "ahmed",
+          "label": "أحمد محمود",
+          "description": "محاسب أول — فرع القاهرة",
+          "group": "المالية",
+          "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+          "meta": "FIN"
+        },
+        {
+          "value": "sara",
+          "label": "سارة علي",
+          "description": "مسؤولة مشتريات — فرع الإسكندرية",
+          "group": "العمليات",
+          "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+          "meta": "OPS"
+        },
+        {
+          "value": "mahmoud",
+          "label": "محمود حسين",
+          "description": "موظف موقوف مؤقتًا",
+          "group": "العمليات",
+          "icon": "user",
+          "disabled": true
+        }
+      ],
       "multiple": false,
-      "searchable": false,
+      "searchable": true,
       "filterable": true,
       "sortable": true,
       "showIcons": true,
@@ -28443,13 +28832,13 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "selectSize": "md",
       "selectAppearance": null,
       "placement": "bottom",
-      "groupBy": null,
+      "groupBy": "group",
       "sortMode": "none",
       "filterPredicate": null,
       "filterFn": null,
       "comparator": null,
       "sort": "source",
-      "label": "حقل تجريبي"
+      "label": "الموظف المسؤول"
     },
     "showcaseControls": [
       {
@@ -28460,7 +28849,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": "ahmed"
       },
       {
         "name": "label",
@@ -28470,7 +28859,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "الموظف المسؤول"
       },
       {
         "name": "name",
@@ -28748,7 +29137,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly ErpSelectOption[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          {
+            "value": "ahmed",
+            "label": "أحمد محمود",
+            "description": "محاسب أول — فرع القاهرة",
+            "group": "المالية",
+            "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+            "meta": "FIN"
+          },
+          {
+            "value": "sara",
+            "label": "سارة علي",
+            "description": "مسؤولة مشتريات — فرع الإسكندرية",
+            "group": "العمليات",
+            "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "meta": "OPS"
+          },
+          {
+            "value": "mahmoud",
+            "label": "محمود حسين",
+            "description": "موظف موقوف مؤقتًا",
+            "group": "العمليات",
+            "icon": "user",
+            "disabled": true
+          }
+        ]
       },
       {
         "name": "multiple",
@@ -28774,7 +29188,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "false",
           "true"
         ],
-        "initialValue": false
+        "initialValue": true
       },
       {
         "name": "filterable",
@@ -28948,7 +29362,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "keyof ErpSelectOption | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "group"
       },
       {
         "name": "sortMode",
