@@ -36,6 +36,9 @@
 ## Result
 
 - Assertions: 30/30 passed.
+- The `ErpPage` mode assertion operates the rendered `ErpSelect` controls and
+  requires the live target to equal the requested width and scroll modes; a
+  non-null default value is not accepted as control evidence.
 - One primary `data-showcase-target` per route.
 - Console errors/warnings: 0.
 - Page horizontal overflow: 0 px.

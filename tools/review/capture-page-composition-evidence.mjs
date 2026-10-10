@@ -76,11 +76,15 @@ async function screenshot(client, fileName, clip = null) {
 }
 
 async function chooseControl(client, label, value) {
+  const opened = await evaluate(client, `(() => {
+    const owner=document.querySelector('[data-showcase-control=${JSON.stringify(label)}]');
+    const trigger=owner?.querySelector('erp-field-trigger button'); trigger?.click(); return Boolean(trigger);
+  })()`);
+  if (!opened) return false;
+  await new Promise((resolve) => setTimeout(resolve, 100));
   return evaluate(client, `(() => {
-    const labels=Array.from(document.querySelectorAll('app-review-showcase-control-panel label'));
-    const owner=labels.find((entry)=>entry.textContent?.includes(${JSON.stringify(label)}));
-    const select=owner?.querySelector('select'); if(!select)return false;
-    select.value=${JSON.stringify(value)}; select.dispatchEvent(new Event('change',{bubbles:true})); return true;
+    const option=Array.from(document.querySelectorAll('button[role="option"]')).find((entry)=>entry.textContent?.trim()===${JSON.stringify(value)} && entry.getBoundingClientRect().height>0);
+    option?.click(); return Boolean(option);
   })()`);
 }
 
@@ -142,7 +146,11 @@ try {
     assertions.push({name: `${result.name} direction-theme`, pass: result.direction === scenario.direction && result.theme === scenario.theme, actual: {direction: result.direction, theme: result.theme}});
     assertions.push({name: `${result.name} overflow-clipping`, pass: result.horizontalOverflow === 0 && result.targetOverflow === 0 && result.clipped.length === 0, actual: {page: result.horizontalOverflow, target: result.targetOverflow, clipped: result.clipped}});
     assertions.push({name: `${result.name} diagnostics`, pass: result.diagnostics.length === 0, actual: result.diagnostics});
-    if (result.component === 'page') assertions.push({name: `${result.name} controlled page modes`, pass: Boolean(result.pageWidth && result.pageScroll), actual: {width: result.pageWidth, scroll: result.pageScroll}});
+    if (result.component === 'page') {
+      const expectedWidth = scenario.controls?.widthMode ?? 'fluid';
+      const expectedScroll = scenario.controls?.scrollMode ?? 'document';
+      assertions.push({name: `${result.name} controlled page modes`, pass: result.pageWidth === expectedWidth && result.pageScroll === expectedScroll, actual: {width: result.pageWidth, scroll: result.pageScroll, expectedWidth, expectedScroll}});
+    }
     if (result.component === 'page-header') assertions.push({name: `${result.name} complete header regions`, pass: Object.values(result.headerRegions).every(Boolean) && result.eventText.includes('ActionPressed'), actual: result});
     if (result.component === 'page-shell') assertions.push({name: `${result.name} complete shell regions`, pass: Object.values(result.shellRegions).every(Boolean), actual: result});
   }
