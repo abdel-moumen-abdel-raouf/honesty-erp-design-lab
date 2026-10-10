@@ -23,7 +23,7 @@ at `http://127.0.0.1:4999` on 2026-10-10. `runtime-audit.json` and
 - exactly one root `erp-app-shell`, `router-outlet`, and `erp-overlay-host`;
 - zero page horizontal overflow, broken images, console errors, or console
   warnings;
-- ten persisted desktop/narrow Light/Dark RTL/LTR review captures.
+- thirteen persisted desktop/tablet/narrow Light/Dark RTL/LTR review captures.
 
 Canonical verification passes 153/153 test files and 886/886 tests, both
 TypeScript typechecks, all lint/governance, and the zero-warning 424.96 kB /
@@ -44,6 +44,9 @@ Workbench and creates no nested AppShell.
 | `components-tabs-1440x900-dark-ltr-comparison.png` | Exact Tabs comparison | 1440×900 | Dark / LTR |
 | `components-table-1440x900-light-rtl-comparison.png` | Complete Table reference/implementation comparison | 1440×900 | Light / RTL |
 | `components-app-shell-1440x900-dark-ltr-top.png` | Root-owned AppShell review context | 1440×900 | Dark / LTR |
+| `components-button-1280x800-light-ltr-gallery.png` | Intermediate desktop Button gallery | 1280×800 | Light / LTR |
+| `components-table-1024x768-dark-ltr-comparison.png` | Intermediate Table comparison | 1024×768 | Dark / LTR |
+| `components-app-shell-768x900-light-rtl-top.png` | Tablet root-owned AppShell | 768×900 | Light / RTL |
 | `components-button-390x844-dark-rtl-gallery.png` | Narrow Button gallery | 390×844 | Dark / RTL |
 | `components-table-390x844-dark-rtl-gallery.png` | Narrow real Table gallery with contained horizontal scroll | 390×844 | Dark / RTL |
 | `components-app-shell-390x844-dark-ltr-top.png` | Root-owned AppShell, narrow | 390×844 | Dark / LTR |
@@ -91,7 +94,7 @@ its complete multi-owner experience rather than an isolated table specimen.
    diagnostic, and the desktop AppShell comparison then exposed a lazy-LCP
    warning. The review-only image owner now preserves a scrollable minimum
    inspection width on narrow screens and eagerly loads evidence only after its
-   lazy component route is opened. The repeated 81-route/ten-capture audit
+   lazy component route is opened. The repeated 81-route/thirteen-capture audit
    records zero console findings.
 
 ## Lifecycle state
