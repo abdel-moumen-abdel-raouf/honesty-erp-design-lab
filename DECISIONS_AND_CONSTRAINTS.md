@@ -1,5 +1,21 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## ErpTable full-reference internal-review decisions — 2026-10-10
+
+- `ERP-TABLE.html` at SHA-256
+  `292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`
+  remains the binding Table reference.
+- Fresh rendered-source measurements supersede historical summarized geometry;
+  recorded implementation deltas may not exceed 0.5px for layout boxes.
+- The exact experience remains a multi-owner composition. Separate ownership
+  never permits a visible reference feature to be omitted.
+- The dedicated Table workbench retains one primary target and must expose real
+  controlled selection, sorting, activation, resize, visibility and footer
+  evidence with meaningful data.
+- The vendor document's own narrow demo-chrome overflow is evidence about the
+  reference page, not permission for application page overflow.
+- Internal review does not change Product Owner visual status.
+
 ## ErpTabs internal-review decisions — 2026-10-10
 
 - `ERP-TABS.html` and its verified SHA remain the sole Tabs visual/behavioral

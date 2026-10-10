@@ -1,0 +1,1778 @@
+{
+  "capturedAt": "2026-10-10T04:59:18.850Z",
+  "referenceUrl": "http://127.0.0.1:8766/ERP-TABLE.html",
+  "referenceSha256": "292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1",
+  "implementationUrl": "http://127.0.0.1:4999",
+  "measurements": [
+    {
+      "name": "reference-full-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/ERP-TABLE.html",
+      "theme": "light",
+      "direction": "rtl",
+      "primaryTargetCount": 0,
+      "exactExperienceCount": 0,
+      "geometry": {
+        "root": {
+          "x": 77.5,
+          "y": 85.78125,
+          "width": 1270,
+          "height": 746.5
+        },
+        "toolbar": {
+          "x": 78.5,
+          "y": 86.78125,
+          "width": 1268,
+          "height": 56
+        },
+        "tableViewport": {
+          "x": 78.5,
+          "y": 142.78125,
+          "width": 1268,
+          "height": 633.5
+        },
+        "header": {
+          "x": 78.5,
+          "y": 142.78125,
+          "width": 1268,
+          "height": 34.5
+        },
+        "row": {
+          "x": 78.5,
+          "y": 177.28125,
+          "width": 1268,
+          "height": 59
+        },
+        "footer": {
+          "x": 78.5,
+          "y": 776.28125,
+          "width": 1268,
+          "height": 55
+        },
+        "checkbox": {
+          "x": 301.5,
+          "y": 179.28125,
+          "width": 16,
+          "height": 16
+        },
+        "photo": {
+          "x": 1251.78125,
+          "y": 190.28125,
+          "width": 32,
+          "height": 32
+        },
+        "photoWrap": {
+          "x": 1162.515625,
+          "y": 189.28125,
+          "width": 121.265625,
+          "height": 34
+        },
+        "badge": {
+          "x": 920.53125,
+          "y": 195.28125,
+          "width": 65.90625,
+          "height": 22
+        },
+        "action": {
+          "x": 151.375,
+          "y": 192.28125,
+          "width": 28,
+          "height": 28
+        },
+        "search": {
+          "x": 990.5,
+          "y": 98.78125,
+          "width": 340,
+          "height": 31
+        },
+        "chooser": {
+          "x": 94.5,
+          "y": 98.78125,
+          "width": 92.1875,
+          "height": 31
+        },
+        "chooserPopover": {
+          "x": 94.5,
+          "y": 129.78125,
+          "width": 240,
+          "height": 248
+        }
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "normal",
+        "cellLineHeight": "normal",
+        "searchLineHeight": "normal",
+        "chooserLineHeight": "normal",
+        "headerPadding": "8px 12px",
+        "cellPadding": "12px 12px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "auto",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 0,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 65.5,
+        "y": 439.78125,
+        "width": 1294,
+        "height": 770.5
+      },
+      "diagnostics": [
+        {
+          "level": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        }
+      ]
+    },
+    {
+      "name": "implementation-full-featured-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/components/table",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "exactExperienceCount": 1,
+      "geometry": {
+        "root": {
+          "x": 194,
+          "y": 105.890625,
+          "width": 856,
+          "height": 746
+        },
+        "toolbar": {
+          "x": 195,
+          "y": 106.890625,
+          "width": 854,
+          "height": 56
+        },
+        "tableViewport": {
+          "x": 195,
+          "y": 162.890625,
+          "width": 854,
+          "height": 633
+        },
+        "header": {
+          "x": -145,
+          "y": 162.890625,
+          "width": 1194,
+          "height": 34
+        },
+        "row": {
+          "x": -145,
+          "y": 196.890625,
+          "width": 1194,
+          "height": 59
+        },
+        "footer": {
+          "x": 195,
+          "y": 795.890625,
+          "width": 854,
+          "height": 55
+        },
+        "checkbox": {
+          "x": 1019,
+          "y": 172.71875,
+          "width": 16,
+          "height": 16
+        },
+        "photo": {
+          "x": 957,
+          "y": 209.890625,
+          "width": 32,
+          "height": 32
+        },
+        "photoWrap": {
+          "x": 890.15625,
+          "y": 208.890625,
+          "width": 98.84375,
+          "height": 34
+        },
+        "badge": {
+          "x": 659.125,
+          "y": 214.890625,
+          "width": 49.875,
+          "height": 22
+        },
+        "action": {
+          "x": -79,
+          "y": 211.890625,
+          "width": 28,
+          "height": 28
+        },
+        "search": {
+          "x": 693,
+          "y": 118.890625,
+          "width": 340,
+          "height": 31
+        },
+        "chooser": {
+          "x": 211,
+          "y": 118.890625,
+          "width": 85.890625,
+          "height": 31
+        },
+        "chooserPopover": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "17px",
+        "cellLineHeight": "18px",
+        "searchLineHeight": "17px",
+        "chooserLineHeight": "normal",
+        "headerPadding": "8px 12px",
+        "cellPadding": "12px 12px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "scroll",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 1,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 182,
+        "y": 101.890625,
+        "width": 880,
+        "height": 770
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "reference-fixed-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/ERP-TABLE.html",
+      "theme": "light",
+      "direction": "rtl",
+      "primaryTargetCount": 0,
+      "exactExperienceCount": 0,
+      "geometry": {
+        "root": {
+          "x": 77.5,
+          "y": 203.875,
+          "width": 1270,
+          "height": 493
+        },
+        "toolbar": {
+          "x": 78.5,
+          "y": 204.875,
+          "width": 1268,
+          "height": 56
+        },
+        "tableViewport": {
+          "x": 78.5,
+          "y": 260.875,
+          "width": 1268,
+          "height": 380
+        },
+        "header": {
+          "x": 88.5,
+          "y": 260.875,
+          "width": 1258,
+          "height": 34.5
+        },
+        "row": {
+          "x": 88.5,
+          "y": 295.375,
+          "width": 1258,
+          "height": 59
+        },
+        "footer": {
+          "x": 78.5,
+          "y": 640.875,
+          "width": 1268,
+          "height": 55
+        },
+        "checkbox": {
+          "x": 301.5,
+          "y": 297.375,
+          "width": 16,
+          "height": 16
+        },
+        "photo": {
+          "x": 1252.15625,
+          "y": 308.375,
+          "width": 32,
+          "height": 32
+        },
+        "photoWrap": {
+          "x": 1162.890625,
+          "y": 307.375,
+          "width": 121.265625,
+          "height": 34
+        },
+        "badge": {
+          "x": 923.25,
+          "y": 313.375,
+          "width": 65.90625,
+          "height": 22
+        },
+        "action": {
+          "x": 160.453125,
+          "y": 310.375,
+          "width": 28,
+          "height": 28
+        },
+        "search": {
+          "x": 990.5,
+          "y": 216.875,
+          "width": 340,
+          "height": 31
+        },
+        "chooser": {
+          "x": 94.5,
+          "y": 216.875,
+          "width": 92.1875,
+          "height": 31
+        },
+        "chooserPopover": {
+          "x": 94.5,
+          "y": 247.875,
+          "width": 240,
+          "height": 248
+        }
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "normal",
+        "cellLineHeight": "normal",
+        "searchLineHeight": "normal",
+        "chooserLineHeight": "normal",
+        "headerPadding": "8px 12px",
+        "cellPadding": "12px 12px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "auto",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 0,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 65.5,
+        "y": 1304.875,
+        "width": 1294,
+        "height": 517
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-fixed-height-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/components/table",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "exactExperienceCount": 1,
+      "geometry": {
+        "root": {
+          "x": 194,
+          "y": 232.28125,
+          "width": 856,
+          "height": 493
+        },
+        "toolbar": {
+          "x": 195,
+          "y": 233.28125,
+          "width": 854,
+          "height": 56
+        },
+        "tableViewport": {
+          "x": 195,
+          "y": 289.28125,
+          "width": 854,
+          "height": 380
+        },
+        "header": {
+          "x": -145,
+          "y": 289.28125,
+          "width": 1194,
+          "height": 34
+        },
+        "row": {
+          "x": -145,
+          "y": 323.28125,
+          "width": 1194,
+          "height": 59
+        },
+        "footer": {
+          "x": 195,
+          "y": 669.28125,
+          "width": 854,
+          "height": 55
+        },
+        "checkbox": {
+          "x": 1019,
+          "y": 299.109375,
+          "width": 16,
+          "height": 16
+        },
+        "photo": {
+          "x": 957,
+          "y": 336.28125,
+          "width": 32,
+          "height": 32
+        },
+        "photoWrap": null,
+        "badge": {
+          "x": 659.125,
+          "y": 341.28125,
+          "width": 49.875,
+          "height": 22
+        },
+        "action": {
+          "x": -79,
+          "y": 338.28125,
+          "width": 28,
+          "height": 28
+        },
+        "search": {
+          "x": 693,
+          "y": 245.28125,
+          "width": 340,
+          "height": 31
+        },
+        "chooser": {
+          "x": 211,
+          "y": 245.28125,
+          "width": 85.890625,
+          "height": 31
+        },
+        "chooserPopover": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "17px",
+        "cellLineHeight": "18px",
+        "searchLineHeight": "17px",
+        "chooserLineHeight": "normal",
+        "headerPadding": "8px 12px",
+        "cellPadding": "12px 12px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "scroll",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 0,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 182,
+        "y": 228.28125,
+        "width": 880,
+        "height": 517
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "reference-compact-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/ERP-TABLE.html",
+      "theme": "light",
+      "direction": "rtl",
+      "primaryTargetCount": 0,
+      "exactExperienceCount": 0,
+      "geometry": {
+        "root": {
+          "x": 77.5,
+          "y": 271.46875,
+          "width": 1270,
+          "height": 357
+        },
+        "toolbar": null,
+        "tableViewport": {
+          "x": 78.5,
+          "y": 272.46875,
+          "width": 1268,
+          "height": 355
+        },
+        "header": {
+          "x": 78.5,
+          "y": 272.46875,
+          "width": 1268,
+          "height": 34
+        },
+        "row": {
+          "x": 78.5,
+          "y": 306.46875,
+          "width": 1268,
+          "height": 39
+        },
+        "footer": null,
+        "checkbox": null,
+        "photo": null,
+        "photoWrap": null,
+        "badge": {
+          "x": 226.015625,
+          "y": 314.46875,
+          "width": 49.1875,
+          "height": 22
+        },
+        "action": null,
+        "search": null,
+        "chooser": null,
+        "chooserPopover": null
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "normal",
+        "cellLineHeight": "normal",
+        "searchLineHeight": null,
+        "chooserLineHeight": null,
+        "headerPadding": "8px 12px",
+        "cellPadding": "8px 12px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "auto",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 0,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        39,
+        39,
+        39,
+        39,
+        39,
+        39
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 65.5,
+        "y": 1916.46875,
+        "width": 1294,
+        "height": 381
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-compact-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/components/table",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "exactExperienceCount": 1,
+      "geometry": {
+        "root": {
+          "x": 194,
+          "y": 300.578125,
+          "width": 856,
+          "height": 357
+        },
+        "toolbar": null,
+        "tableViewport": {
+          "x": 195,
+          "y": 301.578125,
+          "width": 854,
+          "height": 355
+        },
+        "header": {
+          "x": 195,
+          "y": 301.578125,
+          "width": 854,
+          "height": 34
+        },
+        "row": {
+          "x": 195,
+          "y": 335.578125,
+          "width": 854,
+          "height": 39
+        },
+        "footer": null,
+        "checkbox": null,
+        "photo": null,
+        "photoWrap": null,
+        "badge": {
+          "x": 240.28125,
+          "y": 343.578125,
+          "width": 50.015625,
+          "height": 22
+        },
+        "action": null,
+        "search": null,
+        "chooser": null,
+        "chooserPopover": null
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "17px",
+        "cellLineHeight": "16px",
+        "searchLineHeight": null,
+        "chooserLineHeight": null,
+        "headerPadding": "8px 12px",
+        "cellPadding": "8px 12px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "scroll",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 0,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        39,
+        39,
+        39,
+        39,
+        39,
+        39
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 182,
+        "y": 296.578125,
+        "width": 880,
+        "height": 381
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "reference-click-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/ERP-TABLE.html",
+      "theme": "light",
+      "direction": "rtl",
+      "primaryTargetCount": 0,
+      "exactExperienceCount": 0,
+      "geometry": {
+        "root": {
+          "x": 77.5,
+          "y": 212.0625,
+          "width": 1270,
+          "height": 476
+        },
+        "toolbar": null,
+        "tableViewport": {
+          "x": 78.5,
+          "y": 213.0625,
+          "width": 1268,
+          "height": 419
+        },
+        "header": {
+          "x": 78.5,
+          "y": 213.0625,
+          "width": 1268,
+          "height": 34
+        },
+        "row": {
+          "x": 78.5,
+          "y": 247.0625,
+          "width": 1268,
+          "height": 47
+        },
+        "footer": {
+          "x": 78.5,
+          "y": 632.0625,
+          "width": 1268,
+          "height": 55
+        },
+        "checkbox": null,
+        "photo": null,
+        "photoWrap": null,
+        "badge": {
+          "x": 242.28125,
+          "y": 259.0625,
+          "width": 49.1875,
+          "height": 22
+        },
+        "action": null,
+        "search": null,
+        "chooser": null,
+        "chooserPopover": null
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "normal",
+        "cellLineHeight": "normal",
+        "searchLineHeight": null,
+        "chooserLineHeight": null,
+        "headerPadding": "8px 16px",
+        "cellPadding": "12px 16px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "auto",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 0,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        47,
+        47,
+        47,
+        47,
+        47
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 65.5,
+        "y": 2392.0625,
+        "width": 1294,
+        "height": 500
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-clickable-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/components/table",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "exactExperienceCount": 1,
+      "geometry": {
+        "root": {
+          "x": 194,
+          "y": 240.875,
+          "width": 856,
+          "height": 476
+        },
+        "toolbar": null,
+        "tableViewport": {
+          "x": 195,
+          "y": 241.875,
+          "width": 854,
+          "height": 419
+        },
+        "header": {
+          "x": 195,
+          "y": 241.875,
+          "width": 854,
+          "height": 34
+        },
+        "row": {
+          "x": 195,
+          "y": 275.875,
+          "width": 854,
+          "height": 47
+        },
+        "footer": {
+          "x": 195,
+          "y": 660.875,
+          "width": 854,
+          "height": 55
+        },
+        "checkbox": null,
+        "photo": null,
+        "photoWrap": null,
+        "badge": {
+          "x": 247.109375,
+          "y": 287.875,
+          "width": 50.015625,
+          "height": 22
+        },
+        "action": {
+          "x": 347,
+          "y": 673.875,
+          "width": 30,
+          "height": 30
+        },
+        "search": null,
+        "chooser": null,
+        "chooserPopover": null
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "17px",
+        "cellLineHeight": "18px",
+        "searchLineHeight": null,
+        "chooserLineHeight": null,
+        "headerPadding": "8px 16px",
+        "cellPadding": "12px 16px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "scroll",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 0,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        47,
+        47,
+        47,
+        47,
+        47
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 182,
+        "y": 236.875,
+        "width": 880,
+        "height": 500
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "reference-vertical-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/ERP-TABLE.html",
+      "theme": "light",
+      "direction": "rtl",
+      "primaryTargetCount": 0,
+      "exactExperienceCount": 0,
+      "geometry": {
+        "root": {
+          "x": 77.5,
+          "y": -93.34375,
+          "width": 1270,
+          "height": 1086
+        },
+        "toolbar": null,
+        "tableViewport": {
+          "x": 78.5,
+          "y": -92.34375,
+          "width": 1268,
+          "height": 1084
+        },
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "row": {
+          "x": 90.5,
+          "y": -80.34375,
+          "width": 1244,
+          "height": 256
+        },
+        "footer": null,
+        "checkbox": null,
+        "photo": {
+          "x": 1167.5,
+          "y": -58.34375,
+          "width": 32,
+          "height": 32
+        },
+        "photoWrap": {
+          "x": 103.5,
+          "y": -59.34375,
+          "width": 1096,
+          "height": 34
+        },
+        "badge": {
+          "x": 103.5,
+          "y": -8.34375,
+          "width": 1096,
+          "height": 22
+        },
+        "action": null,
+        "search": null,
+        "chooser": null,
+        "chooserPopover": null
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "normal",
+        "cellLineHeight": "normal",
+        "searchLineHeight": null,
+        "chooserLineHeight": null,
+        "headerPadding": "8px 16px",
+        "cellPadding": "8px 0px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "auto",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 0,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        51,
+        39,
+        35,
+        34,
+        33,
+        38
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 65.5,
+        "y": 2986.65625,
+        "width": 1294,
+        "height": 1100
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-vertical-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/components/table",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "exactExperienceCount": 1,
+      "geometry": {
+        "root": {
+          "x": 194,
+          "y": -63.828125,
+          "width": 856,
+          "height": 1086
+        },
+        "toolbar": null,
+        "tableViewport": {
+          "x": 195,
+          "y": -62.828125,
+          "width": 854,
+          "height": 1084
+        },
+        "header": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "row": {
+          "x": 207,
+          "y": -50.828125,
+          "width": 830,
+          "height": 256
+        },
+        "footer": null,
+        "checkbox": null,
+        "photo": {
+          "x": 870,
+          "y": -28.828125,
+          "width": 32,
+          "height": 32
+        },
+        "photoWrap": null,
+        "badge": {
+          "x": 852.125,
+          "y": 21.171875,
+          "width": 49.875,
+          "height": 22
+        },
+        "action": null,
+        "search": null,
+        "chooser": null,
+        "chooserPopover": null
+      },
+      "computed": {
+        "rootBorderWidth": "0px",
+        "rootRadius": "0px",
+        "headerLineHeight": "17px",
+        "cellLineHeight": "18px",
+        "searchLineHeight": null,
+        "chooserLineHeight": null,
+        "headerPadding": "8px 16px",
+        "cellPadding": "8px 0px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "auto",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 0,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        51,
+        39,
+        35,
+        34,
+        33,
+        38
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 182,
+        "y": 0,
+        "width": 880,
+        "height": 1100
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "reference-headers-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/ERP-TABLE.html",
+      "theme": "light",
+      "direction": "rtl",
+      "primaryTargetCount": 0,
+      "exactExperienceCount": 0,
+      "geometry": {
+        "root": {
+          "x": 77.5,
+          "y": 182.25,
+          "width": 1270,
+          "height": 535.5
+        },
+        "toolbar": {
+          "x": 78.5,
+          "y": 183.25,
+          "width": 1268,
+          "height": 56
+        },
+        "tableViewport": {
+          "x": 78.5,
+          "y": 239.25,
+          "width": 1268,
+          "height": 422.5
+        },
+        "header": {
+          "x": 78.5,
+          "y": 239.25,
+          "width": 1268,
+          "height": 37.5
+        },
+        "row": {
+          "x": 78.5,
+          "y": 276.75,
+          "width": 1268,
+          "height": 47
+        },
+        "footer": {
+          "x": 78.5,
+          "y": 661.75,
+          "width": 1268,
+          "height": 55
+        },
+        "checkbox": {
+          "x": 301.5,
+          "y": 275.75,
+          "width": 16,
+          "height": 16
+        },
+        "photo": null,
+        "photoWrap": null,
+        "badge": {
+          "x": 211.453125,
+          "y": 288.75,
+          "width": 49.1875,
+          "height": 22
+        },
+        "action": null,
+        "search": {
+          "x": 990.5,
+          "y": 195.25,
+          "width": 340,
+          "height": 31
+        },
+        "chooser": {
+          "x": 94.5,
+          "y": 195.25,
+          "width": 92.1875,
+          "height": 31
+        },
+        "chooserPopover": {
+          "x": 94.5,
+          "y": 226.25,
+          "width": 240,
+          "height": 248
+        }
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "normal",
+        "cellLineHeight": "normal",
+        "searchLineHeight": "normal",
+        "chooserLineHeight": "normal",
+        "headerPadding": "8px 16px",
+        "cellPadding": "12px 16px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "auto",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 0,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        47,
+        47,
+        47,
+        47,
+        47,
+        47
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 65.5,
+        "y": 4191.25,
+        "width": 1294,
+        "height": 559.5
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-header-types-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/components/table",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "exactExperienceCount": 1,
+      "geometry": {
+        "root": {
+          "x": 194,
+          "y": 211.46875,
+          "width": 856,
+          "height": 535.5
+        },
+        "toolbar": {
+          "x": 195,
+          "y": 212.46875,
+          "width": 854,
+          "height": 56
+        },
+        "tableViewport": {
+          "x": 195,
+          "y": 268.46875,
+          "width": 854,
+          "height": 422.5
+        },
+        "header": {
+          "x": 89,
+          "y": 268.46875,
+          "width": 960,
+          "height": 37.5
+        },
+        "row": {
+          "x": 89,
+          "y": 305.96875,
+          "width": 960,
+          "height": 47
+        },
+        "footer": {
+          "x": 195,
+          "y": 690.96875,
+          "width": 854,
+          "height": 55
+        },
+        "checkbox": null,
+        "photo": null,
+        "photoWrap": null,
+        "badge": {
+          "x": 139,
+          "y": 317.96875,
+          "width": 50.015625,
+          "height": 22
+        },
+        "action": {
+          "x": 347,
+          "y": 703.96875,
+          "width": 30,
+          "height": 30
+        },
+        "search": {
+          "x": 693,
+          "y": 224.46875,
+          "width": 340,
+          "height": 31
+        },
+        "chooser": {
+          "x": 211,
+          "y": 224.46875,
+          "width": 85.890625,
+          "height": 31
+        },
+        "chooserPopover": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "17px",
+        "cellLineHeight": "18px",
+        "searchLineHeight": "17px",
+        "chooserLineHeight": "normal",
+        "headerPadding": "8px 16px",
+        "cellPadding": "12px 16px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "scroll",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 0,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        47,
+        47,
+        47,
+        47,
+        47,
+        47
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 182,
+        "y": 207.46875,
+        "width": 880,
+        "height": 559.5
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "reference-full-390-dark-rtl",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/ERP-TABLE.html",
+      "theme": "dark",
+      "direction": "rtl",
+      "primaryTargetCount": 0,
+      "exactExperienceCount": 0,
+      "geometry": {
+        "root": {
+          "x": 37,
+          "y": 11.5625,
+          "width": 301,
+          "height": 806.5
+        },
+        "toolbar": {
+          "x": 38,
+          "y": 12.5625,
+          "width": 299,
+          "height": 87
+        },
+        "tableViewport": {
+          "x": 38,
+          "y": 99.5625,
+          "width": 299,
+          "height": 633.5
+        },
+        "header": {
+          "x": -857,
+          "y": 99.5625,
+          "width": 1194,
+          "height": 34.5
+        },
+        "row": {
+          "x": -857,
+          "y": 134.0625,
+          "width": 1194,
+          "height": 59
+        },
+        "footer": {
+          "x": 38,
+          "y": 733.0625,
+          "width": 299,
+          "height": 84
+        },
+        "checkbox": {
+          "x": 253,
+          "y": 140.0625,
+          "width": 16,
+          "height": 16
+        },
+        "photo": {
+          "x": 249,
+          "y": 147.0625,
+          "width": 32,
+          "height": 32
+        },
+        "photoWrap": {
+          "x": 159.734375,
+          "y": 146.0625,
+          "width": 121.265625,
+          "height": 34
+        },
+        "badge": {
+          "x": -64.90625,
+          "y": 152.0625,
+          "width": 65.90625,
+          "height": 22
+        },
+        "action": {
+          "x": -787,
+          "y": 149.0625,
+          "width": 28,
+          "height": 28
+        },
+        "search": {
+          "x": 46,
+          "y": 20.5625,
+          "width": 283,
+          "height": 31
+        },
+        "chooser": {
+          "x": 46,
+          "y": 59.5625,
+          "width": 92.1875,
+          "height": 31
+        },
+        "chooserPopover": {
+          "x": 46,
+          "y": 90.5625,
+          "width": 240,
+          "height": 248
+        }
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "normal",
+        "cellLineHeight": "normal",
+        "searchLineHeight": "normal",
+        "chooserLineHeight": "normal",
+        "headerPadding": "8px 12px",
+        "cellPadding": "12px 12px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "auto",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 0,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59
+      ],
+      "pageHorizontalOverflow": 231,
+      "brokenImages": 0,
+      "crop": {
+        "x": 25,
+        "y": 622.5625,
+        "width": 325,
+        "height": 830.5
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-full-390-dark-rtl",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/components/table",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "exactExperienceCount": 1,
+      "geometry": {
+        "root": {
+          "x": 73,
+          "y": 67.046875,
+          "width": 229,
+          "height": 806
+        },
+        "toolbar": {
+          "x": 74,
+          "y": 68.046875,
+          "width": 227,
+          "height": 87
+        },
+        "tableViewport": {
+          "x": 74,
+          "y": 155.046875,
+          "width": 227,
+          "height": 633
+        },
+        "header": {
+          "x": -893,
+          "y": 155.046875,
+          "width": 1194,
+          "height": 34
+        },
+        "row": {
+          "x": -893,
+          "y": 189.046875,
+          "width": 1194,
+          "height": 59
+        },
+        "footer": {
+          "x": 74,
+          "y": 788.046875,
+          "width": 227,
+          "height": 84
+        },
+        "checkbox": {
+          "x": 271,
+          "y": 164.875,
+          "width": 16,
+          "height": 16
+        },
+        "photo": {
+          "x": 213,
+          "y": 202.046875,
+          "width": 32,
+          "height": 32
+        },
+        "photoWrap": {
+          "x": 146.15625,
+          "y": 201.046875,
+          "width": 98.84375,
+          "height": 34
+        },
+        "badge": {
+          "x": -84.875,
+          "y": 207.046875,
+          "width": 49.875,
+          "height": 22
+        },
+        "action": {
+          "x": -823,
+          "y": 204.046875,
+          "width": 28,
+          "height": 28
+        },
+        "search": {
+          "x": 82,
+          "y": 76.046875,
+          "width": 211,
+          "height": 31
+        },
+        "chooser": {
+          "x": 82,
+          "y": 115.046875,
+          "width": 85.890625,
+          "height": 31
+        },
+        "chooserPopover": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "17px",
+        "cellLineHeight": "18px",
+        "searchLineHeight": "17px",
+        "chooserLineHeight": "normal",
+        "headerPadding": "8px 12px",
+        "cellPadding": "12px 12px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "scroll",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 1,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 61,
+        "y": 5314.046875,
+        "width": 253,
+        "height": 830
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-live-320-light-ltr",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "route": "/components/table",
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "exactExperienceCount": 0,
+      "geometry": {
+        "root": {
+          "x": 57,
+          "y": 96.03125,
+          "width": 191,
+          "height": 376.6875
+        },
+        "toolbar": null,
+        "tableViewport": {
+          "x": 58,
+          "y": 97.03125,
+          "width": 189,
+          "height": 374.6875
+        },
+        "header": {
+          "x": -789,
+          "y": 97.03125,
+          "width": 1036,
+          "height": 34
+        },
+        "row": {
+          "x": -789,
+          "y": 131.03125,
+          "width": 1036,
+          "height": 57
+        },
+        "footer": null,
+        "checkbox": {
+          "x": 217,
+          "y": 106.859375,
+          "width": 16,
+          "height": 16
+        },
+        "photo": null,
+        "photoWrap": null,
+        "badge": null,
+        "action": null,
+        "search": null,
+        "chooser": null,
+        "chooserPopover": null
+      },
+      "computed": {
+        "rootBorderWidth": "0px",
+        "rootRadius": "0px",
+        "headerLineHeight": "17px",
+        "cellLineHeight": "18px",
+        "searchLineHeight": null,
+        "chooserLineHeight": null,
+        "headerPadding": "8px 12px",
+        "cellPadding": "12px 12px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "auto",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 0,
+      "chooserOpen": false,
+      "verticalCellHeights": [
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 45,
+        "y": 859.03125,
+        "width": 215,
+        "height": 400.6875
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-full-state-1280-dark-ltr",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "route": "/components/table",
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "exactExperienceCount": 1,
+      "geometry": {
+        "root": {
+          "x": 194,
+          "y": 105.890625,
+          "width": 696,
+          "height": 746
+        },
+        "toolbar": {
+          "x": 195,
+          "y": 106.890625,
+          "width": 694,
+          "height": 56
+        },
+        "tableViewport": {
+          "x": 195,
+          "y": 162.890625,
+          "width": 694,
+          "height": 633
+        },
+        "header": {
+          "x": -305,
+          "y": 162.890625,
+          "width": 1194,
+          "height": 34
+        },
+        "row": {
+          "x": -305,
+          "y": 196.890625,
+          "width": 1194,
+          "height": 59
+        },
+        "footer": {
+          "x": 195,
+          "y": 795.890625,
+          "width": 694,
+          "height": 55
+        },
+        "checkbox": {
+          "x": 859,
+          "y": 172.71875,
+          "width": 16,
+          "height": 16
+        },
+        "photo": {
+          "x": 797,
+          "y": 209.890625,
+          "width": 32,
+          "height": 32
+        },
+        "photoWrap": {
+          "x": 730.15625,
+          "y": 208.890625,
+          "width": 98.84375,
+          "height": 34
+        },
+        "badge": {
+          "x": 499.125,
+          "y": 214.890625,
+          "width": 49.875,
+          "height": 22
+        },
+        "action": {
+          "x": -239,
+          "y": 211.890625,
+          "width": 28,
+          "height": 28
+        },
+        "search": {
+          "x": 533,
+          "y": 118.890625,
+          "width": 340,
+          "height": 31
+        },
+        "chooser": {
+          "x": 211,
+          "y": 118.890625,
+          "width": 85.890625,
+          "height": 31
+        },
+        "chooserPopover": {
+          "x": 133.9375,
+          "y": 155.890625,
+          "width": 240,
+          "height": 239
+        }
+      },
+      "computed": {
+        "rootBorderWidth": "1px",
+        "rootRadius": "12px",
+        "headerLineHeight": "17px",
+        "cellLineHeight": "18px",
+        "searchLineHeight": "17px",
+        "chooserLineHeight": "normal",
+        "headerPadding": "8px 12px",
+        "cellPadding": "12px 12px",
+        "rowTransition": "background-color 0.14s cubic-bezier(0.2, 0, 0, 1)",
+        "viewportOverflowX": "scroll",
+        "viewportOverflowY": "auto"
+      },
+      "selectedRows": 2,
+      "chooserOpen": true,
+      "verticalCellHeights": [
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59,
+        59
+      ],
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 182,
+        "y": 101.890625,
+        "width": 720,
+        "height": 770
+      },
+      "diagnostics": []
+    }
+  ]
+}

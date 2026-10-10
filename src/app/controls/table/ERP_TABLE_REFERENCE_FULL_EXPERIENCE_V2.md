@@ -81,18 +81,24 @@ feature is not added to this reference reconstruction.
 
 ## Reference geometry baseline at 1440 × 900
 
+The 2026-10-10 source-backed recapture supersedes the earlier text-only
+measurement pass. Loading the binding document through its isolated local HTTP
+origin exposed the reference's inherited `normal` line boxes that the former
+pass had flattened. Persisted PNGs and machine-readable measurements live at
+`docs/review-evidence/erp-table/v2-internal-review/`.
+
 | Part | Reference computed value |
 |---|---:|
 | Experience frame border / radius | 1 px / 12 px |
-| Toolbar height / padding / gap | 54 px / 12 px 16 px / 8 px |
-| Search and column trigger height | 29 px |
+| Toolbar height / padding / gap | 56 px / 12 px 16 px / 8 px |
+| Search and column trigger height | 31 px |
 | Search maximum width | 340 px |
 | Column popover width / maximum height / padding | 240 px / 340 px / 8 px |
 | Column popover item height / padding / gap | 32 px / 8 px / 8 px |
-| Full header / rich row | 33 px / 57 px |
-| Header-types header / row | 34 px / 47 px |
-| Compact header / row | 31 px / 39 px |
-| Clickable header / row | 31 px / 47 px |
+| Full header / rich row | 34.5 px / 59 px |
+| Header-types header / row | 37.5 px / 47 px |
+| Compact header / row | 34 px / 39 px |
+| Clickable header / row | 34 px / 47 px |
 | Fixed internal scroll height | 380 px |
 | Selection checkbox | 16 px |
 | Photo | 32 px |
@@ -100,7 +106,7 @@ feature is not added to this reference reconstruction.
 | Icon action | 28 px |
 | Footer | 55 px |
 | Pagination button | 30 px |
-| Vertical record / cell | 252 px / 49 px |
+| Vertical record / cells | 256 px / 51, 39, 35, 34, 33, 38 px |
 
 ## Review structure
 

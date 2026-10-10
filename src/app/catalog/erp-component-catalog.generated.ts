@@ -9956,21 +9956,131 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "caption": "سجل الحسابات",
           "columns": [
             {
+              "key": "code",
+              "header": "رقم الحساب",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 132,
+              "digitSet": "latin"
+            },
+            {
               "key": "name",
-              "label": "اسم الحساب"
+              "header": "اسم الحساب",
+              "descriptionKey": "description",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 224
+            },
+            {
+              "key": "type",
+              "header": "النوع",
+              "sortable": true,
+              "initialWidth": 116
             },
             {
               "key": "balance",
-              "label": "الرصيد"
+              "header": "الرصيد",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 144,
+              "cellAlign": "end",
+              "headerAlign": "end",
+              "digitSet": "latin"
+            },
+            {
+              "key": "status",
+              "header": "الحالة",
+              "initialWidth": 112,
+              "align": "center"
+            },
+            {
+              "key": "branch",
+              "header": "الفرع",
+              "sortable": true,
+              "initialWidth": 132
+            },
+            {
+              "key": "updated",
+              "header": "آخر تحديث",
+              "initialWidth": 132,
+              "digitSet": "latin"
             }
           ],
           "rows": [
             {
-              "id": "1",
-              "name": "حساب المبيعات",
-              "balance": "125,000 ج.م"
+              "id": "101",
+              "code": "410100",
+              "name": "المبيعات المحلية",
+              "description": "إيرادات النشاط الرئيسي",
+              "type": "إيرادات",
+              "balance": "1,245,800.00",
+              "status": "نشط",
+              "branch": "القاهرة",
+              "updated": "2026-10-10"
+            },
+            {
+              "id": "102",
+              "code": "120210",
+              "name": "ذمم العملاء",
+              "description": "أرصدة العملاء المدينة",
+              "type": "أصول",
+              "balance": "487,320.50",
+              "status": "نشط",
+              "branch": "الإسكندرية",
+              "updated": "2026-10-09"
+            },
+            {
+              "id": "103",
+              "code": "210110",
+              "name": "الموردون المحليون",
+              "description": "التزامات التوريد المفتوحة",
+              "type": "التزامات",
+              "balance": "302,750.00",
+              "status": "قيد المراجعة",
+              "branch": "القاهرة",
+              "updated": "2026-10-08"
+            },
+            {
+              "id": "104",
+              "code": "510300",
+              "name": "تكلفة المخزون",
+              "description": "تكلفة البضاعة المباعة",
+              "type": "مصروفات",
+              "balance": "775,940.25",
+              "status": "نشط",
+              "branch": "المنصورة",
+              "updated": "2026-10-07"
+            },
+            {
+              "id": "105",
+              "code": "130120",
+              "name": "عهد الموظفين",
+              "description": "عهد تشغيلية قصيرة الأجل",
+              "type": "أصول",
+              "balance": "56,400.00",
+              "status": "موقوف",
+              "branch": "القاهرة",
+              "updated": "2026-10-06"
             }
           ],
+          "visibleColumnKeys": [
+            "code",
+            "name",
+            "type",
+            "balance",
+            "status",
+            "branch",
+            "updated"
+          ],
+          "selectable": true,
+          "showHeaderSelection": true,
+          "rowActivatable": true,
+          "striped": true,
+          "hover": true,
+          "footerValues": {
+            "name": "إجمالي الأرصدة",
+            "balance": "2,868,210.75"
+          },
           "selectedKeys": [],
           "columnWidths": {}
         }
@@ -9982,21 +10092,131 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "caption": "سجل الحسابات",
           "columns": [
             {
+              "key": "code",
+              "header": "رقم الحساب",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 132,
+              "digitSet": "latin"
+            },
+            {
               "key": "name",
-              "label": "اسم الحساب"
+              "header": "اسم الحساب",
+              "descriptionKey": "description",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 224
+            },
+            {
+              "key": "type",
+              "header": "النوع",
+              "sortable": true,
+              "initialWidth": 116
             },
             {
               "key": "balance",
-              "label": "الرصيد"
+              "header": "الرصيد",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 144,
+              "cellAlign": "end",
+              "headerAlign": "end",
+              "digitSet": "latin"
+            },
+            {
+              "key": "status",
+              "header": "الحالة",
+              "initialWidth": 112,
+              "align": "center"
+            },
+            {
+              "key": "branch",
+              "header": "الفرع",
+              "sortable": true,
+              "initialWidth": 132
+            },
+            {
+              "key": "updated",
+              "header": "آخر تحديث",
+              "initialWidth": 132,
+              "digitSet": "latin"
             }
           ],
           "rows": [
             {
-              "id": "1",
-              "name": "حساب المبيعات",
-              "balance": "125,000 ج.م"
+              "id": "101",
+              "code": "410100",
+              "name": "المبيعات المحلية",
+              "description": "إيرادات النشاط الرئيسي",
+              "type": "إيرادات",
+              "balance": "1,245,800.00",
+              "status": "نشط",
+              "branch": "القاهرة",
+              "updated": "2026-10-10"
+            },
+            {
+              "id": "102",
+              "code": "120210",
+              "name": "ذمم العملاء",
+              "description": "أرصدة العملاء المدينة",
+              "type": "أصول",
+              "balance": "487,320.50",
+              "status": "نشط",
+              "branch": "الإسكندرية",
+              "updated": "2026-10-09"
+            },
+            {
+              "id": "103",
+              "code": "210110",
+              "name": "الموردون المحليون",
+              "description": "التزامات التوريد المفتوحة",
+              "type": "التزامات",
+              "balance": "302,750.00",
+              "status": "قيد المراجعة",
+              "branch": "القاهرة",
+              "updated": "2026-10-08"
+            },
+            {
+              "id": "104",
+              "code": "510300",
+              "name": "تكلفة المخزون",
+              "description": "تكلفة البضاعة المباعة",
+              "type": "مصروفات",
+              "balance": "775,940.25",
+              "status": "نشط",
+              "branch": "المنصورة",
+              "updated": "2026-10-07"
+            },
+            {
+              "id": "105",
+              "code": "130120",
+              "name": "عهد الموظفين",
+              "description": "عهد تشغيلية قصيرة الأجل",
+              "type": "أصول",
+              "balance": "56,400.00",
+              "status": "موقوف",
+              "branch": "القاهرة",
+              "updated": "2026-10-06"
             }
           ],
+          "visibleColumnKeys": [
+            "code",
+            "name",
+            "type",
+            "balance",
+            "status",
+            "branch",
+            "updated"
+          ],
+          "selectable": true,
+          "showHeaderSelection": true,
+          "rowActivatable": true,
+          "striped": true,
+          "hover": true,
+          "footerValues": {
+            "name": "إجمالي الأرصدة",
+            "balance": "2,868,210.75"
+          },
           "selectedKeys": [],
           "columnWidths": {},
           "density": "compact"
@@ -10009,21 +10229,131 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "caption": "سجل الحسابات",
           "columns": [
             {
+              "key": "code",
+              "header": "رقم الحساب",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 132,
+              "digitSet": "latin"
+            },
+            {
               "key": "name",
-              "label": "اسم الحساب"
+              "header": "اسم الحساب",
+              "descriptionKey": "description",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 224
+            },
+            {
+              "key": "type",
+              "header": "النوع",
+              "sortable": true,
+              "initialWidth": 116
             },
             {
               "key": "balance",
-              "label": "الرصيد"
+              "header": "الرصيد",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 144,
+              "cellAlign": "end",
+              "headerAlign": "end",
+              "digitSet": "latin"
+            },
+            {
+              "key": "status",
+              "header": "الحالة",
+              "initialWidth": 112,
+              "align": "center"
+            },
+            {
+              "key": "branch",
+              "header": "الفرع",
+              "sortable": true,
+              "initialWidth": 132
+            },
+            {
+              "key": "updated",
+              "header": "آخر تحديث",
+              "initialWidth": 132,
+              "digitSet": "latin"
             }
           ],
           "rows": [
             {
-              "id": "1",
-              "name": "حساب المبيعات",
-              "balance": "125,000 ج.م"
+              "id": "101",
+              "code": "410100",
+              "name": "المبيعات المحلية",
+              "description": "إيرادات النشاط الرئيسي",
+              "type": "إيرادات",
+              "balance": "1,245,800.00",
+              "status": "نشط",
+              "branch": "القاهرة",
+              "updated": "2026-10-10"
+            },
+            {
+              "id": "102",
+              "code": "120210",
+              "name": "ذمم العملاء",
+              "description": "أرصدة العملاء المدينة",
+              "type": "أصول",
+              "balance": "487,320.50",
+              "status": "نشط",
+              "branch": "الإسكندرية",
+              "updated": "2026-10-09"
+            },
+            {
+              "id": "103",
+              "code": "210110",
+              "name": "الموردون المحليون",
+              "description": "التزامات التوريد المفتوحة",
+              "type": "التزامات",
+              "balance": "302,750.00",
+              "status": "قيد المراجعة",
+              "branch": "القاهرة",
+              "updated": "2026-10-08"
+            },
+            {
+              "id": "104",
+              "code": "510300",
+              "name": "تكلفة المخزون",
+              "description": "تكلفة البضاعة المباعة",
+              "type": "مصروفات",
+              "balance": "775,940.25",
+              "status": "نشط",
+              "branch": "المنصورة",
+              "updated": "2026-10-07"
+            },
+            {
+              "id": "105",
+              "code": "130120",
+              "name": "عهد الموظفين",
+              "description": "عهد تشغيلية قصيرة الأجل",
+              "type": "أصول",
+              "balance": "56,400.00",
+              "status": "موقوف",
+              "branch": "القاهرة",
+              "updated": "2026-10-06"
             }
           ],
+          "visibleColumnKeys": [
+            "code",
+            "name",
+            "type",
+            "balance",
+            "status",
+            "branch",
+            "updated"
+          ],
+          "selectable": true,
+          "showHeaderSelection": true,
+          "rowActivatable": true,
+          "striped": true,
+          "hover": true,
+          "footerValues": {
+            "name": "إجمالي الأرصدة",
+            "balance": "2,868,210.75"
+          },
           "selectedKeys": [],
           "columnWidths": {},
           "density": "normal"
@@ -10036,21 +10366,131 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "caption": "سجل الحسابات",
           "columns": [
             {
+              "key": "code",
+              "header": "رقم الحساب",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 132,
+              "digitSet": "latin"
+            },
+            {
               "key": "name",
-              "label": "اسم الحساب"
+              "header": "اسم الحساب",
+              "descriptionKey": "description",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 224
+            },
+            {
+              "key": "type",
+              "header": "النوع",
+              "sortable": true,
+              "initialWidth": 116
             },
             {
               "key": "balance",
-              "label": "الرصيد"
+              "header": "الرصيد",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 144,
+              "cellAlign": "end",
+              "headerAlign": "end",
+              "digitSet": "latin"
+            },
+            {
+              "key": "status",
+              "header": "الحالة",
+              "initialWidth": 112,
+              "align": "center"
+            },
+            {
+              "key": "branch",
+              "header": "الفرع",
+              "sortable": true,
+              "initialWidth": 132
+            },
+            {
+              "key": "updated",
+              "header": "آخر تحديث",
+              "initialWidth": 132,
+              "digitSet": "latin"
             }
           ],
           "rows": [
             {
-              "id": "1",
-              "name": "حساب المبيعات",
-              "balance": "125,000 ج.م"
+              "id": "101",
+              "code": "410100",
+              "name": "المبيعات المحلية",
+              "description": "إيرادات النشاط الرئيسي",
+              "type": "إيرادات",
+              "balance": "1,245,800.00",
+              "status": "نشط",
+              "branch": "القاهرة",
+              "updated": "2026-10-10"
+            },
+            {
+              "id": "102",
+              "code": "120210",
+              "name": "ذمم العملاء",
+              "description": "أرصدة العملاء المدينة",
+              "type": "أصول",
+              "balance": "487,320.50",
+              "status": "نشط",
+              "branch": "الإسكندرية",
+              "updated": "2026-10-09"
+            },
+            {
+              "id": "103",
+              "code": "210110",
+              "name": "الموردون المحليون",
+              "description": "التزامات التوريد المفتوحة",
+              "type": "التزامات",
+              "balance": "302,750.00",
+              "status": "قيد المراجعة",
+              "branch": "القاهرة",
+              "updated": "2026-10-08"
+            },
+            {
+              "id": "104",
+              "code": "510300",
+              "name": "تكلفة المخزون",
+              "description": "تكلفة البضاعة المباعة",
+              "type": "مصروفات",
+              "balance": "775,940.25",
+              "status": "نشط",
+              "branch": "المنصورة",
+              "updated": "2026-10-07"
+            },
+            {
+              "id": "105",
+              "code": "130120",
+              "name": "عهد الموظفين",
+              "description": "عهد تشغيلية قصيرة الأجل",
+              "type": "أصول",
+              "balance": "56,400.00",
+              "status": "موقوف",
+              "branch": "القاهرة",
+              "updated": "2026-10-06"
             }
           ],
+          "visibleColumnKeys": [
+            "code",
+            "name",
+            "type",
+            "balance",
+            "status",
+            "branch",
+            "updated"
+          ],
+          "selectable": true,
+          "showHeaderSelection": true,
+          "rowActivatable": true,
+          "striped": true,
+          "hover": true,
+          "footerValues": {
+            "name": "إجمالي الأرصدة",
+            "balance": "2,868,210.75"
+          },
           "selectedKeys": [],
           "columnWidths": {},
           "density": "comfortable"
@@ -10063,21 +10503,131 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "caption": "سجل الحسابات",
           "columns": [
             {
+              "key": "code",
+              "header": "رقم الحساب",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 132,
+              "digitSet": "latin"
+            },
+            {
               "key": "name",
-              "label": "اسم الحساب"
+              "header": "اسم الحساب",
+              "descriptionKey": "description",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 224
+            },
+            {
+              "key": "type",
+              "header": "النوع",
+              "sortable": true,
+              "initialWidth": 116
             },
             {
               "key": "balance",
-              "label": "الرصيد"
+              "header": "الرصيد",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 144,
+              "cellAlign": "end",
+              "headerAlign": "end",
+              "digitSet": "latin"
+            },
+            {
+              "key": "status",
+              "header": "الحالة",
+              "initialWidth": 112,
+              "align": "center"
+            },
+            {
+              "key": "branch",
+              "header": "الفرع",
+              "sortable": true,
+              "initialWidth": 132
+            },
+            {
+              "key": "updated",
+              "header": "آخر تحديث",
+              "initialWidth": 132,
+              "digitSet": "latin"
             }
           ],
           "rows": [
             {
-              "id": "1",
-              "name": "حساب المبيعات",
-              "balance": "125,000 ج.م"
+              "id": "101",
+              "code": "410100",
+              "name": "المبيعات المحلية",
+              "description": "إيرادات النشاط الرئيسي",
+              "type": "إيرادات",
+              "balance": "1,245,800.00",
+              "status": "نشط",
+              "branch": "القاهرة",
+              "updated": "2026-10-10"
+            },
+            {
+              "id": "102",
+              "code": "120210",
+              "name": "ذمم العملاء",
+              "description": "أرصدة العملاء المدينة",
+              "type": "أصول",
+              "balance": "487,320.50",
+              "status": "نشط",
+              "branch": "الإسكندرية",
+              "updated": "2026-10-09"
+            },
+            {
+              "id": "103",
+              "code": "210110",
+              "name": "الموردون المحليون",
+              "description": "التزامات التوريد المفتوحة",
+              "type": "التزامات",
+              "balance": "302,750.00",
+              "status": "قيد المراجعة",
+              "branch": "القاهرة",
+              "updated": "2026-10-08"
+            },
+            {
+              "id": "104",
+              "code": "510300",
+              "name": "تكلفة المخزون",
+              "description": "تكلفة البضاعة المباعة",
+              "type": "مصروفات",
+              "balance": "775,940.25",
+              "status": "نشط",
+              "branch": "المنصورة",
+              "updated": "2026-10-07"
+            },
+            {
+              "id": "105",
+              "code": "130120",
+              "name": "عهد الموظفين",
+              "description": "عهد تشغيلية قصيرة الأجل",
+              "type": "أصول",
+              "balance": "56,400.00",
+              "status": "موقوف",
+              "branch": "القاهرة",
+              "updated": "2026-10-06"
             }
           ],
+          "visibleColumnKeys": [
+            "code",
+            "name",
+            "type",
+            "balance",
+            "status",
+            "branch",
+            "updated"
+          ],
+          "selectable": true,
+          "showHeaderSelection": true,
+          "rowActivatable": true,
+          "striped": true,
+          "hover": true,
+          "footerValues": {
+            "name": "إجمالي الأرصدة",
+            "balance": "2,868,210.75"
+          },
           "selectedKeys": [],
           "columnWidths": {},
           "hoverMotion": false
@@ -10090,21 +10640,131 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "caption": "سجل الحسابات",
           "columns": [
             {
+              "key": "code",
+              "header": "رقم الحساب",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 132,
+              "digitSet": "latin"
+            },
+            {
               "key": "name",
-              "label": "اسم الحساب"
+              "header": "اسم الحساب",
+              "descriptionKey": "description",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 224
+            },
+            {
+              "key": "type",
+              "header": "النوع",
+              "sortable": true,
+              "initialWidth": 116
             },
             {
               "key": "balance",
-              "label": "الرصيد"
+              "header": "الرصيد",
+              "sortable": true,
+              "resizable": true,
+              "initialWidth": 144,
+              "cellAlign": "end",
+              "headerAlign": "end",
+              "digitSet": "latin"
+            },
+            {
+              "key": "status",
+              "header": "الحالة",
+              "initialWidth": 112,
+              "align": "center"
+            },
+            {
+              "key": "branch",
+              "header": "الفرع",
+              "sortable": true,
+              "initialWidth": 132
+            },
+            {
+              "key": "updated",
+              "header": "آخر تحديث",
+              "initialWidth": 132,
+              "digitSet": "latin"
             }
           ],
           "rows": [
             {
-              "id": "1",
-              "name": "حساب المبيعات",
-              "balance": "125,000 ج.م"
+              "id": "101",
+              "code": "410100",
+              "name": "المبيعات المحلية",
+              "description": "إيرادات النشاط الرئيسي",
+              "type": "إيرادات",
+              "balance": "1,245,800.00",
+              "status": "نشط",
+              "branch": "القاهرة",
+              "updated": "2026-10-10"
+            },
+            {
+              "id": "102",
+              "code": "120210",
+              "name": "ذمم العملاء",
+              "description": "أرصدة العملاء المدينة",
+              "type": "أصول",
+              "balance": "487,320.50",
+              "status": "نشط",
+              "branch": "الإسكندرية",
+              "updated": "2026-10-09"
+            },
+            {
+              "id": "103",
+              "code": "210110",
+              "name": "الموردون المحليون",
+              "description": "التزامات التوريد المفتوحة",
+              "type": "التزامات",
+              "balance": "302,750.00",
+              "status": "قيد المراجعة",
+              "branch": "القاهرة",
+              "updated": "2026-10-08"
+            },
+            {
+              "id": "104",
+              "code": "510300",
+              "name": "تكلفة المخزون",
+              "description": "تكلفة البضاعة المباعة",
+              "type": "مصروفات",
+              "balance": "775,940.25",
+              "status": "نشط",
+              "branch": "المنصورة",
+              "updated": "2026-10-07"
+            },
+            {
+              "id": "105",
+              "code": "130120",
+              "name": "عهد الموظفين",
+              "description": "عهد تشغيلية قصيرة الأجل",
+              "type": "أصول",
+              "balance": "56,400.00",
+              "status": "موقوف",
+              "branch": "القاهرة",
+              "updated": "2026-10-06"
             }
           ],
+          "visibleColumnKeys": [
+            "code",
+            "name",
+            "type",
+            "balance",
+            "status",
+            "branch",
+            "updated"
+          ],
+          "selectable": true,
+          "showHeaderSelection": true,
+          "rowActivatable": true,
+          "striped": true,
+          "hover": true,
+          "footerValues": {
+            "name": "إجمالي الأرصدة",
+            "balance": "2,868,210.75"
+          },
           "selectedKeys": [],
           "columnWidths": {},
           "hoverMotion": true
@@ -10114,12 +10774,70 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "displayNameAr": "الجدول",
     "descriptionAr": "دلالات الجدول والصفوف والخلايا والاختيار والفرز والتحجيم.",
     "showcaseInitialValues": {
-      "visibleColumnKeys": null,
+      "visibleColumnKeys": [
+        "code",
+        "name",
+        "type",
+        "balance",
+        "status",
+        "branch",
+        "updated"
+      ],
       "rows": [
         {
-          "id": "1",
-          "name": "حساب المبيعات",
-          "balance": "125,000 ج.م"
+          "id": "101",
+          "code": "410100",
+          "name": "المبيعات المحلية",
+          "description": "إيرادات النشاط الرئيسي",
+          "type": "إيرادات",
+          "balance": "1,245,800.00",
+          "status": "نشط",
+          "branch": "القاهرة",
+          "updated": "2026-10-10"
+        },
+        {
+          "id": "102",
+          "code": "120210",
+          "name": "ذمم العملاء",
+          "description": "أرصدة العملاء المدينة",
+          "type": "أصول",
+          "balance": "487,320.50",
+          "status": "نشط",
+          "branch": "الإسكندرية",
+          "updated": "2026-10-09"
+        },
+        {
+          "id": "103",
+          "code": "210110",
+          "name": "الموردون المحليون",
+          "description": "التزامات التوريد المفتوحة",
+          "type": "التزامات",
+          "balance": "302,750.00",
+          "status": "قيد المراجعة",
+          "branch": "القاهرة",
+          "updated": "2026-10-08"
+        },
+        {
+          "id": "104",
+          "code": "510300",
+          "name": "تكلفة المخزون",
+          "description": "تكلفة البضاعة المباعة",
+          "type": "مصروفات",
+          "balance": "775,940.25",
+          "status": "نشط",
+          "branch": "المنصورة",
+          "updated": "2026-10-07"
+        },
+        {
+          "id": "105",
+          "code": "130120",
+          "name": "عهد الموظفين",
+          "description": "عهد تشغيلية قصيرة الأجل",
+          "type": "أصول",
+          "balance": "56,400.00",
+          "status": "موقوف",
+          "branch": "القاهرة",
+          "updated": "2026-10-06"
         }
       ],
       "rowKey": "id",
@@ -10129,14 +10847,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "layout": "horizontal",
       "presentation": "standalone",
       "fixedHeight": null,
-      "selectable": false,
+      "selectable": true,
       "showHeaderSelection": true,
-      "rowActivatable": false,
-      "striped": false,
+      "rowActivatable": true,
+      "striped": true,
       "hover": true,
       "hoverMotion": true,
       "sort": null,
-      "footerValues": {},
+      "footerValues": {
+        "name": "إجمالي الأرصدة",
+        "balance": "2,868,210.75"
+      },
       "cellDefinitions": [],
       "footerDefinitions": [],
       "selectedKeys": [],
@@ -10144,12 +10865,54 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "caption": "سجل الحسابات",
       "columns": [
         {
+          "key": "code",
+          "header": "رقم الحساب",
+          "sortable": true,
+          "resizable": true,
+          "initialWidth": 132,
+          "digitSet": "latin"
+        },
+        {
           "key": "name",
-          "label": "اسم الحساب"
+          "header": "اسم الحساب",
+          "descriptionKey": "description",
+          "sortable": true,
+          "resizable": true,
+          "initialWidth": 224
+        },
+        {
+          "key": "type",
+          "header": "النوع",
+          "sortable": true,
+          "initialWidth": 116
         },
         {
           "key": "balance",
-          "label": "الرصيد"
+          "header": "الرصيد",
+          "sortable": true,
+          "resizable": true,
+          "initialWidth": 144,
+          "cellAlign": "end",
+          "headerAlign": "end",
+          "digitSet": "latin"
+        },
+        {
+          "key": "status",
+          "header": "الحالة",
+          "initialWidth": 112,
+          "align": "center"
+        },
+        {
+          "key": "branch",
+          "header": "الفرع",
+          "sortable": true,
+          "initialWidth": 132
+        },
+        {
+          "key": "updated",
+          "header": "آخر تحديث",
+          "initialWidth": 132,
+          "digitSet": "latin"
         }
       ]
     },
@@ -10174,12 +10937,54 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "options": [],
         "initialValue": [
           {
+            "key": "code",
+            "header": "رقم الحساب",
+            "sortable": true,
+            "resizable": true,
+            "initialWidth": 132,
+            "digitSet": "latin"
+          },
+          {
             "key": "name",
-            "label": "اسم الحساب"
+            "header": "اسم الحساب",
+            "descriptionKey": "description",
+            "sortable": true,
+            "resizable": true,
+            "initialWidth": 224
+          },
+          {
+            "key": "type",
+            "header": "النوع",
+            "sortable": true,
+            "initialWidth": 116
           },
           {
             "key": "balance",
-            "label": "الرصيد"
+            "header": "الرصيد",
+            "sortable": true,
+            "resizable": true,
+            "initialWidth": 144,
+            "cellAlign": "end",
+            "headerAlign": "end",
+            "digitSet": "latin"
+          },
+          {
+            "key": "status",
+            "header": "الحالة",
+            "initialWidth": 112,
+            "align": "center"
+          },
+          {
+            "key": "branch",
+            "header": "الفرع",
+            "sortable": true,
+            "initialWidth": 132
+          },
+          {
+            "key": "updated",
+            "header": "آخر تحديث",
+            "initialWidth": 132,
+            "digitSet": "latin"
           }
         ]
       },
@@ -10191,7 +10996,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly string[] | null",
         "options": [],
-        "initialValue": null
+        "initialValue": [
+          "code",
+          "name",
+          "type",
+          "balance",
+          "status",
+          "branch",
+          "updated"
+        ]
       },
       {
         "name": "rows",
@@ -10203,9 +11016,59 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "options": [],
         "initialValue": [
           {
-            "id": "1",
-            "name": "حساب المبيعات",
-            "balance": "125,000 ج.م"
+            "id": "101",
+            "code": "410100",
+            "name": "المبيعات المحلية",
+            "description": "إيرادات النشاط الرئيسي",
+            "type": "إيرادات",
+            "balance": "1,245,800.00",
+            "status": "نشط",
+            "branch": "القاهرة",
+            "updated": "2026-10-10"
+          },
+          {
+            "id": "102",
+            "code": "120210",
+            "name": "ذمم العملاء",
+            "description": "أرصدة العملاء المدينة",
+            "type": "أصول",
+            "balance": "487,320.50",
+            "status": "نشط",
+            "branch": "الإسكندرية",
+            "updated": "2026-10-09"
+          },
+          {
+            "id": "103",
+            "code": "210110",
+            "name": "الموردون المحليون",
+            "description": "التزامات التوريد المفتوحة",
+            "type": "التزامات",
+            "balance": "302,750.00",
+            "status": "قيد المراجعة",
+            "branch": "القاهرة",
+            "updated": "2026-10-08"
+          },
+          {
+            "id": "104",
+            "code": "510300",
+            "name": "تكلفة المخزون",
+            "description": "تكلفة البضاعة المباعة",
+            "type": "مصروفات",
+            "balance": "775,940.25",
+            "status": "نشط",
+            "branch": "المنصورة",
+            "updated": "2026-10-07"
+          },
+          {
+            "id": "105",
+            "code": "130120",
+            "name": "عهد الموظفين",
+            "description": "عهد تشغيلية قصيرة الأجل",
+            "type": "أصول",
+            "balance": "56,400.00",
+            "status": "موقوف",
+            "branch": "القاهرة",
+            "updated": "2026-10-06"
           }
         ]
       },
@@ -10303,7 +11166,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "false",
           "true"
         ],
-        "initialValue": false
+        "initialValue": true
       },
       {
         "name": "showHeaderSelection",
@@ -10329,7 +11192,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "false",
           "true"
         ],
-        "initialValue": false
+        "initialValue": true
       },
       {
         "name": "striped",
@@ -10342,7 +11205,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "false",
           "true"
         ],
-        "initialValue": false
+        "initialValue": true
       },
       {
         "name": "hover",
@@ -10388,7 +11251,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "Readonly<Record<string, string | number | null | undefined>>",
         "options": [],
-        "initialValue": {}
+        "initialValue": {
+          "name": "إجمالي الأرصدة",
+          "balance": "2,868,210.75"
+        }
       },
       {
         "name": "cellDefinitions",

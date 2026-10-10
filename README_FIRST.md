@@ -1,5 +1,22 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — ErpTable full reference
+
+The binding `ERP-TABLE.html` SHA was reverified and the source was rendered
+over isolated local HTTP. Six reference specimens and their equivalent ERP
+compositions were recaptured at matched conditions. After correcting the
+source-derived line metrics, every measured layout box is within `0.5px`; the
+28px action, 16px checkbox, 32px avatar and 22px badge dimensions match
+exactly. The dedicated one-target workbench now uses five Arabic ERP records
+and proves selection, row activation, sort output, resize/visibility inputs and
+footer data. Evidence is stored in
+`docs/review-evidence/erp-table/v2-internal-review/`. The implementation has no
+390px page overflow, broken images or browser diagnostics. Product Owner visual
+approval is not recorded. Focused verification passes 3/3 files and 38/38
+tests; canonical verification passes 128/128 files and 818/818 tests, both
+typechecks, all governance/lint and the zero-warning 418.32 kB / 92.91 kB
+build. Next reopened owner: `ErpUserMenu`.
+
 ## Latest verified UI unit — ErpTabs exact reference
 
 `ERP-TABS.html` was rehashed at

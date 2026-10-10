@@ -1,5 +1,20 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — ErpTable reviewed internally
+
+Continue from synchronized `main` after the bounded ErpTable checkpoint. The
+binding source was rendered from an isolated local copy and compared directly
+with the ERP experience across all six specimens. Persisted reference and
+implementation screenshots, runtime measurements and reproduction steps are
+under `docs/review-evidence/erp-table/v2-internal-review/`. Maximum measured
+layout delta is 0.5px, implementation page overflow is zero at 390px, and the
+single live target now proves meaningful Arabic data plus selection, sorting,
+row activation, resizing, visibility and footer contracts. Product Owner
+visual approval remains pending. Continue with the reopened `ErpUserMenu`.
+Focused verification passes 3/3 files and 38/38 tests; canonical verification
+passes 128/128 files and 818/818 tests, all lint/governance, both typechecks
+and the zero-warning 418.32 kB / 92.91 kB production build.
+
 ## Current continuation point — ErpTabs reviewed internally
 
 Continue from synchronized `main` after the bounded ErpTabs checkpoint.

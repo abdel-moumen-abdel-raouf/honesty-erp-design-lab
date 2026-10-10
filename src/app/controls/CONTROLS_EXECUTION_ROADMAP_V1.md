@@ -1,5 +1,20 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — ErpTable complete internally
+
+The binding Table source was rehashed, rendered and compared with the complete
+ERP multi-owner experience across all six specimens. Fresh source-backed
+measurements supersede the former geometry summary; the final implementation
+stays within 0.5px and matches action, checkbox, avatar and badge geometry
+exactly. The single Table workbench target now contains five meaningful Arabic
+ERP rows and live selection, sort, activation, resize, visibility and footer
+evidence. Screenshots and measurements are under
+`docs/review-evidence/erp-table/v2-internal-review/`. Product Owner status
+remains pending. Focused verification passes 3/3 files and 38/38 tests;
+canonical verification passes 128/128 files and 818/818 tests with a
+zero-warning 418.32 kB / 92.91 kB build. The next reopened owner is
+`ErpUserMenu`.
+
 ## Current UI continuation — ErpTabs complete internally
 
 The binding source was rehashed, rendered and compared directly with the

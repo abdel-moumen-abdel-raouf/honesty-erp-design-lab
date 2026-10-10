@@ -21,4 +21,8 @@
   overflow: visible;
 }
 
+.pagination__summary--table-reference erp-text {
+  line-height: var(--honesty-pagination-reference-summary-line-height);
+}
+
 @include query.viewport-down('sm') { :host { grid-template-columns: 1fr; } .pagination__controls { justify-content: start; } }

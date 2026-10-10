@@ -104,6 +104,7 @@
               [attr.data-label]="column.header"
               [attr.data-align]="column.cellAlign ?? column.align ?? 'start'"
               [attr.data-overflow]="column.overflow ?? 'wrap'"
+              [attr.data-digit-set]="column.digitSet ?? null"
             >
               <span class="content">
                 @if (cellTemplate(column.key); as template) {
@@ -170,6 +171,7 @@
             <td
               [attr.data-label]="column.header"
               [attr.data-align]="column.cellAlign ?? column.align ?? 'start'"
+              [attr.data-digit-set]="column.digitSet ?? null"
             >
               <span class="content">
                 @if (footerTemplate(column.key); as template) {

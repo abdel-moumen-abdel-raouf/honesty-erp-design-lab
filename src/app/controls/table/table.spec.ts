@@ -257,6 +257,7 @@ describe('ErpTable', () => {
     fixture.detectChanges();
     const cell = fixture.nativeElement.querySelector('tbody td');
     expect(cell.getAttribute('data-align')).toBe('left');
+    expect(cell.getAttribute('data-digit-set')).toBe('arabic-indic');
     expect(cell.querySelector(':scope > .content')).not.toBeNull();
     expect(cell.textContent).toContain('١٢٠٤');
     expect(fixture.nativeElement.textContent).not.toContain('لا يظهر');

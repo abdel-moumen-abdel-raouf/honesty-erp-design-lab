@@ -26,7 +26,12 @@
   min-inline-size: 0;
 }
 
-.table-review__photo-cell { display: flex; gap: 10px; }
+.table-review__photo-cell {
+  display: inline-flex;
+  gap: 10px;
+  min-block-size: 34px;
+  vertical-align: middle;
+}
 .table-review__money { display: inline-flex; gap: 3px; }
 .table-review__money { min-block-size: 17px; }
 

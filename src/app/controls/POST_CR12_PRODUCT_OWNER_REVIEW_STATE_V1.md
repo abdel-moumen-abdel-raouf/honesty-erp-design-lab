@@ -1,5 +1,22 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — ErpTable
+
+The binding Table SHA was reverified and all six source specimens were rendered
+again over isolated local HTTP. The complete ERP reference experience retains
+its separate production owners while reproducing every visible feature. The
+fresh geometry baseline records a maximum 0.5px implementation delta, exact
+28/16/32/22px action/checkbox/avatar/badge sizes, and zero implementation page
+overflow at 390px. The Table workbench now provides meaningful Arabic rows and
+real selection, sorting, activation, resize, visibility and footer evidence on
+exactly one target. Reproducible captures and measurements are under
+`docs/review-evidence/erp-table/v2-internal-review/`. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Focused verification passes 3/3 files
+and 38/38 tests; canonical verification passes 128/128 files and 818/818
+tests, both typechecks, all governance/lint and the zero-warning 418.32 kB /
+92.91 kB production build. Next reopened owner: `ErpUserMenu`.
+
 ## Current review execution — 2026-10-10 — ErpTabs
 
 The binding Tabs SHA was reverified and rendered beside the current exact

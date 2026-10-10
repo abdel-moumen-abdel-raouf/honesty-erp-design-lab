@@ -1,5 +1,26 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current ErpTable Full-Reference Internal Review State
+
+`ERP-TABLE.html` remains binding at SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`.
+The source was rendered again over isolated local HTTP and all six reference
+specimens were recaptured beside the complete ERP composition. The corrected
+source-backed geometry has a maximum implementation delta of `0.5px`; action,
+checkbox, avatar and badge dimensions match exactly. At 390px the ERP
+implementation has zero page overflow while the standalone vendor document's
+surrounding demo chrome contributes 231px of page overflow. The single Table
+workbench target now supplies five meaningful Arabic ERP rows, seven columns,
+selection, activation, sorting, resizing, visibility, footer and event
+evidence. Reproducible screenshots and measurements are under
+`docs/review-evidence/erp-table/v2-internal-review/`. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The next prioritized reopened owner is
+`ErpUserMenu`. Focused verification passes 3/3 files and 38/38 tests;
+canonical verification passes 128/128 files and 818/818 tests, all
+lint/governance, both typechecks and the zero-warning 418.32 kB / 92.91 kB
+production build.
+
 ## Current ErpTabs Exact-Reference Internal Review State
 
 `ERP-TABS.html` remains binding at SHA-256

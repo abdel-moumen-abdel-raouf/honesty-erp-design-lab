@@ -30,6 +30,10 @@ td {
   vertical-align: middle;
 }
 
+td[data-digit-set] {
+  line-height: var(--honesty-table-numeric-lh);
+}
+
 th {
   position: relative;
   padding: var(--honesty-table-header-padding-block)

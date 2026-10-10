@@ -1,5 +1,24 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — ErpTable full-reference internal review
+
+The binding Table source SHA was reverified and its six rendered specimens
+were compared directly with the complete ERP-owned reference experience. The
+actual source geometry supersedes the former 54/33/57px summary: the rich row
+is 59px, compact row 39px, clickable row 47px, footer 55px, and headers vary
+between 34px and 37.5px by specimen. The ERP result is within the authorized
+0.5px layout tolerance throughout and exactly matches the 28/16/32/22px
+action/checkbox/avatar/badge geometry. The live Table workbench now contains
+five Arabic ERP records, seven columns and working selection, sort, activation,
+resize, visibility and footer evidence on one target. Runtime evidence records
+zero implementation page overflow at 390px; the vendor document itself has
+231px caused by its external demo chrome. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Focused verification passes 3/3 files
+and 38/38 tests; canonical verification passes 128/128 files and 818/818
+tests, all governance/lint, both typechecks and the zero-warning 418.32 kB /
+92.91 kB build. Next reopened owner: `ErpUserMenu`.
+
 ## Current checkpoint — ErpTabs exact-reference internal review
 
 The binding Tabs source SHA was reverified and its rendered horizontal and

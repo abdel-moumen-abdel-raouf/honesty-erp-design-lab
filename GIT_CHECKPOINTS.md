@@ -1,5 +1,31 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## ErpTable full-reference internal visual-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `b6eb341a25fd54a5c0d59ff99f1974a9b9e3d941` — synchronized `main` after the
+  ErpTabs internal-review checkpoint.
+
+Bounded scope:
+
+- Rehashed and rendered the binding Table source, then recaptured all six
+  source specimens and equivalent ERP compositions.
+- Corrected source-backed row/header/text geometry to a maximum 0.5px layout
+  delta and retained the complete multi-owner exact experience.
+- Replaced the sparse Table workbench fixture with five Arabic ERP rows, seven
+  columns and working selection, sorting, activation, resize, visibility and
+  footer evidence.
+- Added reproducible desktop/narrow, theme/direction screenshots, measurement
+  JSON, focused tests and governance protection.
+
+Status: `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The bounded commit message is
+`fix(table): close full reference internal review`. Focused verification passes
+3/3 files and 38/38 tests; canonical verification passes 128/128 files and
+818/818 tests, all lint/governance, both typechecks and the zero-warning
+418.32 kB / 92.91 kB build. Next reopened owner: `ErpUserMenu`.
+
 ## ErpTabs exact-reference internal visual-review candidate — 2026-10-10
 
 Entry checkpoint:

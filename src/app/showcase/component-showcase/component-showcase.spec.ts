@@ -334,6 +334,51 @@ describe('ComponentShowcase', () => {
     expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
   }, 20000);
 
+  it('starts the Table workbench with meaningful controlled ERP data and event evidence', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/table', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    const headers = [...target.querySelectorAll('thead th')].map((cell) => cell.textContent?.trim());
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(headers).toEqual([
+      '',
+      'رقم الحساب',
+      'اسم الحساب',
+      'النوع',
+      'الرصيد',
+      'الحالة',
+      'الفرع',
+      'آخر تحديث',
+    ]);
+    expect(target.querySelectorAll('tbody tr')).toHaveLength(5);
+    expect(target.querySelector('tfoot')?.textContent).toContain('إجمالي الأرصدة');
+
+    const panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    const selectedKeys = panel.controls().find((control) => control.name === 'selectedKeys')!;
+    const firstRowCheckbox = target.querySelector<HTMLInputElement>(
+      'tbody tr:first-child input[type="checkbox"]',
+    )!;
+    firstRowCheckbox.click();
+    harness.fixture.detectChanges();
+    expect(JSON.parse(String(panel.editor(selectedKeys).value))).toEqual(['101']);
+
+    target.querySelector<HTMLButtonElement>('erp-sort-header button')!.click();
+    harness.fixture.detectChanges();
+    expect(root.querySelector('[data-showcase-event-log]')?.textContent).toContain('sortChange:');
+
+    target.querySelector<HTMLTableRowElement>('tbody tr:nth-child(2)')!.click();
+    harness.fixture.detectChanges();
+    expect(root.querySelector('[data-showcase-event-log]')?.textContent).toContain('rowActivated:');
+  }, 20000);
+
   it('keeps one UserMenu target with reference actions and durable action evidence', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/components/user-menu', ComponentShowcase);
