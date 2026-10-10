@@ -1,5 +1,19 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Alert and Skeleton internal-review decisions — 2026-10-10
+
+- Skodash RTL `component-alerts.html` is fallback presentation evidence for
+  Alert, not an exact component contract; Bootstrap classes, palette, font and
+  runtime remain excluded.
+- Alert continues to compose `ErpIcon`, `ErpText`, a projected `ErpButton`, and
+  the Tooltip-wrapped `ErpIconButton` dismissal owner. Its narrow anatomy moves
+  the action region to a full wrapped row so message copy is not compressed.
+- Skeleton has no recorded exact or accessible component-specific reference;
+  its current line/block/circle candidate is explicitly original Honesty ERP.
+- Skeleton motion remains visible by default and static under the existing
+  reduced-motion override; loading semantics and public API are unchanged.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## Tooltip internal-review decisions — 2026-10-10
 
 - `TOOLTIP_V1.md` continues to bind Tooltip to the accessible Material 3 and

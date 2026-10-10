@@ -1,5 +1,19 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — Alert and Skeleton
+
+Alert and Skeleton completed internal browser review. Skodash supplies fallback
+Alert evidence only; Skeleton remains an explicitly labeled original Honesty ERP
+candidate. The Alert Workbench now proves projected action and dismissal, and a
+confirmed 390 px copy-compression defect is corrected by responsive two-row
+anatomy. Skeleton proves three default lines plus line/block/circle, size,
+motion and reduced-motion states. Evidence under
+`docs/review-evidence/erp-feedback/alert-skeleton-v1-internal-review/` passes
+57/57 assertions. Focused verification passes 4/4 files and 10/10 tests;
+canonical verification passes 131/131 files and 855/855 tests with a
+zero-warning 418.32 kB / 92.90 kB build. Product Owner acceptance is not
+recorded. Next Bottom-Up unit: `ErpColumnChooser` and `ErpViewSwitcher`.
+
 ## Latest verified UI unit — Tooltip
 
 Tooltip completed internal browser review against its existing Material 3 and

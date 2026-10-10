@@ -13,7 +13,7 @@
           [dismissible]="$any(value('dismissible'))"
           [dismissLabel]="$any(value('dismissLabel'))"
           (dismissed)="recordEvent('dismissed', $event)"
-        ></erp-alert>
+        ><erp-button erpAlertAction label="عرض التفاصيل" size="sm" variant="outline" (pressed)="recordEvent('alertActionPressed', true)" /></erp-alert>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

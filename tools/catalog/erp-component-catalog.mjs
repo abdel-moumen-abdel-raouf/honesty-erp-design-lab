@@ -168,7 +168,7 @@ const CVA_FIXTURE_VALUES = new Map([
 ]);
 
 const PROJECTION_COMPONENTS = new Set([
-  'ErpAppShell', 'ErpContainer', 'ErpForm', 'ErpFormActions', 'ErpFormSection',
+  'ErpAlert', 'ErpAppShell', 'ErpContainer', 'ErpForm', 'ErpFormActions', 'ErpFormSection',
   'ErpGrid', 'ErpInline', 'ErpPage', 'ErpPageHeader', 'ErpPageShell',
   'ErpSection', 'ErpStack', 'ErpSurface', 'ErpText', 'ErpTooltip', 'ErpTopbar',
 ]);
@@ -354,7 +354,11 @@ const USER_MENU_SHOWCASE_PRESETS = [
 ];
 
 const FIXTURE_INPUTS = new Map([
-  ['ErpAlert', {title: 'تنبيه تشغيلي'}],
+  ['ErpAlert', {
+    title: 'تنبيه تشغيلي',
+    description: 'توجد فاتورة تحتاج إلى مراجعة قبل اعتماد إقفال الفترة.',
+    dismissible: true,
+  }],
   ['ErpAppFooter', {
     applicationLabel: 'Honesty ERP',
     versionLabel: 'الإصدار 1.0.0',
@@ -608,6 +612,7 @@ const FIXTURE_INPUTS = new Map([
     activeId: 'trial-balance',
     expandedIds: ['finance', 'reports'],
   }],
+  ['ErpSkeleton', {lines: 3}],
   ['ErpSmartTable', {
     caption: 'سجل الحسابات',
     columns: [{key: 'name', label: 'اسم الحساب'}, {key: 'balance', label: 'الرصيد'}],
@@ -1337,6 +1342,9 @@ function relativeShowcaseImport(ownerPath, sourcePath) {
 }
 
 function projectionMarkup(entry) {
+  if (entry.className === 'ErpAlert') {
+    return `<erp-button erpAlertAction label="عرض التفاصيل" size="sm" variant="outline" (pressed)="recordEvent('alertActionPressed', true)" />`;
+  }
   if (entry.className === 'ErpText') {
     return 'تقرير حركة المخزون للفترة الحالية — Inventory Q4 / 2026 — مراجعة الطلبات وأرصدة الفروع';
   }

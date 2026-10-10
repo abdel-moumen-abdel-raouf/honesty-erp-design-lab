@@ -1,5 +1,23 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Alert and Skeleton Internal Review State
+
+`ErpAlert` and `ErpSkeleton` completed internal browser review. Skodash RTL
+`component-alerts.html` is accessible fallback presentation evidence for Alert;
+Skeleton has no component-specific reference and remains an explicitly labeled
+original Honesty ERP candidate. Alert now has meaningful description,
+dismissal, projected `ErpButton` action and responsive two-row narrow anatomy,
+so actions no longer compress copy into an unreadable column. Skeleton defaults
+to three visible lines and covers line/block/circle, size, count, static and
+reduced-motion states. Evidence under
+`docs/review-evidence/erp-feedback/alert-skeleton-v1-internal-review/` passes
+57/57 assertions. Focused verification passes 4/4 files and 10/10 tests;
+canonical verification passes 131/131 files and 855/855 tests, both typechecks,
+all governance/lint, and the zero-warning 418.32 kB / 92.90 kB build. Status
+remains `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Continue Bottom-Up with
+`ErpColumnChooser` and `ErpViewSwitcher`.
+
 ## Current Tooltip Internal Review State
 
 `ErpTooltip` completed internal browser review against its existing Material 3

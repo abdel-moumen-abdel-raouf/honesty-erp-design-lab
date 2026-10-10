@@ -1,5 +1,24 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — Alert and Skeleton internal review
+
+`ErpAlert` and `ErpSkeleton` completed internal browser review. Alert uses
+accessible Skodash fallback evidence without importing its vendor runtime;
+Skeleton remains an original Honesty ERP candidate because no specific
+reference is recorded. The one-target Alert Workbench now includes meaningful
+description, dismissal and projected action. At 390 px its action region moves
+to a dedicated wrapped row, preserving 204 px copy width instead of vertically
+compressing the message. Skeleton defaults to three lines and exercises every
+variant, size, motion and reduced-motion path. Six scenarios pass 57/57 runtime
+assertions with zero implementation diagnostics and zero page overflow.
+Evidence is under
+`docs/review-evidence/erp-feedback/alert-skeleton-v1-internal-review/`.
+Canonical verification passes 131/131 files and 855/855 tests, both typechecks,
+all governance/lint, and the zero-warning 418.32 kB / 92.90 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: `ErpColumnChooser` and
+`ErpViewSwitcher`.
+
 ## Current checkpoint — Tooltip internal review
 
 `ErpTooltip` completed internal browser review against the existing Material 3

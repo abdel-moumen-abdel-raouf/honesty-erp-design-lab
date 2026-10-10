@@ -1,5 +1,16 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — ColumnChooser and ViewSwitcher
+
+The autonomous UI authorization remains active. Alert and Skeleton have
+completed internal review without Product Owner acceptance. Continue Bottom-Up
+with `ErpColumnChooser` and `ErpViewSwitcher`. Preserve ColumnChooser's existing
+controlled column visibility, Select/CheckBox composition and event ownership,
+and preserve ViewSwitcher's controlled mode and ButtonGroup ownership. Study
+reference availability before visual changes and label any original Honesty ERP
+decisions accurately. Business Feature/Page, CRUD, transport, and permissions
+work remain closed.
+
 ## Authoritative next action — 2026-10-10 — Alert and Skeleton
 
 The autonomous UI authorization remains active. Tooltip has completed internal

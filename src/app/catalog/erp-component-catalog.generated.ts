@@ -12009,7 +12009,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "title": "تنبيه تشغيلي"
+          "title": "تنبيه تشغيلي",
+          "description": "توجد فاتورة تحتاج إلى مراجعة قبل اعتماد إقفال الفترة.",
+          "dismissible": true
         }
       },
       {
@@ -12017,6 +12019,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "tone: info",
         "inputs": {
           "title": "تنبيه تشغيلي",
+          "description": "توجد فاتورة تحتاج إلى مراجعة قبل اعتماد إقفال الفترة.",
+          "dismissible": true,
           "tone": "info"
         }
       },
@@ -12025,6 +12029,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "tone: success",
         "inputs": {
           "title": "تنبيه تشغيلي",
+          "description": "توجد فاتورة تحتاج إلى مراجعة قبل اعتماد إقفال الفترة.",
+          "dismissible": true,
           "tone": "success"
         }
       },
@@ -12033,6 +12039,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "tone: warning",
         "inputs": {
           "title": "تنبيه تشغيلي",
+          "description": "توجد فاتورة تحتاج إلى مراجعة قبل اعتماد إقفال الفترة.",
+          "dismissible": true,
           "tone": "warning"
         }
       },
@@ -12041,6 +12049,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "tone: danger",
         "inputs": {
           "title": "تنبيه تشغيلي",
+          "description": "توجد فاتورة تحتاج إلى مراجعة قبل اعتماد إقفال الفترة.",
+          "dismissible": true,
           "tone": "danger"
         }
       }
@@ -12048,10 +12058,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "displayNameAr": "تنبيه",
     "descriptionAr": "رسالة ملاحظات قابلة للإغلاق عند السماح بذلك.",
     "showcaseInitialValues": {
-      "description": null,
+      "description": "توجد فاتورة تحتاج إلى مراجعة قبل اعتماد إقفال الفترة.",
       "tone": "info",
       "icon": null,
-      "dismissible": false,
+      "dismissible": true,
       "dismissLabel": "إغلاق التنبيه",
       "title": "تنبيه تشغيلي"
     },
@@ -12074,7 +12084,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "توجد فاتورة تحتاج إلى مراجعة قبل اعتماد إقفال الفترة."
       },
       {
         "name": "tone",
@@ -12112,7 +12122,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "false",
           "true"
         ],
-        "initialValue": false
+        "initialValue": true
       },
       {
         "name": "dismissLabel",
@@ -12153,9 +12163,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredStates": [
         "dismissible"
       ],
-      "coveredProjectionSlots": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
       "coveredReferenceCases": [],
-      "evidenceKind": "INTERACTIVE_OUTPUT"
+      "evidenceKind": "AUTHORED_PROJECTION"
     }
   },
   {
@@ -12868,12 +12880,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "lines": 3
+        }
       },
       {
         "id": "variant-line",
         "label": "variant: line",
         "inputs": {
+          "lines": 3,
           "variant": "line"
         }
       },
@@ -12881,6 +12896,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-block",
         "label": "variant: block",
         "inputs": {
+          "lines": 3,
           "variant": "block"
         }
       },
@@ -12888,6 +12904,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-circle",
         "label": "variant: circle",
         "inputs": {
+          "lines": 3,
           "variant": "circle"
         }
       },
@@ -12895,6 +12912,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-sm",
         "label": "size: sm",
         "inputs": {
+          "lines": 3,
           "size": "sm"
         }
       },
@@ -12902,6 +12920,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-md",
         "label": "size: md",
         "inputs": {
+          "lines": 3,
           "size": "md"
         }
       },
@@ -12909,6 +12928,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-lg",
         "label": "size: lg",
         "inputs": {
+          "lines": 3,
           "size": "lg"
         }
       }
@@ -12918,7 +12938,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseInitialValues": {
       "variant": "line",
       "size": "md",
-      "lines": 1,
+      "lines": 3,
       "animated": true,
       "label": "جارٍ تحميل المحتوى"
     },
@@ -12959,7 +12979,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number",
         "options": [],
-        "initialValue": 1
+        "initialValue": 3
       },
       {
         "name": "animated",

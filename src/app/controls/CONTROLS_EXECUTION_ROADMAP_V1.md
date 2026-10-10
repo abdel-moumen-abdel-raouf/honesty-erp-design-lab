@@ -1,5 +1,18 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — Alert and Skeleton complete internally
+
+Alert and Skeleton completed internal browser review. Skodash provides fallback
+Alert evidence only; Skeleton remains an original Honesty ERP candidate. The
+Alert Workbench now proves projected action and dismissal, and responsive
+two-row anatomy corrects narrow copy compression. Skeleton proves every
+variant, size, count, static and reduced-motion state. The six-scenario gate
+passes 57/57 assertions. Canonical verification passes 131/131 files and
+855/855 tests with a zero-warning 418.32 kB / 92.90 kB build. Product Owner
+status remains pending. Continue Bottom-Up with `ErpColumnChooser` and
+`ErpViewSwitcher`; business Feature/Page, CRUD, transport, and permissions work
+remain closed.
+
 ## Current UI continuation — Tooltip complete internally
 
 Tooltip completed internal browser review against its existing Material 3 and

@@ -1,5 +1,31 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Alert and Skeleton internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `eedd688357140bcd64438346f6c367f55debb8d6` — synchronized `main` after the
+  Tooltip checkpoint.
+
+Bounded scope:
+
+- Added meaningful Alert description, dismissal and projected-action Workbench
+  evidence and corrected the confirmed 390 px copy-compression defect.
+- Added three-line Skeleton defaults and focused Workbench coverage for every
+  variant, size, motion and reduced-motion path.
+- Persisted accessible Skodash Alert source evidence, the explicit Skeleton
+  reference limitation, six inspected screenshots and 57/57 runtime assertions
+  under `docs/review-evidence/erp-feedback/alert-skeleton-v1-internal-review/`.
+
+Verification before commit:
+
+- Focused tests: 4/4 files, 10/10 tests.
+- Canonical `npm run verify:clean`: 131/131 files, 855/855 tests, both
+  typechecks, all governance/lint, production build, zero warnings.
+- Build: 418.32 kB initial / 92.90 kB estimated transfer.
+
+Visual status remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## Tooltip internal-review candidate — 2026-10-10
 
 Entry checkpoint:

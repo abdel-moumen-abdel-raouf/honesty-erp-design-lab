@@ -1,5 +1,19 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — Alert and Skeleton
+
+Alert and Skeleton completed internal browser review. Alert uses accessible
+Skodash fallback evidence while Skeleton is explicitly original because no
+component-specific reference is recorded. Meaningful description, projected
+action, dismissal, responsive action placement, all variants/sizes, static
+motion and reduced-motion behavior pass 57/57 runtime assertions with zero
+implementation overflow or diagnostics. Screenshots, measurements, source
+availability and reproduction notes are under
+`docs/review-evidence/erp-feedback/alert-skeleton-v1-internal-review/`. Status
+is `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: ColumnChooser and
+ViewSwitcher.
+
 ## Current review execution — 2026-10-10 — Tooltip
 
 Tooltip completed internal browser review against the existing Material 3 and

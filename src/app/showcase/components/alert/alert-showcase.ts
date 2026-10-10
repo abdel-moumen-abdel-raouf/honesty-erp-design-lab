@@ -5,13 +5,14 @@ import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpButton} from '../../../controls/button/button';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'alert')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-alert-showcase',
-  imports: [ErpAlert, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpAlert, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpButton],
   templateUrl: './alert-showcase.html',
   styleUrl: './alert-showcase.scss',
 })

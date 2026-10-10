@@ -1,5 +1,18 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — Alert and Skeleton reviewed internally
+
+Continue from synchronized `main` after the Alert/Skeleton checkpoint. Alert's
+one-target Workbench includes meaningful projected action and dismissal; its
+390 px anatomy now gives copy a complete row and places actions below without
+clipping. Skeleton defaults to three lines and covers every variant, size,
+static and reduced-motion path. Evidence under
+`docs/review-evidence/erp-feedback/alert-skeleton-v1-internal-review/` passes
+57/57 browser assertions. Canonical verification passes 131/131 files and
+855/855 tests with a zero-warning 418.32 kB / 92.90 kB build. Product Owner
+acceptance is not recorded. Continue Bottom-Up with `ErpColumnChooser` and
+`ErpViewSwitcher`.
+
 ## Current continuation point — Tooltip reviewed internally
 
 Continue from synchronized `main` after the Tooltip checkpoint. The custom

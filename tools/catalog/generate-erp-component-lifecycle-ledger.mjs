@@ -41,6 +41,7 @@ const SHELL_OWNERS = new Set([
 ]);
 
 const INTERNAL_VISUAL_REVIEWED = new Set([
+  'ErpAlert',
   'ErpAvatar',
   'ErpAvatarPicker',
   'ErpButton',
@@ -74,6 +75,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpSearchBox',
   'ErpSection',
   'ErpSelect',
+  'ErpSkeleton',
   'ErpStack',
   'ErpStatusBadge',
   'ErpSplitButton',
@@ -293,7 +295,8 @@ drift.
   **\`ErpColorPicker\`**, **\`ErpFilePicker\`**, **\`ErpImagePicker\`**,
   **\`ErpButton\`**, **\`ErpIconButton\`**, **\`ErpButtonGroup\`**,
   **\`ErpSplitButton\`**, **\`ErpFab\`**, **\`ErpExtendedFab\`**,
-  **\`ErpFabMenu\`**, and **\`ErpTooltip\`**. Their
+  **\`ErpFabMenu\`**, **\`ErpTooltip\`**, **\`ErpAlert\`**, and
+  **\`ErpSkeleton\`**. Their
   Product Owner status remains pending.
 - All currently recorded binding-reference owners have completed internal
   review, the full public primitive layer has completed internal review, the
@@ -305,9 +308,11 @@ drift.
   the grouped action composites have completed mixed-action, anchored-menu,
   keyboard and semantic review, and the floating action family has completed
   bounded placement, mixed-menu, popup-semantic, focus-return and viewport
-  containment review, and Tooltip has completed its plain/rich projection,
-  motion-control, popup-semantic, focus-return and containment review. The next
-  Bottom-Up unit opens **\`ErpAlert\`** and **\`ErpSkeleton\`**.
+  containment review, Tooltip has completed its plain/rich projection,
+  motion-control, popup-semantic, focus-return and containment review, and the
+  Alert/Skeleton feedback pair has completed projected action, dismissal,
+  responsive anatomy, state, motion and reduced-motion review. The next
+  Bottom-Up unit opens **\`ErpColumnChooser\`** and **\`ErpViewSwitcher\`**.
 
 ## Public owner inventory
 
