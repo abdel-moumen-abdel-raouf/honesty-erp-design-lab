@@ -423,7 +423,11 @@ const FIXTURE_INPUTS = new Map([
   ['ErpAvatar', {name: 'أميرة حداد'}],
   ['ErpBranchSelector', {branches: [{id: 'cairo', label: 'فرع القاهرة'}]}],
   ['ErpBreadcrumbs', {items: [{id: 'home', label: 'الرئيسية', href: '/'}]}],
-  ['ErpButton', {label: 'تنفيذ الإجراء'}],
+  ['ErpButton', {
+    label: 'اعتماد طلب الشراء',
+    icon: 'check-mark',
+    loadingLabel: 'جارٍ الاعتماد',
+  }],
   ['ErpButtonGroup', {items: [
     {value: 'save', label: 'حفظ', icon: 'save'},
     {value: 'preview', label: 'معاينة', icon: 'eye'},
@@ -470,7 +474,7 @@ const FIXTURE_INPUTS = new Map([
   ['ErpForm', {label: 'نموذج السجل'}],
   ['ErpFormSection', {title: 'البيانات الأساسية'}],
   ['ErpIcon', {name: 'settings'}],
-  ['ErpIconButton', {icon: 'settings', label: 'الإعدادات'}],
+  ['ErpIconButton', {icon: 'settings', label: 'إعدادات النظام'}],
   ['ErpColorPicker', {label: 'لون تصنيف الحساب', helperText: 'اختر لونًا من سجل ألوان النظام', clearable: true}],
   ['ErpIconPicker', {label: 'أيقونة الوحدة', helperText: 'اختر أيقونة دلالية من سجل النظام', clearable: true}],
   ['ErpImagePicker', {
@@ -1606,7 +1610,7 @@ function generatedShowcaseOwner(entry) {
           ${inputBindings.join('\n          ')}
         >${projection}</${entry.selector}>`;
   let renderedOwner = ['ErpIconButton', 'ErpFab'].includes(entry.className)
-    ? `<erp-tooltip text="${entry.displayNameAr}">${ownerMarkup}</erp-tooltip>`
+    ? `<erp-tooltip [text]="$any(value('label'))">${ownerMarkup}</erp-tooltip>`
     : ownerMarkup;
   if (isFloatingPreview) {
     renderedOwner = `<app-review-showcase-floating-preview

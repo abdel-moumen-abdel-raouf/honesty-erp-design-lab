@@ -1,5 +1,22 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — Button and IconButton internal review
+
+`ErpButton` and `ErpIconButton` completed internal browser review using the
+Skodash RTL component-buttons page as fallback presentation evidence. Generated
+Workbench fixtures provide meaningful Arabic actions and synchronized
+IconButton/Fab Tooltip labels. The IconButton host now occupies the exact
+native surface box rather than collapsing to text-line height. Four
+desktop/narrow Light/Dark RTL/LTR scenarios pass 36/36 assertions with one
+target, complete controls, pressed-output evidence, matching IconButton host
+geometry, and zero overflow, errors, or warnings. Evidence is under
+`docs/review-evidence/erp-button-family/v1-internal-review/`. Canonical
+verification passes 128/128 files and 844/844 tests, both typechecks, all
+governance/lint, and the zero-warning 418.32 kB / 92.91 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: `ErpButtonGroup` and
+`ErpSplitButton`.
+
 ## Current checkpoint — FilePicker and ImagePicker internal review
 
 `ErpFilePicker` and `ErpImagePicker` completed internal browser review as

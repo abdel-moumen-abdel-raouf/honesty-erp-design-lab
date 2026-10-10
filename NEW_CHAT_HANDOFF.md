@@ -1,5 +1,17 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — Button and IconButton reviewed internally
+
+Continue from synchronized `main` after the Button/IconButton checkpoint. The
+one-target Workbenches use meaningful Arabic actions, live pressed evidence,
+and synchronized visible Tooltip/accessibility labels. The confirmed
+IconButton host-occupancy mismatch is corrected. Evidence under
+`docs/review-evidence/erp-button-family/v1-internal-review/` passes 36/36
+browser assertions. Canonical verification passes 128/128 files and 844/844
+tests with a zero-warning 418.32 kB / 92.91 kB build. Product Owner acceptance
+is not recorded. Continue Bottom-Up with `ErpButtonGroup` and
+`ErpSplitButton` before floating-action composites.
+
 ## Current continuation point — FilePicker and ImagePicker reviewed internally
 
 Continue from synchronized `main` after the FilePicker/ImagePicker checkpoint.

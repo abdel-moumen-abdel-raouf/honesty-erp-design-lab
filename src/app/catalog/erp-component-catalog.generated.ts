@@ -390,14 +390,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "تنفيذ الإجراء"
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد"
         }
       },
       {
         "id": "variant-solid",
         "label": "variant: solid",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "variant": "solid"
         }
       },
@@ -405,7 +409,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-outline",
         "label": "variant: outline",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "variant": "outline"
         }
       },
@@ -413,7 +419,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-subtle",
         "label": "variant: subtle",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "variant": "subtle"
         }
       },
@@ -421,7 +429,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-ghost",
         "label": "variant: ghost",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "variant": "ghost"
         }
       },
@@ -429,7 +439,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-text",
         "label": "variant: text",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "variant": "text"
         }
       },
@@ -437,7 +449,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-primary",
         "label": "tone: primary",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "tone": "primary"
         }
       },
@@ -445,7 +459,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-secondary",
         "label": "tone: secondary",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "tone": "secondary"
         }
       },
@@ -453,7 +469,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-accent",
         "label": "tone: accent",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "tone": "accent"
         }
       },
@@ -461,7 +479,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-success",
         "label": "tone: success",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "tone": "success"
         }
       },
@@ -469,7 +489,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-warning",
         "label": "tone: warning",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "tone": "warning"
         }
       },
@@ -477,7 +499,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-danger",
         "label": "tone: danger",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "tone": "danger"
         }
       },
@@ -485,7 +509,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-info",
         "label": "tone: info",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "tone": "info"
         }
       },
@@ -493,7 +519,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-neutral",
         "label": "tone: neutral",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "tone": "neutral"
         }
       },
@@ -501,7 +529,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-sm",
         "label": "size: sm",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "size": "sm"
         }
       },
@@ -509,7 +539,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-md",
         "label": "size: md",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "size": "md"
         }
       },
@@ -517,7 +549,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-lg",
         "label": "size: lg",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "size": "lg"
         }
       },
@@ -525,7 +559,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "shape-default",
         "label": "shape: default",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "shape": "default"
         }
       },
@@ -533,7 +569,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "shape-rounded",
         "label": "shape: rounded",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "shape": "rounded"
         }
       },
@@ -541,7 +579,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "shape-pill",
         "label": "shape: pill",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "shape": "pill"
         }
       },
@@ -549,7 +589,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-false",
         "label": "disabled: false",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "disabled": false
         }
       },
@@ -557,7 +599,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-true",
         "label": "disabled: true",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "disabled": true
         }
       },
@@ -565,7 +609,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "loading-false",
         "label": "loading: false",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "loading": false
         }
       },
@@ -573,7 +619,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "loading-true",
         "label": "loading: true",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "loading": true
         }
       },
@@ -581,7 +629,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "cursor-pointer",
         "label": "cursor: pointer",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "cursor": "pointer"
         }
       },
@@ -589,7 +639,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "cursor-default",
         "label": "cursor: default",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "cursor": "default"
         }
       },
@@ -597,7 +649,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "disabled": true
         }
       },
@@ -605,7 +659,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "loading",
         "label": "حالة تحميل",
         "inputs": {
-          "label": "تنفيذ الإجراء",
+          "label": "اعتماد طلب الشراء",
+          "icon": "check-mark",
+          "loadingLabel": "جارٍ الاعتماد",
           "loading": true
         }
       }
@@ -618,7 +674,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "size": "md",
       "shape": "default",
       "borderStyle": "solid",
-      "icon": null,
+      "icon": "check-mark",
       "iconPosition": "start",
       "type": "button",
       "name": null,
@@ -630,12 +686,12 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "role": null,
       "disabled": false,
       "loading": false,
-      "loadingLabel": null,
+      "loadingLabel": "جارٍ الاعتماد",
       "fullWidth": false,
       "cursor": "pointer",
       "rippleSpeed": "normal",
       "presentation": "default",
-      "label": "تنفيذ الإجراء"
+      "label": "اعتماد طلب الشراء"
     },
     "showcaseControls": [
       {
@@ -646,7 +702,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "تنفيذ الإجراء"
+        "initialValue": "اعتماد طلب الشراء"
       },
       {
         "name": "variant",
@@ -732,7 +788,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ErpIconName | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "check-mark"
       },
       {
         "name": "iconPosition",
@@ -871,7 +927,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "جارٍ الاعتماد"
       },
       {
         "name": "fullWidth",
@@ -3060,7 +3116,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings"
         }
       },
@@ -3068,7 +3124,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-solid",
         "label": "variant: solid",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "variant": "solid"
         }
@@ -3077,7 +3133,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-outline",
         "label": "variant: outline",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "variant": "outline"
         }
@@ -3086,7 +3142,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-subtle",
         "label": "variant: subtle",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "variant": "subtle"
         }
@@ -3095,7 +3151,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-ghost",
         "label": "variant: ghost",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "variant": "ghost"
         }
@@ -3104,7 +3160,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-primary",
         "label": "tone: primary",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "tone": "primary"
         }
@@ -3113,7 +3169,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-secondary",
         "label": "tone: secondary",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "tone": "secondary"
         }
@@ -3122,7 +3178,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-accent",
         "label": "tone: accent",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "tone": "accent"
         }
@@ -3131,7 +3187,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-success",
         "label": "tone: success",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "tone": "success"
         }
@@ -3140,7 +3196,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-warning",
         "label": "tone: warning",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "tone": "warning"
         }
@@ -3149,7 +3205,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-danger",
         "label": "tone: danger",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "tone": "danger"
         }
@@ -3158,7 +3214,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-info",
         "label": "tone: info",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "tone": "info"
         }
@@ -3167,7 +3223,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-neutral",
         "label": "tone: neutral",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "tone": "neutral"
         }
@@ -3176,7 +3232,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-sm",
         "label": "size: sm",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "size": "sm"
         }
@@ -3185,7 +3241,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-md",
         "label": "size: md",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "size": "md"
         }
@@ -3194,7 +3250,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-lg",
         "label": "size: lg",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "size": "lg"
         }
@@ -3203,7 +3259,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "shape-default",
         "label": "shape: default",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "shape": "default"
         }
@@ -3212,7 +3268,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "shape-rounded",
         "label": "shape: rounded",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "shape": "rounded"
         }
@@ -3221,7 +3277,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "shape-pill",
         "label": "shape: pill",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "shape": "pill"
         }
@@ -3230,7 +3286,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-false",
         "label": "disabled: false",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "disabled": false
         }
@@ -3239,7 +3295,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-true",
         "label": "disabled: true",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "disabled": true
         }
@@ -3248,7 +3304,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "loading-false",
         "label": "loading: false",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "loading": false
         }
@@ -3257,7 +3313,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "loading-true",
         "label": "loading: true",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "loading": true
         }
@@ -3266,7 +3322,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "cursor-pointer",
         "label": "cursor: pointer",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "cursor": "pointer"
         }
@@ -3275,7 +3331,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "cursor-default",
         "label": "cursor: default",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "cursor": "default"
         }
@@ -3284,7 +3340,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "disabled": true
         }
@@ -3293,7 +3349,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "loading",
         "label": "حالة تحميل",
         "inputs": {
-          "label": "الإعدادات",
+          "label": "إعدادات النظام",
           "icon": "settings",
           "loading": true
         }
@@ -3319,7 +3375,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "cursor": "pointer",
       "rippleSpeed": "normal",
       "presentation": "default",
-      "label": "الإعدادات",
+      "label": "إعدادات النظام",
       "icon": "settings"
     },
     "showcaseControls": [
@@ -3341,7 +3397,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "الإعدادات"
+        "initialValue": "إعدادات النظام"
       },
       {
         "name": "variant",

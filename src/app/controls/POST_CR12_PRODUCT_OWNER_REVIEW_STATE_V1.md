@@ -1,5 +1,19 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — Button and IconButton
+
+The two basic action owners completed internal browser review against the
+Skodash RTL component-buttons fallback. Generated Workbench evidence applies
+real variants, tones, sizes, shapes and activation to the same target; the
+Tooltip follows the IconButton accessible label. The confirmed IconButton host
+occupancy defect is corrected. The four-scenario audit passes 36/36 assertions
+with no overflow or browser diagnostics. Screenshots, measurements and
+reproduction notes are under
+`docs/review-evidence/erp-button-family/v1-internal-review/`. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: ButtonGroup and
+SplitButton.
+
 ## Current review execution — 2026-10-10 — FilePicker and ImagePicker
 
 The two local file-selection owners completed internal browser review as

@@ -1,5 +1,28 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Button and IconButton internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `59bfa7b66e6f92c7c0d8e3cb70998ce9e06124ad` — synchronized `main` after the
+  FilePicker/ImagePicker checkpoint.
+
+Bounded scope:
+
+- Added meaningful generated Button/IconButton action fixtures and synchronized
+  live Tooltip/accessibility labels for icon-only workbench targets.
+- Corrected the IconButton custom-element host from collapsed line-height
+  occupancy to the complete owned action-surface box.
+- Persisted the inspected Skodash fallback plus 36/36 runtime assertions and
+  implementation screenshots under
+  `docs/review-evidence/erp-button-family/v1-internal-review/`.
+- Focused gate: 3/3 files and 60/60 tests. Canonical gate: 128/128 files,
+  844/844 tests, both typechecks, all governance/lint, and zero-warning
+  418.32 kB / 92.91 kB build.
+
+Product Owner visual status remains pending. The actual commit SHA is recorded
+by Git after this document snapshot; do not infer acceptance from the commit.
+
 ## FilePicker and ImagePicker internal-review candidate — 2026-10-10
 
 Entry checkpoint:

@@ -43,6 +43,7 @@ const SHELL_OWNERS = new Set([
 const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpAvatar',
   'ErpAvatarPicker',
+  'ErpButton',
   'ErpColorPicker',
   'ErpComboBox',
   'ErpContainer',
@@ -56,6 +57,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpIcon',
   'ErpIconPicker',
   'ErpImagePicker',
+  'ErpIconButton',
   'ErpInline',
   'ErpItemPicker',
   'ErpMoneyBox',
@@ -282,16 +284,18 @@ drift.
   **\`ErpRangeSlider\`**, **\`ErpDateBox\`**, **\`ErpTimeBox\`**,
   **\`ErpDateTimeBox\`**, **\`ErpDateRangeBox\`**, **\`ErpSearchBox\`**,
   **\`ErpComboBox\`**, **\`ErpItemPicker\`**, **\`ErpIconPicker\`**,
-  **\`ErpColorPicker\`**, **\`ErpFilePicker\`**, and **\`ErpImagePicker\`**. Their
+  **\`ErpColorPicker\`**, **\`ErpFilePicker\`**, **\`ErpImagePicker\`**,
+  **\`ErpButton\`**, and **\`ErpIconButton\`**. Their
   Product Owner status remains pending.
 - All currently recorded binding-reference owners have completed internal
   review, the full public primitive layer has completed internal review, the
   foundational text-like Input/Field family has completed internal review, and
   the generic selection-picker family has completed its item, icon, system
   color, and free-color interaction review, and the local file/image selection
-  owners have completed real browser-file review. The next Bottom-Up unit opens
-  the basic action layer with **\`ErpButton\`** and **\`ErpIconButton\`** before
-  their composite consumers.
+  owners have completed real browser-file review, and the two basic action
+  owners have completed live state, output, focus and layout-occupancy review.
+  The next Bottom-Up unit opens **\`ErpButtonGroup\`** and
+  **\`ErpSplitButton\`** before the floating-action composites.
 
 ## Public owner inventory
 

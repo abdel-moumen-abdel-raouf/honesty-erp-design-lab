@@ -9,6 +9,7 @@ import {
 import {ComponentShowcase} from './component-showcase';
 import {ErpReviewShowcaseControlPanel} from '../../review-internals/showcase-control-panel/showcase-control-panel';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
+import {ErpTooltip} from '../../controls/tooltip/tooltip';
 
 describe('ComponentShowcase', () => {
   beforeEach(async () => {
@@ -30,6 +31,42 @@ describe('ComponentShowcase', () => {
     expect(root.querySelector('erp-page')).not.toBeNull();
     expect(root.textContent).toContain('زر');
     expect(root.querySelector('erp-button')).not.toBeNull();
+  });
+
+  it('keeps Button actions meaningful and IconButton tooltip semantics synchronized', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/button', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target] button')).not.toBeNull();
+    });
+    let root = harness.routeNativeElement as HTMLElement;
+    let target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    (target.querySelector('button') as HTMLButtonElement).click();
+    harness.fixture.detectChanges();
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(target.textContent).toContain('اعتماد طلب الشراء');
+    expect(root.querySelector('[data-showcase-event-log]')?.textContent).toContain('pressed');
+
+    await harness.navigateByUrl('/components/icon-button', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target] button')).not.toBeNull();
+    });
+    root = harness.routeNativeElement as HTMLElement;
+    target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    const panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    panel.editor(panel.controls().find((control) => control.name === 'label')!)
+      .setValue('إعدادات الحسابات');
+    harness.fixture.detectChanges();
+    const tooltip = harness.fixture.debugElement
+      .query(By.directive(ErpTooltip))
+      .componentInstance as ErpTooltip;
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect((target.querySelector('button') as HTMLButtonElement).ariaLabel).toBe('إعدادات الحسابات');
+    expect(tooltip.text()).toBe('إعدادات الحسابات');
   });
 
   it('keeps unknown catalog identifiers deterministic', async () => {

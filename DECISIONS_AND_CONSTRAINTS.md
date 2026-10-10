@@ -1,5 +1,20 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Button family internal-review decisions — 2026-10-10
+
+- Skodash RTL `component-buttons.html` is fallback presentation evidence for
+  Button and IconButton, not a component-specific exact visual contract.
+- Existing Honesty ERP Button tokens, colors, typography, native semantics,
+  Ripple, focus and composition ownership remain authoritative; no vendor
+  framework/runtime dependency was imported.
+- A public custom-element host that renders an IconButton must occupy the full
+  action surface. `inline-flex` plus fit-content sizing fixes that layout
+  contract without changing shared native-button geometry or public API.
+- The generated Tooltip for icon-only actions consumes the same live `label`
+  value as the native accessible name; review evidence no longer drifts when
+  the label editor changes.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## File and image picker internal-review decisions — 2026-10-10
 
 - No binding component-specific external reference is recorded for FilePicker

@@ -1,5 +1,17 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — Button and IconButton complete internally
+
+Button and IconButton completed internal browser review against the Skodash RTL
+component-buttons fallback. Meaningful live actions, synchronized Tooltip
+labels and pressed-output evidence are present, and the IconButton host now
+occupies its complete native action surface. The four-scenario gate passes
+36/36 assertions with zero overflow or diagnostics. Canonical verification
+passes 128/128 files and 844/844 tests with a zero-warning 418.32 kB / 92.91 kB
+build. Product Owner status remains pending. Continue Bottom-Up with
+`ErpButtonGroup` and `ErpSplitButton`; business Feature/Page, CRUD, transport,
+and permissions work remain closed.
+
 ## Current UI continuation — FilePicker and ImagePicker complete internally
 
 FilePicker and ImagePicker completed internal browser review as original

@@ -1,5 +1,15 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — grouped action composites
+
+The autonomous UI authorization remains active. Button and IconButton have
+completed internal review without Product Owner acceptance. Continue Bottom-Up
+with `ErpButtonGroup` and `ErpSplitButton` before the FAB-family composites.
+Use the Skodash RTL component-buttons page only as fallback presentation
+evidence; preserve existing ERP Button/Icon/ButtonGroup/SplitButton ownership,
+native semantics, controlled data, events, Tooltip rules and overlay contracts.
+Business Feature/Page, CRUD, transport, and permissions work remain closed.
+
 ## Authoritative next action — 2026-10-10 — basic action owners
 
 The autonomous UI authorization remains active. FilePicker and ImagePicker have

@@ -1,5 +1,19 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — Button and IconButton
+
+Button and IconButton completed internal browser review against the accessible
+Skodash RTL component-buttons fallback. Meaningful Arabic action fixtures and
+live pressed evidence are present; the Tooltip follows the IconButton's live
+accessible label. A confirmed custom-element layout defect was corrected so
+the IconButton host now occupies the full native action surface. Evidence under
+`docs/review-evidence/erp-button-family/v1-internal-review/` passes 36/36
+assertions across desktop Light/RTL and 390 px Dark/LTR with no overflow or
+browser diagnostics. Focused verification passes 3/3 files and 60/60 tests;
+canonical verification passes 128/128 files and 844/844 tests with a
+zero-warning 418.32 kB / 92.91 kB build. Product Owner acceptance is not
+recorded. Next Bottom-Up unit: ButtonGroup and SplitButton.
+
 ## Latest verified UI unit — FilePicker and ImagePicker
 
 FilePicker and ImagePicker completed internal browser review as original

@@ -8,7 +8,7 @@
         [inlinePosition]="previewInline()"
         [blockPosition]="previewBlock()"
         [direction]="previewDirection()"
-      ><erp-tooltip text="زر إجراء عائم"><erp-fab
+      ><erp-tooltip [text]="$any(value('label'))"><erp-fab
           data-showcase-target
           [icon]="$any(value('icon'))"
           [label]="$any(value('label'))"

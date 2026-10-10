@@ -4,7 +4,7 @@
   <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
     <erp-stack gap="tight">
       <erp-text type="heading-3">المعاينة الحية</erp-text>
-      <erp-tooltip text="زر أيقونة"><erp-icon-button
+      <erp-tooltip [text]="$any(value('label'))"><erp-icon-button
           data-showcase-target
           [icon]="$any(value('icon'))"
           [label]="$any(value('label'))"

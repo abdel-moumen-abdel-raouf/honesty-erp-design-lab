@@ -1,5 +1,23 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Button and IconButton Internal Review State
+
+`ErpButton` and `ErpIconButton` completed internal browser review against the
+Skodash RTL component-buttons fallback; no component-specific exact contract is
+claimed. The Workbenches now start with meaningful Arabic ERP actions, and the
+IconButton/Fab Tooltip consumes the same live accessible label as its target.
+Browser inspection found and corrected a real IconButton host-occupancy defect:
+the 40 px native surface previously sat inside a 21 px-high custom-element host;
+configured evidence now records matching 48 x 48 px host/surface boxes. Evidence
+under `docs/review-evidence/erp-button-family/v1-internal-review/` passes 36/36
+assertions across desktop Light/RTL and 390 px Dark/LTR, with pressed-event
+evidence and zero overflow, errors, or warnings. Focused verification passes
+3/3 files and 60/60 tests; canonical verification passes 128/128 files and
+844/844 tests, both typechecks, all governance/lint, and the zero-warning
+418.32 kB / 92.91 kB build. Status remains `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Next Bottom-Up unit: `ErpButtonGroup` and `ErpSplitButton`.
+
 ## Current File and Image Picker Internal Review State
 
 `ErpFilePicker` and `ErpImagePicker` have completed internal browser review as
