@@ -17395,7 +17395,12 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "تاريخ الاستحقاق",
+          "helperText": "تاريخ استحقاق الفاتورة",
+          "min": "2026-01-01",
+          "max": "2026-12-31",
+          "weekStartsOn": 6,
+          "clearable": true
         }
       }
     ],
@@ -17416,21 +17421,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "تاريخ استحقاق الفاتورة",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": "calendar",
       "clearable": true,
       "feedbackText": null,
       "feedbackDismissible": false,
-      "min": null,
-      "max": null,
-      "weekStartsOn": 0,
+      "min": "2026-01-01",
+      "max": "2026-12-31",
+      "weekStartsOn": 6,
       "locale": "ar-EG",
       "placeholder": "اختر التاريخ",
       "pattern": null,
       "overlayConfig": null,
-      "label": "حقل تجريبي"
+      "label": "تاريخ الاستحقاق"
     },
     "showcaseControls": [
       {
@@ -17441,7 +17446,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": "2026-10-12"
       },
       {
         "name": "label",
@@ -17451,7 +17456,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "تاريخ الاستحقاق"
       },
       {
         "name": "name",
@@ -17650,7 +17655,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "تاريخ استحقاق الفاتورة"
       },
       {
         "name": "helperPosition",
@@ -17729,7 +17734,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "2026-01-01"
       },
       {
         "name": "max",
@@ -17739,7 +17744,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "2026-12-31"
       },
       {
         "name": "weekStartsOn",
@@ -17749,7 +17754,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number",
         "options": [],
-        "initialValue": 0
+        "initialValue": 6
       },
       {
         "name": "locale",
@@ -18275,7 +18280,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "فترة التقرير",
+          "helperText": "حدّد بداية ونهاية الفترة المالية",
+          "min": "2026-01-01",
+          "max": "2026-12-31",
+          "clearable": true
         }
       }
     ],
@@ -18296,20 +18305,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "حدّد بداية ونهاية الفترة المالية",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": "calendar",
       "clearable": true,
       "feedbackText": null,
       "feedbackDismissible": false,
-      "min": null,
-      "max": null,
+      "min": "2026-01-01",
+      "max": "2026-12-31",
       "locale": "ar-EG",
       "placeholder": "اختر نطاق التاريخ",
       "pattern": null,
       "overlayConfig": null,
-      "label": "حقل تجريبي"
+      "label": "فترة التقرير"
     },
     "showcaseControls": [
       {
@@ -18320,7 +18329,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": {
+          "start": "2026-10-01",
+          "end": "2026-10-15"
+        }
       },
       {
         "name": "label",
@@ -18330,7 +18342,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "فترة التقرير"
       },
       {
         "name": "name",
@@ -18529,7 +18541,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "حدّد بداية ونهاية الفترة المالية"
       },
       {
         "name": "helperPosition",
@@ -18608,7 +18620,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "2026-01-01"
       },
       {
         "name": "max",
@@ -18618,7 +18630,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "2026-12-31"
       },
       {
         "name": "locale",
@@ -19144,7 +19156,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "موعد التسليم",
+          "helperText": "التاريخ والوقت المحليان للتسليم",
+          "min": "2026-01-01T00:00",
+          "max": "2026-12-31T23:55",
+          "clearable": true
         }
       }
     ],
@@ -19165,20 +19181,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "التاريخ والوقت المحليان للتسليم",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": "calendar",
       "clearable": true,
       "feedbackText": null,
       "feedbackDismissible": false,
-      "min": null,
-      "max": null,
+      "min": "2026-01-01T00:00",
+      "max": "2026-12-31T23:55",
       "locale": "ar-EG",
       "placeholder": "اختر التاريخ والوقت",
       "pattern": null,
       "overlayConfig": null,
-      "label": "حقل تجريبي"
+      "label": "موعد التسليم"
     },
     "showcaseControls": [
       {
@@ -19189,7 +19205,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": "2026-10-12T09:30"
       },
       {
         "name": "label",
@@ -19199,7 +19215,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "موعد التسليم"
       },
       {
         "name": "name",
@@ -19398,7 +19414,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "التاريخ والوقت المحليان للتسليم"
       },
       {
         "name": "helperPosition",
@@ -19477,7 +19493,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "2026-01-01T00:00"
       },
       {
         "name": "max",
@@ -19487,7 +19503,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "2026-12-31T23:55"
       },
       {
         "name": "locale",
@@ -33749,7 +33765,12 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "بداية الوردية",
+          "helperText": "وقت بدء الوردية",
+          "minuteStep": 15,
+          "min": "06:00",
+          "max": "22:00",
+          "clearable": true
         }
       }
     ],
@@ -33770,21 +33791,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "وقت بدء الوردية",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": "clock",
       "clearable": true,
       "feedbackText": null,
       "feedbackDismissible": false,
-      "minuteStep": 5,
-      "min": null,
-      "max": null,
+      "minuteStep": 15,
+      "min": "06:00",
+      "max": "22:00",
       "locale": "ar-EG",
       "placeholder": "اختر الوقت",
       "pattern": null,
       "overlayConfig": null,
-      "label": "حقل تجريبي"
+      "label": "بداية الوردية"
     },
     "showcaseControls": [
       {
@@ -33795,7 +33816,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": "09:30"
       },
       {
         "name": "label",
@@ -33805,7 +33826,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "بداية الوردية"
       },
       {
         "name": "name",
@@ -34004,7 +34025,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "وقت بدء الوردية"
       },
       {
         "name": "helperPosition",
@@ -34083,7 +34104,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number",
         "options": [],
-        "initialValue": 5
+        "initialValue": 15
       },
       {
         "name": "min",
@@ -34093,7 +34114,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "06:00"
       },
       {
         "name": "max",
@@ -34103,7 +34124,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "22:00"
       },
       {
         "name": "locale",

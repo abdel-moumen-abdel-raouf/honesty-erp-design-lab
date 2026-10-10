@@ -44,6 +44,9 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpAvatar',
   'ErpAvatarPicker',
   'ErpContainer',
+  'ErpDateBox',
+  'ErpDateRangeBox',
+  'ErpDateTimeBox',
   'ErpDivider',
   'ErpEmptyState',
   'ErpGrid',
@@ -67,6 +70,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpText',
   'ErpTextAreaBox',
   'ErpTextBox',
+  'ErpTimeBox',
   'ErpUrlBox',
   'ErpUserMenu',
 ]);
@@ -267,14 +271,15 @@ drift.
   **\`ErpInline\`**, **\`ErpSection\`**, **\`ErpStack\`**, **\`ErpSurface\`**,
   **\`ErpIcon\`**, **\`ErpText\`**, **\`ErpTextBox\`**, **\`ErpTextAreaBox\`**,
   **\`ErpPasswordBox\`**, **\`ErpNumberBox\`**, **\`ErpMoneyBox\`**,
-  **\`ErpTelBox\`**, **\`ErpUrlBox\`**, **\`ErpNumberStepper\`**, and
-  **\`ErpRangeSlider\`**. Their
+  **\`ErpTelBox\`**, **\`ErpUrlBox\`**, **\`ErpNumberStepper\`**,
+  **\`ErpRangeSlider\`**, **\`ErpDateBox\`**, **\`ErpTimeBox\`**,
+  **\`ErpDateTimeBox\`**, and **\`ErpDateRangeBox\`**. Their
   Product Owner status remains pending.
 - All currently recorded binding-reference owners have completed internal
   review, the full public primitive layer has completed internal review, and
   the foundational text-like Input/Field family has completed internal review.
-  The next Bottom-Up unit is the temporal input family: **\`ErpDateBox\`**,
-  **\`ErpTimeBox\`**, **\`ErpDateTimeBox\`**, and **\`ErpDateRangeBox\`**.
+  The next Bottom-Up unit is the search and picker input family, beginning with
+  **\`ErpSearchBox\`** and **\`ErpComboBox\`**.
 
 ## Public owner inventory
 

@@ -8,6 +8,7 @@ import {
 } from '../../catalog/erp-component-catalog.generated';
 import {ComponentShowcase} from './component-showcase';
 import {ErpReviewShowcaseControlPanel} from '../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
 
 describe('ComponentShowcase', () => {
   beforeEach(async () => {
@@ -253,6 +254,56 @@ describe('ComponentShowcase', () => {
     harness.fixture.detectChanges();
     expect(target.getAttribute('data-range-slider-lower')).toBe('30');
     expect(root.querySelector('[data-showcase-event-log]')?.textContent).toContain('"lower":30');
+  });
+
+  it.each([
+    ['date-box', 'data-date-box-value', '2026-10-12', 'date'],
+    ['time-box', 'data-time-box-value', '09:30', 'time'],
+    ['date-time-box', 'data-date-time-box-value', '2026-10-12T09:30', 'datetime'],
+  ] as const)('keeps the %s workbench meaningful and opens its owned picker', async (
+    id,
+    valueAttribute,
+    expectedValue,
+    mode,
+  ) => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl(`/components/${id}`, ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    expect(target.getAttribute(valueAttribute)).toBe(expectedValue);
+    (target.querySelector('button') as HTMLButtonElement).click();
+    const manager = TestBed.inject(ErpOverlayManager);
+    const entry = manager.entries()[0];
+    expect(entry.ref.config.data).toMatchObject({mode});
+    entry.ref.dismiss('cancel');
+    manager.completeTransition(entry.ref.id, 'leaving');
+    await Promise.resolve();
+  });
+
+  it('keeps the DateRangeBox workbench meaningful and opens the range picker', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/date-range-box', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    expect(target.getAttribute('data-date-range-start')).toBe('2026-10-01');
+    expect(target.getAttribute('data-date-range-end')).toBe('2026-10-15');
+    (target.querySelector('button') as HTMLButtonElement).click();
+    const manager = TestBed.inject(ErpOverlayManager);
+    const entry = manager.entries()[0];
+    expect(entry.ref.config.data).toMatchObject({mode: 'range'});
+    entry.ref.dismiss('cancel');
+    manager.completeTransition(entry.ref.id, 'leaving');
+    await Promise.resolve();
   });
 
   it('renders ButtonGroup as one controlled group with multiple actions', async () => {

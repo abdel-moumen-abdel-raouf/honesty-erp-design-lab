@@ -1,5 +1,22 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Temporal Input Family Internal Review State
+
+`ErpDateBox`, `ErpTimeBox`, `ErpDateTimeBox`, and `ErpDateRangeBox` have
+completed their authorized original Honesty ERP internal review. Production
+APIs and visual defaults remain unchanged. Their generated Workbenches now use
+meaningful Arabic ERP values and constraints, and the real owned pickers commit
+date, time, date-time, and range values through the single live CVA target.
+Evidence under `docs/review-evidence/erp-temporal-inputs/v1-internal-review/`
+passes 88/88 browser assertions across eight desktop/narrow Light/Dark RTL/LTR
+scenarios with stable viewport containment, one bounded frame-body scroll
+owner, zero overflow, broken images, errors, or warnings. Focused verification
+passes 6/6 files and 68/68 tests; canonical verification passes 128/128 files
+and 834/834 tests, both typechecks, all governance/lint, and the zero-warning
+418.32 kB / 92.89 kB build. Status remains `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Next Bottom-Up unit: `ErpSearchBox` and `ErpComboBox`.
+
 ## Current Numeric Interaction Input Internal Review State
 
 `ErpNumberStepper` and `ErpRangeSlider` have completed their authorized

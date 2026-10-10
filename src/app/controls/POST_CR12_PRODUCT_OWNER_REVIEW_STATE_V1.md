@@ -1,5 +1,20 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — temporal input family
+
+Four temporal Input/Field owners completed internal browser review as original
+Honesty ERP candidates. Generated Workbench evidence supplies meaningful
+Arabic ERP values and each owned picker changes and confirms a real CVA value.
+The eight-scenario audit passes 88/88 assertions with stable viewport
+containment, bounded frame-body scroll ownership, and no overflow, broken
+images, or browser diagnostics. Screenshots, measurements, and reproduction
+steps are under
+`docs/review-evidence/erp-temporal-inputs/v1-internal-review/`. Production
+APIs/defaults are unchanged. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: `ErpSearchBox` and
+`ErpComboBox`.
+
 ## Current review execution — 2026-10-10 — numeric interaction inputs
 
 `ErpNumberStepper` and `ErpRangeSlider` completed internal browser review as

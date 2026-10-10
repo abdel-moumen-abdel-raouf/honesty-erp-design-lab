@@ -1,5 +1,22 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — temporal input family internal review
+
+`ErpDateBox`, `ErpTimeBox`, `ErpDateTimeBox`, and `ErpDateRangeBox` completed
+internal browser review as explicitly labeled original Honesty ERP candidates.
+Production contracts/defaults are unchanged. Generated Workbench fixtures now
+provide meaningful Arabic ERP values and constraints. Eight scenarios open the
+owned picker, change the staged value, confirm it, and observe the public CVA
+result. The audit passes 88/88 assertions with one target per route, complete
+controls, actual RTL/LTR computation, stable viewport containment, frame-body
+scroll ownership, and zero overflow, broken images, errors, or warnings.
+Evidence is under
+`docs/review-evidence/erp-temporal-inputs/v1-internal-review/`. Canonical
+verification passes 128/128 files and 834/834 tests, both typechecks, all
+governance/lint, and the zero-warning 418.32 kB / 92.89 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: `ErpSearchBox` and `ErpComboBox`.
+
 ## Current checkpoint — numeric interaction inputs internal review
 
 `ErpNumberStepper` and `ErpRangeSlider` completed internal browser review as

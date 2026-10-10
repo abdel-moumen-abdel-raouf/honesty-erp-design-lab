@@ -1,5 +1,19 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — temporal input family
+
+The four temporal Input/Field owners completed browser review as original
+Honesty ERP candidates. Their generated Workbenches now begin with meaningful
+Arabic ERP dates and constraints, while eight real-picker scenarios prove
+open, staged selection, confirm, CVA synchronization, narrow containment, and
+bounded scroll ownership. Evidence is under
+`docs/review-evidence/erp-temporal-inputs/v1-internal-review/` and passes 88/88
+assertions with no overflow, broken images, or browser diagnostics. Focused
+verification passes 6/6 files and 68/68 tests; canonical verification passes
+128/128 files and 834/834 tests with a zero-warning 418.32 kB / 92.89 kB
+build. Product Owner acceptance is not recorded. Next Bottom-Up unit:
+`ErpSearchBox` and `ErpComboBox`.
+
 ## Latest verified UI unit — numeric interaction inputs
 
 `ErpNumberStepper` and `ErpRangeSlider` completed browser review as original

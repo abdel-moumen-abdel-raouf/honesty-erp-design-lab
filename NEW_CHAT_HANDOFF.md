@@ -1,5 +1,16 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — temporal inputs reviewed internally
+
+Continue from synchronized `main` after the four-owner temporal checkpoint.
+Production APIs/defaults are unchanged; generated Workbench fixtures and real
+picker interactions now make every temporal CVA path observable. The evidence
+package under
+`docs/review-evidence/erp-temporal-inputs/v1-internal-review/` passes 88/88
+browser assertions. Canonical verification passes 128/128 files and 834/834
+tests with a zero-warning 418.32 kB / 92.89 kB build. Product Owner acceptance
+is not recorded. Continue Bottom-Up with `ErpSearchBox` and `ErpComboBox`.
+
 ## Current continuation point — numeric interaction inputs reviewed internally
 
 Continue from synchronized `main` after the NumberStepper/RangeSlider

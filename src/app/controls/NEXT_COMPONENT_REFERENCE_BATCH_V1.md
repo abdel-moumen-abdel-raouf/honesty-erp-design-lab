@@ -1,5 +1,15 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — SearchBox and ComboBox
+
+The autonomous UI authorization remains active. The temporal input family has
+completed internal review without Product Owner acceptance or production
+API/default changes. Continue Bottom-Up with `ErpSearchBox` and `ErpComboBox`.
+No binding component-specific external reference is currently recorded for
+these public owners; use explicitly labeled original Honesty ERP candidates
+and preserve existing Field, Selection Picker, Overlay, and CVA ownership.
+Business Feature/Page, CRUD, transport, and permissions work remain closed.
+
 ## Authoritative next action — 2026-10-10 — temporal input family
 
 The autonomous UI authorization remains active. `ErpNumberStepper` and

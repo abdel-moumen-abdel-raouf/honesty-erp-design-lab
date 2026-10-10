@@ -1,0 +1,949 @@
+{
+  "generatedAt": "2026-10-10T08:42:41.233Z",
+  "authority": "Original Honesty ERP candidates; no binding component-specific external reference is recorded.",
+  "scenarios": [
+    {
+      "name": "date-box-1440-light-rtl",
+      "component": "date-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 30,
+      "pickerMode": "date",
+      "surfaceBox": {
+        "x": 432,
+        "y": 226.953125,
+        "width": 576,
+        "height": 446.09375,
+        "right": 1008,
+        "bottom": 673.046875
+      },
+      "surfaceScroll": {
+        "clientHeight": 444,
+        "scrollHeight": 444,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 290,
+        "scrollHeight": 290,
+        "overflowY": "auto"
+      },
+      "overlayScroll": {
+        "clientHeight": 900,
+        "scrollHeight": 900,
+        "overflowY": "auto"
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 94.296875
+      },
+      "value": "2026-10-13",
+      "end": null,
+      "eventEvidence": "آخر تفاعلvalueChange: 2026-10-13القيمة الحالية: 2026-10-13",
+      "diagnostics": []
+    },
+    {
+      "name": "date-box-390-dark-ltr",
+      "component": "date-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 30,
+      "pickerMode": "date",
+      "surfaceBox": {
+        "x": 8,
+        "y": 198.953125,
+        "width": 374,
+        "height": 446.09375,
+        "right": 382,
+        "bottom": 645.046875
+      },
+      "surfaceScroll": {
+        "clientHeight": 444,
+        "scrollHeight": 444,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 290,
+        "scrollHeight": 290,
+        "overflowY": "auto"
+      },
+      "overlayScroll": {
+        "clientHeight": 844,
+        "scrollHeight": 844,
+        "overflowY": "auto"
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "targetBox": {
+        "x": 57,
+        "y": 580.765625,
+        "width": 276,
+        "height": 94.296875
+      },
+      "value": "2026-10-13",
+      "end": null,
+      "eventEvidence": "آخر تفاعلvalueChange: 2026-10-13القيمة الحالية: 2026-10-13",
+      "diagnostics": []
+    },
+    {
+      "name": "time-box-1440-light-rtl",
+      "component": "time-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 30,
+      "pickerMode": "time",
+      "surfaceBox": {
+        "x": 432,
+        "y": 227.953125,
+        "width": 576,
+        "height": 444.09375,
+        "right": 1008,
+        "bottom": 672.046875
+      },
+      "surfaceScroll": {
+        "clientHeight": 442,
+        "scrollHeight": 442,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 288,
+        "scrollHeight": 288,
+        "overflowY": "auto"
+      },
+      "overlayScroll": {
+        "clientHeight": 900,
+        "scrollHeight": 900,
+        "overflowY": "auto"
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 94.296875
+      },
+      "value": "10:45",
+      "end": null,
+      "eventEvidence": "آخر تفاعلvalueChange: 10:45القيمة الحالية: 10:45",
+      "diagnostics": []
+    },
+    {
+      "name": "time-box-390-dark-ltr",
+      "component": "time-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 30,
+      "pickerMode": "time",
+      "surfaceBox": {
+        "x": 8,
+        "y": 199.953125,
+        "width": 374,
+        "height": 444.09375,
+        "right": 382,
+        "bottom": 644.046875
+      },
+      "surfaceScroll": {
+        "clientHeight": 442,
+        "scrollHeight": 442,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 288,
+        "scrollHeight": 288,
+        "overflowY": "auto"
+      },
+      "overlayScroll": {
+        "clientHeight": 844,
+        "scrollHeight": 844,
+        "overflowY": "auto"
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "targetBox": {
+        "x": 57,
+        "y": 580.765625,
+        "width": 276,
+        "height": 94.296875
+      },
+      "value": "10:45",
+      "end": null,
+      "eventEvidence": "آخر تفاعلvalueChange: 10:45القيمة الحالية: 10:45",
+      "diagnostics": []
+    },
+    {
+      "name": "date-time-box-1440-light-rtl",
+      "component": "date-time-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 29,
+      "pickerMode": "datetime",
+      "surfaceBox": {
+        "x": 336,
+        "y": 90.953125,
+        "width": 768,
+        "height": 718.09375,
+        "right": 1104,
+        "bottom": 809.046875
+      },
+      "surfaceScroll": {
+        "clientHeight": 716,
+        "scrollHeight": 716,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 562,
+        "scrollHeight": 562,
+        "overflowY": "auto"
+      },
+      "overlayScroll": {
+        "clientHeight": 900,
+        "scrollHeight": 900,
+        "overflowY": "auto"
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 94.296875
+      },
+      "value": "2026-10-13T10:45",
+      "end": null,
+      "eventEvidence": "آخر تفاعلvalueChange: 2026-10-13T10:45القيمة الحالية: 2026-10-13T10:45",
+      "diagnostics": []
+    },
+    {
+      "name": "date-time-box-390-dark-ltr",
+      "component": "date-time-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 29,
+      "pickerMode": "datetime",
+      "surfaceBox": {
+        "x": 8,
+        "y": 62.953125,
+        "width": 374,
+        "height": 718.09375,
+        "right": 382,
+        "bottom": 781.046875
+      },
+      "surfaceScroll": {
+        "clientHeight": 716,
+        "scrollHeight": 716,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 562,
+        "scrollHeight": 562,
+        "overflowY": "auto"
+      },
+      "overlayScroll": {
+        "clientHeight": 844,
+        "scrollHeight": 844,
+        "overflowY": "auto"
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 94.296875
+      },
+      "value": "2026-10-13T10:45",
+      "end": null,
+      "eventEvidence": "آخر تفاعلvalueChange: 2026-10-13T10:45القيمة الحالية: 2026-10-13T10:45",
+      "diagnostics": []
+    },
+    {
+      "name": "date-range-box-1440-light-rtl",
+      "component": "date-range-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 29,
+      "pickerMode": "range",
+      "surfaceBox": {
+        "x": 336,
+        "y": 202.953125,
+        "width": 768,
+        "height": 494.09375,
+        "right": 1104,
+        "bottom": 697.046875
+      },
+      "surfaceScroll": {
+        "clientHeight": 492,
+        "scrollHeight": 492,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 290,
+        "scrollHeight": 290,
+        "overflowY": "auto"
+      },
+      "overlayScroll": {
+        "clientHeight": 900,
+        "scrollHeight": 900,
+        "overflowY": "auto"
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 94.296875
+      },
+      "value": "2026-10-03",
+      "end": "2026-10-20",
+      "eventEvidence": "آخر تفاعلvalueChange: {\"start\":\"2026-10-03\",\"end\":\"2026-10-20\"}القيمة الحالية: [object Object]",
+      "diagnostics": []
+    },
+    {
+      "name": "date-range-box-390-dark-ltr",
+      "component": "date-range-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 29,
+      "pickerMode": "range",
+      "surfaceBox": {
+        "x": 8,
+        "y": 102.953125,
+        "width": 374,
+        "height": 638.09375,
+        "right": 382,
+        "bottom": 741.046875
+      },
+      "surfaceScroll": {
+        "clientHeight": 636,
+        "scrollHeight": 636,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 290,
+        "scrollHeight": 290,
+        "overflowY": "auto"
+      },
+      "overlayScroll": {
+        "clientHeight": 844,
+        "scrollHeight": 844,
+        "overflowY": "auto"
+      },
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 107.484375
+      },
+      "value": "2026-10-03",
+      "end": "2026-10-20",
+      "eventEvidence": "آخر تفاعلvalueChange: {\"start\":\"2026-10-03\",\"end\":\"2026-10-20\"}القيمة الحالية: [object Object]",
+      "diagnostics": []
+    }
+  ],
+  "assertions": [
+    {
+      "name": "date-box-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "date-box-1440-light-rtl controls",
+      "pass": true,
+      "actual": 30
+    },
+    {
+      "name": "date-box-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "date-box-1440-light-rtl picker mode",
+      "pass": true,
+      "actual": "date"
+    },
+    {
+      "name": "date-box-1440-light-rtl viewport containment",
+      "pass": true,
+      "actual": {
+        "x": 432,
+        "y": 226.953125,
+        "width": 576,
+        "height": 446.09375,
+        "right": 1008,
+        "bottom": 673.046875
+      }
+    },
+    {
+      "name": "date-box-1440-light-rtl surface scroll ownership",
+      "pass": true,
+      "actual": {
+        "clientHeight": 444,
+        "scrollHeight": 444,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "date-box-1440-light-rtl value commit",
+      "pass": true,
+      "actual": {
+        "value": "2026-10-13",
+        "end": null
+      }
+    },
+    {
+      "name": "date-box-1440-light-rtl event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: 2026-10-13القيمة الحالية: 2026-10-13"
+    },
+    {
+      "name": "date-box-1440-light-rtl page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "date-box-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "date-box-1440-light-rtl broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "date-box-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "date-box-390-dark-ltr controls",
+      "pass": true,
+      "actual": 30
+    },
+    {
+      "name": "date-box-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "date-box-390-dark-ltr picker mode",
+      "pass": true,
+      "actual": "date"
+    },
+    {
+      "name": "date-box-390-dark-ltr viewport containment",
+      "pass": true,
+      "actual": {
+        "x": 8,
+        "y": 198.953125,
+        "width": 374,
+        "height": 446.09375,
+        "right": 382,
+        "bottom": 645.046875
+      }
+    },
+    {
+      "name": "date-box-390-dark-ltr surface scroll ownership",
+      "pass": true,
+      "actual": {
+        "clientHeight": 444,
+        "scrollHeight": 444,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "date-box-390-dark-ltr value commit",
+      "pass": true,
+      "actual": {
+        "value": "2026-10-13",
+        "end": null
+      }
+    },
+    {
+      "name": "date-box-390-dark-ltr event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: 2026-10-13القيمة الحالية: 2026-10-13"
+    },
+    {
+      "name": "date-box-390-dark-ltr page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "date-box-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "date-box-390-dark-ltr broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "time-box-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "time-box-1440-light-rtl controls",
+      "pass": true,
+      "actual": 30
+    },
+    {
+      "name": "time-box-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "time-box-1440-light-rtl picker mode",
+      "pass": true,
+      "actual": "time"
+    },
+    {
+      "name": "time-box-1440-light-rtl viewport containment",
+      "pass": true,
+      "actual": {
+        "x": 432,
+        "y": 227.953125,
+        "width": 576,
+        "height": 444.09375,
+        "right": 1008,
+        "bottom": 672.046875
+      }
+    },
+    {
+      "name": "time-box-1440-light-rtl surface scroll ownership",
+      "pass": true,
+      "actual": {
+        "clientHeight": 442,
+        "scrollHeight": 442,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "time-box-1440-light-rtl value commit",
+      "pass": true,
+      "actual": {
+        "value": "10:45",
+        "end": null
+      }
+    },
+    {
+      "name": "time-box-1440-light-rtl event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: 10:45القيمة الحالية: 10:45"
+    },
+    {
+      "name": "time-box-1440-light-rtl page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "time-box-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "time-box-1440-light-rtl broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "time-box-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "time-box-390-dark-ltr controls",
+      "pass": true,
+      "actual": 30
+    },
+    {
+      "name": "time-box-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "time-box-390-dark-ltr picker mode",
+      "pass": true,
+      "actual": "time"
+    },
+    {
+      "name": "time-box-390-dark-ltr viewport containment",
+      "pass": true,
+      "actual": {
+        "x": 8,
+        "y": 199.953125,
+        "width": 374,
+        "height": 444.09375,
+        "right": 382,
+        "bottom": 644.046875
+      }
+    },
+    {
+      "name": "time-box-390-dark-ltr surface scroll ownership",
+      "pass": true,
+      "actual": {
+        "clientHeight": 442,
+        "scrollHeight": 442,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "time-box-390-dark-ltr value commit",
+      "pass": true,
+      "actual": {
+        "value": "10:45",
+        "end": null
+      }
+    },
+    {
+      "name": "time-box-390-dark-ltr event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: 10:45القيمة الحالية: 10:45"
+    },
+    {
+      "name": "time-box-390-dark-ltr page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "time-box-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "time-box-390-dark-ltr broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "date-time-box-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "date-time-box-1440-light-rtl controls",
+      "pass": true,
+      "actual": 29
+    },
+    {
+      "name": "date-time-box-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "date-time-box-1440-light-rtl picker mode",
+      "pass": true,
+      "actual": "datetime"
+    },
+    {
+      "name": "date-time-box-1440-light-rtl viewport containment",
+      "pass": true,
+      "actual": {
+        "x": 336,
+        "y": 90.953125,
+        "width": 768,
+        "height": 718.09375,
+        "right": 1104,
+        "bottom": 809.046875
+      }
+    },
+    {
+      "name": "date-time-box-1440-light-rtl surface scroll ownership",
+      "pass": true,
+      "actual": {
+        "clientHeight": 716,
+        "scrollHeight": 716,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "date-time-box-1440-light-rtl value commit",
+      "pass": true,
+      "actual": {
+        "value": "2026-10-13T10:45",
+        "end": null
+      }
+    },
+    {
+      "name": "date-time-box-1440-light-rtl event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: 2026-10-13T10:45القيمة الحالية: 2026-10-13T10:45"
+    },
+    {
+      "name": "date-time-box-1440-light-rtl page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "date-time-box-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "date-time-box-1440-light-rtl broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "date-time-box-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "date-time-box-390-dark-ltr controls",
+      "pass": true,
+      "actual": 29
+    },
+    {
+      "name": "date-time-box-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "date-time-box-390-dark-ltr picker mode",
+      "pass": true,
+      "actual": "datetime"
+    },
+    {
+      "name": "date-time-box-390-dark-ltr viewport containment",
+      "pass": true,
+      "actual": {
+        "x": 8,
+        "y": 62.953125,
+        "width": 374,
+        "height": 718.09375,
+        "right": 382,
+        "bottom": 781.046875
+      }
+    },
+    {
+      "name": "date-time-box-390-dark-ltr surface scroll ownership",
+      "pass": true,
+      "actual": {
+        "clientHeight": 716,
+        "scrollHeight": 716,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "date-time-box-390-dark-ltr value commit",
+      "pass": true,
+      "actual": {
+        "value": "2026-10-13T10:45",
+        "end": null
+      }
+    },
+    {
+      "name": "date-time-box-390-dark-ltr event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: 2026-10-13T10:45القيمة الحالية: 2026-10-13T10:45"
+    },
+    {
+      "name": "date-time-box-390-dark-ltr page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "date-time-box-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "date-time-box-390-dark-ltr broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "date-range-box-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "date-range-box-1440-light-rtl controls",
+      "pass": true,
+      "actual": 29
+    },
+    {
+      "name": "date-range-box-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "date-range-box-1440-light-rtl picker mode",
+      "pass": true,
+      "actual": "range"
+    },
+    {
+      "name": "date-range-box-1440-light-rtl viewport containment",
+      "pass": true,
+      "actual": {
+        "x": 336,
+        "y": 202.953125,
+        "width": 768,
+        "height": 494.09375,
+        "right": 1104,
+        "bottom": 697.046875
+      }
+    },
+    {
+      "name": "date-range-box-1440-light-rtl surface scroll ownership",
+      "pass": true,
+      "actual": {
+        "clientHeight": 492,
+        "scrollHeight": 492,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "date-range-box-1440-light-rtl value commit",
+      "pass": true,
+      "actual": {
+        "value": "2026-10-03",
+        "end": "2026-10-20"
+      }
+    },
+    {
+      "name": "date-range-box-1440-light-rtl event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: {\"start\":\"2026-10-03\",\"end\":\"2026-10-20\"}القيمة الحالية: [object Object]"
+    },
+    {
+      "name": "date-range-box-1440-light-rtl page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "date-range-box-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "date-range-box-1440-light-rtl broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "date-range-box-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "date-range-box-390-dark-ltr controls",
+      "pass": true,
+      "actual": 29
+    },
+    {
+      "name": "date-range-box-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "date-range-box-390-dark-ltr picker mode",
+      "pass": true,
+      "actual": "range"
+    },
+    {
+      "name": "date-range-box-390-dark-ltr viewport containment",
+      "pass": true,
+      "actual": {
+        "x": 8,
+        "y": 102.953125,
+        "width": 374,
+        "height": 638.09375,
+        "right": 382,
+        "bottom": 741.046875
+      }
+    },
+    {
+      "name": "date-range-box-390-dark-ltr surface scroll ownership",
+      "pass": true,
+      "actual": {
+        "clientHeight": 636,
+        "scrollHeight": 636,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "date-range-box-390-dark-ltr value commit",
+      "pass": true,
+      "actual": {
+        "value": "2026-10-03",
+        "end": "2026-10-20"
+      }
+    },
+    {
+      "name": "date-range-box-390-dark-ltr event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: {\"start\":\"2026-10-03\",\"end\":\"2026-10-20\"}القيمة الحالية: [object Object]"
+    },
+    {
+      "name": "date-range-box-390-dark-ltr page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "date-range-box-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "date-range-box-390-dark-ltr broken images",
+      "pass": true,
+      "actual": 0
+    }
+  ],
+  "summary": {
+    "total": 88,
+    "passed": 88,
+    "failed": []
+  }
+}

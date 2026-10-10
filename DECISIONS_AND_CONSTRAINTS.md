@@ -1,5 +1,21 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Temporal input family internal-review decisions — 2026-10-10
+
+- No binding component-specific external reference is recorded for DateBox,
+  TimeBox, DateTimeBox, or DateRangeBox; they remain original Honesty ERP
+  candidates.
+- Production APIs, shared Field/Overlay/Temporal Picker ownership, Component
+  Tokens, visual defaults, and CVA behavior remain unchanged. Review
+  corrections are generated data, interaction regressions, and reproducible
+  browser evidence only.
+- Stable Overlay geometry is measured only after
+  `data-overlay-phase="open"`; an entering-transform rectangle is not treated
+  as final viewport geometry.
+- The Overlay surface stays non-scrolling and the owned frame body provides
+  bounded scrolling when picker content requires it.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## Numeric interaction input internal-review decisions — 2026-10-10
 
 - No binding component-specific external reference is recorded for

@@ -146,6 +146,9 @@ const CVA_COMPONENTS = new Set([
 ]);
 
 const CVA_FIXTURE_VALUES = new Map([
+  ['ErpDateBox', '2026-10-12'],
+  ['ErpDateRangeBox', {start: '2026-10-01', end: '2026-10-15'}],
+  ['ErpDateTimeBox', '2026-10-12T09:30'],
   ['ErpMoneyBox', 18450.75],
   ['ErpNumberBox', 1250],
   ['ErpNumberStepper', 12],
@@ -155,6 +158,7 @@ const CVA_FIXTURE_VALUES = new Map([
   ['ErpTelBox', '+20 100 123 4567'],
   ['ErpTextAreaBox', 'ملاحظات طلب الشراء: يرجى مراجعة الكميات قبل الاعتماد.'],
   ['ErpTextBox', 'شركة النور للتجارة'],
+  ['ErpTimeBox', '09:30'],
   ['ErpUrlBox', 'https://honesty-erp.example'],
 ]);
 
@@ -423,6 +427,9 @@ const FIXTURE_INPUTS = new Map([
   ['ErpBulkActionBar', {selectedCount: 3}],
   ['ErpColumnChooser', {columns: [{key: 'name', label: 'الاسم', hideable: true}]}],
   ['ErpComboBox', {items: [{value: 'customer', label: 'عميل'}]}],
+  ['ErpDateBox', {label: 'تاريخ الاستحقاق', helperText: 'تاريخ استحقاق الفاتورة', min: '2026-01-01', max: '2026-12-31', weekStartsOn: 6, clearable: true}],
+  ['ErpDateRangeBox', {label: 'فترة التقرير', helperText: 'حدّد بداية ونهاية الفترة المالية', min: '2026-01-01', max: '2026-12-31', clearable: true}],
+  ['ErpDateTimeBox', {label: 'موعد التسليم', helperText: 'التاريخ والوقت المحليان للتسليم', min: '2026-01-01T00:00', max: '2026-12-31T23:55', clearable: true}],
   ['ErpEntitySchemaFields', {
     fields: [{key: 'name', kind: 'text', label: 'اسم السجل'}],
     values: {name: 'حساب المبيعات'},
@@ -449,6 +456,7 @@ const FIXTURE_INPUTS = new Map([
   ['ErpTelBox', {label: 'هاتف المورد', helperText: 'رقم التواصل المعتمد', clearable: true}],
   ['ErpTextAreaBox', {label: 'ملاحظات طلب الشراء', helperText: 'تظهر لفريق المشتريات', rows: 4, showCounter: true}],
   ['ErpTextBox', {label: 'اسم العميل', helperText: 'الاسم التجاري كما يظهر في الفاتورة', clearable: true}],
+  ['ErpTimeBox', {label: 'بداية الوردية', helperText: 'وقت بدء الوردية', minuteStep: 15, min: '06:00', max: '22:00', clearable: true}],
   ['ErpUrlBox', {label: 'موقع المورد', helperText: 'رابط HTTPS المعتمد', clearable: true}],
   ['ErpNotificationBell', {
     notifications: [

@@ -1,5 +1,26 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Temporal input family internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `26f6650f325de1fb1be406b68b98ad88b8fbb6ef` — synchronized `main` after the
+  numeric interaction input checkpoint.
+
+Bounded scope:
+
+- Reviewed DateBox, TimeBox, DateTimeBox, and DateRangeBox at desktop/narrow
+  Light/Dark RTL/LTR conditions with every owned picker open and confirmed.
+- Added meaningful generated Workbench fixtures and real-picker CVA regression
+  evidence; production APIs/defaults remain unchanged.
+- Persisted 88/88 browser assertions and open/confirmed screenshots under
+  `docs/review-evidence/erp-temporal-inputs/v1-internal-review/`.
+- Canonical gate: 128/128 files, 834/834 tests, both typechecks, all
+  governance/lint, zero-warning 418.32 kB / 92.89 kB build.
+
+Product Owner visual status remains pending. The actual commit SHA is recorded
+by Git after this document snapshot; do not infer acceptance from the commit.
+
 ## Numeric interaction input internal-review candidate — 2026-10-10
 
 Entry checkpoint:
